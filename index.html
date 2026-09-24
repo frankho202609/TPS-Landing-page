@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MSI Edge AI 推論算力評估系統 | 官方企業版</title>
+    <title>MSI Edge AI 推論效能評估工具</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -239,10 +239,10 @@
         <div class="w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-20 md:py-24 relative z-10">
             <div class="max-w-5xl">
                 <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-6 transition-colors">
-                    精準配置您的 <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">AI 邊緣算力</span>
+                    精準規劃您的<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">邊緣 AI 算力</span>
                 </h1>
                 <p class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed max-w-3xl transition-colors">
-                    選擇大型語言模型 (LLM)、量化精度、輸入 (Prompt) 與輸出 (Output) 長度，比較 GPU／SoC 的可用記憶體、推論吞吐量 (TPS)、首字延遲 (TTFT) 與預估月電費。
+                    選擇大型語言模型（LLM）、量化精度、輸入（Prompt）與輸出（Output）長度，比較 GPU、SoC 與 AI 超級電腦的可用記憶體、推論吞吐量（TPS）、首字延遲（TTFT）與預估月電費。
                 </p>
                 <div class="flex gap-4">
                     <a href="#calculator-app" class="bg-red-600 text-white font-semibold px-8 py-3.5 rounded-lg shadow-md shadow-red-600/20 hover:bg-red-700 transition-colors flex items-center gap-2">
@@ -273,14 +273,14 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 
-                <!-- 企業知識庫 -->
-                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用內部知識庫 RAG 設定" data-model="llama3_3_70b" data-context="32768" data-output="1024" data-addons="bge_small_en,bge_reranker">
+                <!-- 個人知識庫 -->
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用個人知識庫 RAG 設定" data-model="llama3_3_70b" data-context="32768" data-output="1024" data-addons="bge_small_zh,bge_reranker">
                     <div class="flex items-center justify-between mb-2">
                         <div class="bg-blue-100 dark:bg-blue-900/40 p-2 rounded-lg text-blue-600 dark:text-blue-400 group-hover:bg-red-100 dark:group-hover:bg-red-900/40 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                         </div>
                     </div>
-                    <h4 class="scenario-title font-bold text-slate-900 dark:text-white text-base group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">內部知識庫</h4>
+                    <h4 class="scenario-title font-bold text-slate-900 dark:text-white text-base group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">個人知識庫</h4>
                 </div>
 
                 <!-- 程式碼生成 -->
@@ -317,13 +317,13 @@
                 <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用圖片生成助理多模型組合" data-model="ministral3_8b" data-context="4096" data-output="512" data-addons="qwen25_vl_7b,sdxl">
                     <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4-4a3 5 0 014 0l4 4m-2-2l1-1a3 5 0 014 0l1 1M14 8h.01M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">圖片生成</h4>
                 </div>
-                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用文件知識問答多模型組合" data-model="ministral3_8b" data-context="8192" data-output="512" data-addons="glm_ocr,bge_small_en,bge_reranker">
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用文件知識問答多模型組合" data-model="ministral3_8b" data-context="8192" data-output="512" data-addons="glm_ocr,bge_small_zh,bge_reranker">
                     <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5l5 5v11a2 2 0 01-2 2z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">文件問答</h4>
                 </div>
                 <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用視覺檢測 Agent 多模型組合" data-model="gemma4_e4b" data-context="4096" data-output="512" data-addons="qwen25_vl_7b,yolo11">
                     <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">視覺辨識</h4>
                 </div>
-                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用語音客服 Agent 多模型組合" data-model="ministral3_8b" data-context="4096" data-output="512" data-addons="whisper_v3">
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用語音客服 STT、LLM 與 TTS 多模型組合" data-model="ministral3_8b" data-context="4096" data-output="512" data-addons="whisper_v3,kokoro_82m">
                     <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18v3m0-3a6 6 0 006-6v-1m-6 7a6 6 0 01-6-6v-1m6 3a3 3 0 003-3V5a3 3 0 10-6 0v6a3 3 0 003 3z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">語音客服</h4>
                 </div>
             </div>
@@ -339,7 +339,7 @@
                     </div>
                     <div>
                         <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight transition-colors">核心推論引擎配置</h2>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 transition-colors">即時模擬記憶體分配與吞吐量瓶頸 (Inference Engine Config)</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 transition-colors">即時模擬記憶體配置與吞吐量瓶頸（Inference Engine Configuration）</p>
                     </div>
                 </div>
                 
@@ -360,7 +360,7 @@
                     
                     <!-- 模型選擇 -->
                     <div class="lg:col-span-4" data-field="model">
-                        <label class="field-label"><span>LLM／大語言模型選擇</span><span class="field-label-en">Large language model</span></label>
+                        <label class="field-label"><span>LLM／大型語言模型選擇</span><span class="field-label-en">Large Language Model</span></label>
                         <div class="flex gap-2">
                         <select id="model-select" class="min-w-0 flex-1 text-sm font-medium border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border form-trigger form-select-custom bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white transition-colors">
                             <optgroup label="語言模型 (LLMs)">
@@ -375,7 +375,7 @@
                                 <option data-type="text" data-quants="6.56,8.0,16.0" data-pb="18.66" data-apb="18.66" data-layers="40" data-kvh="8" data-hd="256" value="gemma4_12b">Google Gemma 4 12B</option>
                                 <option data-type="text" data-quants="6.56,8.0,16.0" data-pb="18.0" data-apb="4.5" data-layers="36" data-kvh="8" data-hd="128" value="gemma4_e4b">Google Gemma 4 E4B (MoE Agent)</option>
                                 <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="14.0" data-apb="14.0" data-layers="40" data-kvh="16" data-hd="128" value="phi_4">Microsoft Phi-4 14B</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="8.0" data-apb="8.0" data-layers="32" data-kvh="8" data-hd="128" value="ministral3_8b" selected>Mistral Ministral 3 8B</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="8.0" data-apb="8.0" data-layers="32" data-kvh="8" data-hd="128" value="ministral3_8b" selected>Ministral 3 8B</option>
                             </optgroup>
                         </select>
                         </div>
@@ -415,7 +415,7 @@
                     
                     <!-- Output Length -->
                     <div class="lg:col-span-2">
-                        <label class="field-label"><span>最大輸出</span><span class="field-label-en">Max output</span></label>
+                        <label class="field-label"><span>最大輸出長度</span><span class="field-label-en">Maximum Output</span></label>
                         <select id="output-select" class="w-full text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-700 dark:text-slate-200 transition-colors">
                             <option value="128">128 Tokens</option>
                             <option value="512" selected>512 Tokens</option>
@@ -442,12 +442,13 @@
                                     </div>
                                     <button id="close-addon-panel" type="button" class="h-9 w-9 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 hover:text-red-600 hover:border-red-300 dark:text-slate-400 dark:hover:text-red-400 flex items-center justify-center" aria-label="關閉新增模型視窗">×</button>
                                 </div>
-                                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-5" role="group" aria-label="附加模型類型">
+                                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2 mb-5" role="group" aria-label="附加模型類型">
                                     <button type="button" class="addon-category-button rounded-lg border border-red-400 bg-red-50 dark:bg-red-950/40 px-3 py-2.5 text-left transition-colors" data-category="image"><span class="block text-xs font-bold text-slate-800 dark:text-white">圖片生成</span><span class="text-[10px] text-slate-500">Image</span></button>
                                     <button type="button" class="addon-category-button rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-left transition-colors" data-category="embedding"><span class="block text-xs font-bold text-slate-800 dark:text-white">向量嵌入</span><span class="text-[10px] text-slate-500">Embedding</span></button>
                                     <button type="button" class="addon-category-button rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-left transition-colors" data-category="reranker"><span class="block text-xs font-bold text-slate-800 dark:text-white">重新排序</span><span class="text-[10px] text-slate-500">Reranker</span></button>
                                     <button type="button" class="addon-category-button rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-left transition-colors" data-category="vision"><span class="block text-xs font-bold text-slate-800 dark:text-white">視覺模型</span><span class="text-[10px] text-slate-500">VLM / YOLO</span></button>
                                     <button type="button" class="addon-category-button rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-left transition-colors" data-category="stt"><span class="block text-xs font-bold text-slate-800 dark:text-white">語音轉文字</span><span class="text-[10px] text-slate-500">STT</span></button>
+                                    <button type="button" class="addon-category-button rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-left transition-colors" data-category="tts"><span class="block text-xs font-bold text-slate-800 dark:text-white">文字轉語音</span><span class="text-[10px] text-slate-500">TTS</span></button>
                                     <button type="button" class="addon-category-button rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-left transition-colors" data-category="ocr"><span class="block text-xs font-bold text-slate-800 dark:text-white">文字辨識</span><span class="text-[10px] text-slate-500">OCR</span></button>
                                 </div>
                                 <label for="addon-model-select" class="field-label min-h-0"><span>選擇模型</span><span class="field-label-en">Model</span></label>
@@ -513,6 +514,9 @@
                                         <option data-category="stt" data-vram="4" data-precision="INT8 / FP16" data-input="30 sec Audio" data-output="Transcript" value="faster_whisper_v3_turbo">#9 Faster Whisper Large v3 Turbo · 預留 4 GB</option>
                                         <option data-category="stt" data-vram="4" data-precision="INT8 / FP16" data-input="30 sec Audio" data-output="Transcript" value="faster_whisper_v3">#10 Faster Whisper Large v3 · 預留 4 GB</option>
 
+                                        <!-- 文字轉語音：輕量化本機語音合成 -->
+                                        <option data-category="tts" data-vram="0.5" data-precision="FP32" data-input="Text" data-output="Audio" value="kokoro_82m">#1 Kokoro-82M · 預留 0.5 GB</option>
+
                                         <!-- OCR：Hugging Face OCR search downloads + 文件辨識適配 -->
                                         <option data-category="ocr" data-vram="16" data-precision="BF16" data-input="Document" data-output="Text / Layout" value="chandra_ocr2">#1 Chandra OCR 2 · 預留 16 GB</option>
                                         <option data-category="ocr" data-vram="12" data-precision="BF16" data-input="Document" data-output="Text / Layout" value="deepseek_ocr">#2 DeepSeek OCR · 預留 12 GB</option>
@@ -533,7 +537,7 @@
 
                         <div id="addon-selection" class="hidden mt-2">
                             <div class="flex items-center justify-between gap-3 mb-2 px-1">
-                                <span class="text-[10px] uppercase tracking-wider text-slate-400">Additional model rows</span>
+                                <span class="text-[10px] uppercase tracking-wider text-slate-400">Additional Models</span>
                                 <span id="addon-vram-summary" class="text-xs font-bold text-red-600 dark:text-red-400 whitespace-nowrap"></span>
                             </div>
                             <div id="addon-chips" class="space-y-3"></div>
@@ -542,7 +546,7 @@
 
                     <!-- TPS Filter -->
                     <div class="sm:col-span-2 lg:col-span-12 pt-5 mt-1 border-t border-slate-100 dark:border-slate-700 transition-colors">
-                        <label class="field-label min-h-0"><span>速度篩選</span><span class="field-label-en">Speed filter</span></label>
+                        <label class="field-label min-h-0"><span>速度篩選</span><span class="field-label-en">Speed Filter</span></label>
                         <div class="flex flex-col sm:flex-row sm:items-center gap-3">
                            <select id="tps-threshold" class="w-full sm:w-72 text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-700 dark:text-slate-200 transition-colors">
                                <option value="0">顯示全部硬體 (包含 OOM)</option>
@@ -573,14 +577,14 @@
                         
                         <!-- Block 1: Memory -->
                         <div class="space-y-4">
-                            <h4 class="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 pb-2 transition-colors">顯存管理 (Memory & Allocation)</h4>
+                            <h4 class="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 pb-2 transition-colors">記憶體管理（Memory &amp; Allocation）</h4>
                             
                             <div>
                                 <label class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1.5 transition-colors">鍵值快取量化 (KV Cache Quantization)</label>
                                 <select id="kv-quant" class="w-full text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-800 dark:text-slate-200 transition-colors">
                                     <option value="16">FP16 / BF16 (標準 16-bit)</option>
-                                    <option value="8">FP8 (8-bit) - 節省50% KV顯存</option>
-                                    <option value="4">INT4 (4-bit) - 節省75% KV顯存</option>
+                                    <option value="8">FP8（8-bit）－節省 50% KV Cache 記憶體</option>
+                                    <option value="4">INT4（4-bit）－節省 75% KV Cache 記憶體</option>
                                 </select>
                             </div>
 
@@ -670,7 +674,7 @@
 
         <!-- 硬體組態展示區 -->
         <div class="mb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
-            <div><h2 class="text-lg font-extrabold text-slate-900 dark:text-white">硬體組態可行性比較</h2><p class="mt-1 text-xs text-slate-500 dark:text-slate-400">不使用 CPU／儲存裝置卸載；模型容量超過可用 GPU／共享記憶體時直接標示 OOM。</p></div>
+            <div><h2 class="text-lg font-extrabold text-slate-900 dark:text-white">硬體組態可行性比較</h2><p class="mt-1 text-xs text-slate-500 dark:text-slate-400">不使用 CPU 或儲存裝置卸載；模型記憶體需求超過可用 VRAM、統一記憶體或共享記憶體時，直接標示 OOM。</p></div>
             <span class="text-[10px] uppercase tracking-wider text-slate-400">Hardware capacity comparison</span>
         </div>
         <div id="product-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -684,6 +688,18 @@
                 <p class="text-slate-500 dark:text-slate-400 max-w-lg leading-relaxed text-sm transition-colors">
                     您所選擇的模型 (例如影像生成或視覺模型) 並不適用基於 Token 的 Roofline 吞吐量公式。如需評估此類模型，請參閱 MSI 官方專屬硬體白皮書，或在上方選單切換回大型語言模型 (Text LLM)。
                 </p>
+            </div>
+
+            <!-- TPS / OOM 篩選無結果提示 -->
+            <div id="filter-empty-message" class="is-hidden col-span-full rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+                <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-amber-50 text-amber-600 dark:bg-amber-950/40 dark:text-amber-400">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86l-8.82 15.28A2 2 0 003.2 22h17.6a2 2 0 001.73-2.86L13.71 3.86a2 2 0 00-3.42 0z"></path></svg>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">沒有符合目前條件的硬體</h3>
+                <p class="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                    目前的 TPS 門檻為 <strong id="filter-empty-threshold" class="text-slate-700 dark:text-slate-200">—</strong>。符合記憶體容量的硬體可能未達此速度，或模型已超出可用記憶體。
+                </p>
+                <button id="show-all-products" type="button" class="mt-5 inline-flex items-center rounded-lg border border-red-500 px-4 py-2 text-sm font-bold text-red-600 transition-colors hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/30">顯示全部硬體（包含 OOM）</button>
             </div>
 
             <!-- 機器 1: PRO MAX EDGE AI+ -->
@@ -1384,7 +1400,7 @@
                 <li id="ref-4" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[4]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">RAG 工作負載模型。</span> Meta Llama 3.3 70B Instruct 官方模型卡：128K context、GQA 與 multilingual dialogue 定位。 <a href="https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">模型卡 ↗</a></div></li>
                 <li id="ref-5" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[5]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Coder 工作負載模型。</span> Qwen Team, Qwen2.5-Coder 系列報告：程式生成、修復、推理與多程式語言 benchmark。 <a href="https://qwenlm.github.io/blog/qwen2.5-coder-family/" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">官方報告 ↗</a></div></li>
                 <li id="ref-6" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[6]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Edge Agent 工作負載模型。</span> Google Gemma 4 官方模型卡：E4B edge 定位、128K context、function calling 與 Tau2 agent benchmark。 <a href="https://ai.google.dev/gemma/docs/core/model_card_4" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">模型卡 ↗</a></div></li>
-                <li id="ref-7" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[7]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">客服與摘要工作負載模型。</span> Mistral Ministral 3 8B 官方文件：edge deployment、Document Q&amp;A、structured output 與 batching。 <a href="https://docs.mistral.ai/models/ministral-3-8b-25-12" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">官方文件 ↗</a></div></li>
+                <li id="ref-7" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[7]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">客服與摘要工作負載模型。</span> Ministral 3 8B（Mistral AI）官方文件：涵蓋邊緣部署、文件問答、結構化輸出與批次處理。 <a href="https://docs.mistral.ai/models/ministral-3-8b-25-12" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">官方文件 ↗</a></div></li>
                 <li id="ref-8" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[8]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">KV Cache、批次與同時請求。</span> Kwon et al., <em>Efficient Memory Management for Large Language Model Serving with PagedAttention</em>。本頁把有效批次設為 Batch Size 與 Concurrent Users 的較小值；超出批次上限的請求視為排隊，並以分波方式估算平均 TTFT。 <a href="https://arxiv.org/abs/2309.06180" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">arXiv ↗</a></div></li>
                 <li id="ref-9" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[9]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">LoRA。</span> Hu et al., <em>LoRA: Low-Rank Adaptation of Large Language Models</em>；本頁的 LoRA VRAM 數值另含原型經驗係數。 <a href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">arXiv ↗</a></div></li>
                 <li id="ref-10" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[10]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">投機解碼。</span> Leviathan et al., <em>Fast Inference from Transformers via Speculative Decoding</em>；本頁 speedup 為簡化估算，仍需依 draft model 與接受率實測。 <a href="https://arxiv.org/abs/2211.17192" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">arXiv ↗</a></div></li>
@@ -1556,6 +1572,7 @@
                     reranker: '重新排序 · Reranker',
                     vision: '視覺模型 · Vision',
                     stt: '語音轉文字 · STT',
+                    tts: '文字轉語音 · TTS',
                     ocr: '文字辨識 · OCR'
                 };
                 selectedAddons.forEach(function(item) {
@@ -1647,13 +1664,11 @@
                 const hardwareCatalog = [
                     { brand: 'AMD', name: 'Ryzen AI Max+ 395', subtitle: 'SoC · 128 GB Unified Memory（96 GB VGM）', capacity: 96, memory: '96 GB 可用 VGM', bw: 256, compute: 60.0, power: 120, powerLabel: '120W cTDP', pc: 'PRO MAX EDGE AI+ 11M', pcUrl: 'https://www.msi.com/Business-Productivity-PC/PRO-MAX-EDGE-AI-Plus-11M' },
                     { brand: 'Intel', name: 'Core Ultra 9 285H', subtitle: 'SoC · 最高 128 GB System RAM', capacity: 128, memory: '128 GB System RAM', bw: 102.4, compute: 18.0, power: 45, powerLabel: '45W Base', pc: '瀏覽 MSI Desktop 系列', pcUrl: 'https://www.msi.com/Desktop' },
+                    { brand: 'NVIDIA', name: 'EdgeXpert / DGX Spark (GB10)', subtitle: 'AI 超級電腦 · 128 GB 統一記憶體', capacity: 128, memory: '128 GB LPDDR5x 統一記憶體', bw: 273, compute: 150.0, power: 240, powerLabel: '240W USB-C 變壓器', pc: 'EdgeXpert MS-C931', pcUrl: 'https://ipc.msi.com/product_detail/Industrial-Computer-Box-PC/AI-Supercomputer/EdgeXpert-MS-C931' },
                     { brand: 'NVIDIA', name: 'GeForce RTX 5090', subtitle: 'Discrete GPU · 32 GB GDDR7', capacity: 32, memory: '32 GB VRAM', bw: 1792, compute: 419.2, power: 575, powerLabel: '575W TGP', pcs: [
                         { name: 'MEG VISION X AI 2nd', url: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
                         { name: 'MEG Trident X2 14th', url: 'https://tw.msi.com/Desktop/MEG-Trident-X2-14th' },
-                        { name: 'MPG Infinite X3 AI 2nd', url: 'https://tw.msi.com/Desktop/MPG-Infinite-X3-AI-2nd' },
-                        { name: 'EdgeXpert MS-C931', url: 'https://ipc.msi.com/product_detail/Industrial-Computer-Box-PC/AI-Supercomputer/EdgeXpert-MS-C931' },
-                        { name: 'MS-C9ZA Edge AI BOX', url: 'https://ipc.msi.com/product_detail/Industrial-Computer-Box-PC/Edge-AI-BOX/MS-C9ZA' },
-                        { name: 'MS-C910E Edge AI BOX', url: 'https://ipc.msi.com/product_detail/Industrial-Computer-Box-PC/Edge-AI-BOX/MS-C910E' }
+                        { name: 'MPG Infinite X3 AI 2nd', url: 'https://tw.msi.com/Desktop/MPG-Infinite-X3-AI-2nd' }
                     ] },
                     { brand: 'NVIDIA', name: 'GeForce RTX 5080', subtitle: 'Discrete GPU · 16 GB GDDR7', capacity: 16, memory: '16 GB VRAM', bw: 960, compute: 268.0, power: 360, powerLabel: '360W TGP', pc: 'MEG VISION X AI 2nd', pcUrl: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
                     { brand: 'NVIDIA', name: 'GeForce RTX 5070 Ti', subtitle: 'Discrete GPU · 16 GB GDDR7', capacity: 16, memory: '16 GB VRAM', bw: 896, compute: 175.8, power: 300, powerLabel: '300W TGP', pc: 'MEG VISION X AI 2nd', pcUrl: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
@@ -1734,10 +1749,44 @@
             initializeTerminologyLabels();
 
             const powerSettings = document.getElementById('power-settings');
-            function syncPowerCostVisibility() {
-                document.body.classList.toggle('power-cost-enabled', Boolean(powerSettings && powerSettings.open));
+            const powerCostStorageKey = 'tps-power-cost-settings';
+            let powerCostConfigured = false;
+
+            function restorePowerCostSettings() {
+                try {
+                    const saved = JSON.parse(localStorage.getItem(powerCostStorageKey) || 'null');
+                    if (!saved || !saved.configured) return;
+                    const savedRate = parseFloat(saved.rate);
+                    const savedLoad = parseFloat(saved.loadFactor);
+                    if (Number.isFinite(savedRate) && savedRate > 0) $('#power-rate').val(savedRate);
+                    if (Number.isFinite(savedLoad) && savedLoad > 0 && $('#load-factor option[value="' + savedLoad + '"]').length) {
+                        $('#load-factor').val(String(savedLoad));
+                    }
+                    powerCostConfigured = Number.isFinite(savedRate) && savedRate > 0 && Number.isFinite(savedLoad) && savedLoad > 0;
+                } catch (error) {
+                    powerCostConfigured = false;
+                }
             }
-            if (powerSettings) powerSettings.addEventListener('toggle', syncPowerCostVisibility);
+
+            function syncPowerCostVisibility() {
+                document.body.classList.toggle('power-cost-enabled', powerCostConfigured);
+            }
+
+            function savePowerCostSettings() {
+                const rate = parseFloat($('#power-rate').val());
+                const loadFactor = parseFloat($('#load-factor').val());
+                if (!Number.isFinite(rate) || rate <= 0 || !Number.isFinite(loadFactor) || loadFactor <= 0) return;
+                powerCostConfigured = true;
+                try {
+                    localStorage.setItem(powerCostStorageKey, JSON.stringify({ configured: true, rate: rate, loadFactor: loadFactor }));
+                } catch (error) {
+                    // The current page session still keeps the result visible when storage is unavailable.
+                }
+                syncPowerCostVisibility();
+            }
+
+            restorePowerCostSettings();
+            $('#power-rate, #load-factor').on('input change', savePowerCostSettings);
             syncPowerCostVisibility();
 
             function initializeHelpTips() {
@@ -1746,8 +1795,8 @@
                     ['#quant-select', '量化用較低精度儲存模型權重，可降低 VRAM 與記憶體傳輸量。Q4_K_M、Q5_K_M、Q6_K 屬 GGUF／llama.cpp；AWQ、GPTQ、INT8、FP8、FP16/BF16 是 GPU 推論常見格式或精度，實際支援取決於 checkpoint、硬體與框架。'],
                     ['#context-select', 'Prefill 是一次處理輸入 prompt 的階段。輸入 token 越多，通常 TTFT、KV Cache 與運算量越高。'],
                     ['#output-select', 'Decode 是逐 token 生成答案的階段。此值是單次請求允許產生的最大 token 數，也會增加最終 KV Cache 用量。'],
-                    ['#tps-threshold', '速度篩選會依估算的 TPS（每秒產生 token 數）顯示符合門檻的硬體；本頁數值是 analytical estimate，不是實機 benchmark。'],
-                    ['#kv-quant', 'KV Cache 儲存每一層注意力的 Key 與 Value。降低 KV 精度可顯著節省長 context 與高 batch 下的顯存，但可能影響品質或需要推論框架支援。'],
+                    ['#tps-threshold', '速度篩選會依預估 TPS（每秒產生的 token 數）顯示符合門檻的硬體；本頁數值為分析模型估算，並非實機效能測試結果。'],
+                    ['#kv-quant', 'KV Cache 儲存每一層注意力機制的 Key 與 Value。降低 KV 精度可顯著減少長上下文與大批次所需的記憶體，但可能影響品質，且需推論框架支援。'],
                     ['#vram-utilization', '可交給推論引擎使用的記憶體比例。預留空間可降低記憶體碎片、暫存張量或其他程序導致 OOM 的風險。'],
                     ['#lora-rank', 'LoRA 以低秩矩陣加入任務專用參數。Rank 越高，適配器容量與記憶體開銷通常越大。'],
                     ['#batch-size', '推論引擎每輪最多一起處理的序列數。實際有效批次不會超過同時使用者數；較大的 batch 通常提高總吞吐量，但也會增加 KV Cache。'],
@@ -1767,13 +1816,14 @@
                 addHelp($('#oom-help'), 'OOM（Out of Memory）表示可用顯存或統一記憶體不足，無法載入或執行目前的模型設定。');
                 addHelp($('#addon-panel-title'), '附加模型會與主要 LLM 同時計入記憶體需求，用來判斷整個應用工作流能否載入；目前不估算附加模型的 TPS。');
 
-                addHelp($('.scenario-prefill'), '此卡片套用的典型輸入 token 工作量；不是模型可支援的最大 context window。Prefill 主要影響 TTFT。');
-                addHelp($('.scenario-decode'), '此卡片套用的最大輸出 token 工作量。Decode 主要觀察 TPS 或 TPOT。');
-                addHelp($('.scenario-card h4:contains("內部知識庫")'), '內部知識庫通常採用 RAG（Retrieval-Augmented Generation）：先檢索企業資料，再把相關內容放入 prompt，讓 LLM 依外部證據回答。');
+                addHelp($('.scenario-prefill'), '此卡片套用的是典型輸入 token 數，而非模型支援的最大上下文長度。Prefill 主要影響 TTFT。');
+                addHelp($('.scenario-decode'), '此卡片套用的是最大輸出 token 數。Decode 階段主要觀察 TPS 或 TPOT。');
+                addHelp($('.scenario-card h4:contains("個人知識庫")'), '個人知識庫通常採用 RAG（Retrieval-Augmented Generation）：先檢索個人文件，再把相關內容放入 prompt，讓 LLM 依外部證據回答。');
                 addHelp($('.scenario-card h4:contains("程式開發")'), '此情境採用針對程式生成、補全、修復與程式推理調校的 Coder 模型。');
                 addHelp($('.scenario-card h4:contains("Agentic AI")'), 'Agentic AI 會依目標規劃多步驟、呼叫工具並根據結果繼續決策。本情境套用較長輸入、短輸出、低 batch 與多位同時使用者的互動型設定。');
+                addHelp($('.scenario-card h4:contains("語音客服")'), '語音客服由 STT 將使用者語音轉成文字、LLM 產生回覆，再由 TTS 合成語音。');
                 addHelp($('#measurement-scope'), 'TTFT 是從送出請求到第一個 token 出現的時間；TPS 是 Decode 階段每秒產生的 token 數。TPOT 指每個輸出 token 的平均延遲，但本頁目前未單獨計算，因此不列為結果指標。');
-                addHelp($('p:contains("Roofline 物理模型")'), 'Roofline model 以運算能力與記憶體頻寬兩個上限估計工作負載瓶頸；本頁結果仍需用實機 benchmark 校準。');
+                addHelp($('p:contains("Roofline 物理模型")'), 'Roofline 模型以運算能力與記憶體頻寬兩項上限估算工作負載瓶頸；本頁結果仍需透過實機效能測試校準。');
 
                 $('.product-card').each(function() {
                     const $card = $(this);
@@ -1916,7 +1966,7 @@
                 $('#start-tps-simulation').addClass('hidden');
                 const tps = parseFloat($('#tps-simulator-input').val());
                 if (!Number.isFinite(tps) || tps <= 0) {
-                    $('#tps-simulator-output').text('請輸入大於 0 的 TPS 數值。');
+                    $('#tps-simulator-output').text('此硬體目前沒有可用的 TPS 估算值。');
                     $('#tps-simulator-progress').text('');
                     $('#start-tps-simulation').removeClass('hidden');
                     return;
@@ -2015,9 +2065,13 @@
 
                 if (totalProducts === 0) {
                     $('#product-pagination').addClass('is-hidden');
+                    const thresholdLabel = $('#tps-threshold option:selected').text();
+                    $('#filter-empty-threshold').text(thresholdLabel || '目前設定');
+                    $('#filter-empty-message').removeClass('is-hidden');
                     return;
                 }
 
+                $('#filter-empty-message').addClass('is-hidden');
                 $('#product-pagination').removeClass('is-hidden');
                 const start = (currentProductPage - 1) * productsPerPage;
                 const end = Math.min(start + productsPerPage, totalProducts);
@@ -2044,6 +2098,9 @@
             $('#product-next').click(function() { renderProductPage(currentProductPage + 1); });
             $('#product-page-buttons').on('click', '.product-page-button', function() {
                 renderProductPage(parseInt($(this).data('page')));
+            });
+            $('#show-all-products').click(function() {
+                $('#tps-threshold').val('0').trigger('change');
             });
 
             // --- 應用場景卡片 (Scenario Cards) ---
@@ -2126,6 +2183,7 @@
                 if (modelType !== 'text') {
                     $('.product-card').addClass('is-hidden');
                     $('#non-llm-message').removeClass('is-hidden');
+                    $('#filter-empty-message').addClass('is-hidden');
                     $('#product-pagination').addClass('is-hidden');
                     return;
                 }
