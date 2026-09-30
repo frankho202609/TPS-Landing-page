@@ -189,7 +189,7 @@
 
         /* 硬體比較維持緊湊條列；桌面與平板採清楚的四段式資料欄。 */
         #product-container { display: flex; flex-direction: column; gap: 0.875rem; }
-        .product-card { border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(15, 23, 42, .04); }
+        .product-card { border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(15, 23, 42, .04); container-type: inline-size; container-name: product-card; }
         .dark .product-card { border-color: #334155; }
         .product-card .card-body { padding: 1.25rem; }
         .product-card .card-header h3 { line-height: 1.2; }
@@ -205,10 +205,11 @@
             .view-list .card-specs > span { font-size: 10px; }
             .view-list .card-metrics-wrapper { display: contents; }
             .view-list .metric-grid { grid-column: 2; grid-row: 1; }
-            .view-list .metric-vram { grid-column: 3; grid-row: 1; width: auto; min-width: 0; }
+            .view-list .metric-vram { grid-column: 1 / -1; grid-row: 2; width: auto; min-width: 0; }
             .view-list .metric-vram .mt-2 { display: grid; grid-template-columns: 1fr; gap: .2rem; }
             .view-list .metric-grid, .view-list .unsupported-warning { display: grid; grid-template-columns: 1.25fr .9fr; gap: .6rem; border: none; background: transparent; padding: 0; min-width: 0; }
-            .power-cost-enabled .view-list .metric-grid { grid-template-columns: 1.25fr .9fr .9fr; }
+            .power-cost-enabled .view-list .metric-grid { grid-template-columns: 1.25fr .9fr; }
+            .power-cost-enabled .view-list .metric-cost { grid-column: 1 / -1; }
             .view-list .metric-box { min-width: 0; min-height: 76px; padding: .75rem; border: 1px solid #e2e8f0; border-radius: .65rem; background: #f8fafc; }
             .dark .view-list .metric-box { border-color: #334155; background: rgba(15, 23, 42, .55); }
             .view-list .metric-box:first-child { min-height: 88px; border-width: 2px; }
@@ -216,9 +217,11 @@
             .hardware-details summary::-webkit-details-marker { display: none; }
             .view-list .metric-costs { display: contents; }
         }
-        @media (min-width: 1100px) {
+        @container product-card (min-width: 1050px) {
             .view-list .card-body { grid-template-columns: minmax(220px, .9fr) minmax(320px, 1.35fr) minmax(280px, 1fr); gap: 1.25rem; }
-            .view-list .product-card { min-height: 166px; }
+            .view-list .metric-vram { grid-column: 3; grid-row: 1; }
+            .power-cost-enabled .view-list .metric-grid { grid-template-columns: 1.25fr .9fr .9fr; }
+            .power-cost-enabled .view-list .metric-cost { grid-column: auto; }
         }
         @media (max-width: 899px) {
             .product-card .card-header { gap: .75rem; }
@@ -230,13 +233,16 @@
         .product-card .card-metrics-wrapper .metric-vram { order: 2; }
         .product-card .metric-cost { display: none !important; }
         .power-cost-enabled .product-card .metric-cost { display: flex !important; }
+        .product-card .card-metrics-wrapper { border-top: 0 !important; }
+        .scenario-meta { margin-top: .45rem; color: #64748b; font-size: .7rem; line-height: 1.45; }
+        .dark .scenario-meta { color: #94a3b8; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 selection:bg-red-200 selection:text-red-900 dark:selection:bg-red-900 dark:selection:text-red-100 transition-colors duration-300">
 
     <!-- Hero Section -->
     <section class="hero-gradient min-h-screen flex items-center border-b border-slate-200 dark:border-slate-800 overflow-hidden relative transition-colors duration-300">
-        <div class="w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-20 md:py-24 relative z-10">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24 relative z-10">
             <div class="max-w-5xl">
                 <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-6 transition-colors">
                     精準規劃您的<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">邊緣 AI 算力</span>
@@ -266,21 +272,18 @@
                     </h3>
                     <p class="mt-1.5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">選擇應用情境，快速帶入建議模型。</p>
                 </div>
-                <div id="measurement-scope" class="text-xs leading-relaxed text-slate-500 dark:text-slate-400 lg:text-right bg-slate-100/80 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2">
-                    <span class="font-semibold text-slate-700 dark:text-slate-300">量測口徑：</span>預填 (Prefill) → 首字延遲 (TTFT)；解碼 (Decode) → 推論吞吐量 (TPS)
-                    <a href="https://arxiv.org/abs/2401.09670" target="_blank" rel="noopener noreferrer" class="evidence-link ml-1 text-red-600 dark:text-red-400 hover:underline">DistServe 論文 ↗</a>
-                </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 
                 <!-- 個人知識庫 -->
-                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用個人知識庫 RAG 設定" data-model="llama3_3_70b" data-context="32768" data-output="1024" data-addons="bge_small_zh,bge_reranker">
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用英文個人知識庫 RAG 設定" data-model="ministral3_8b" data-context="8192" data-output="1024" data-addons="bge_small_en,bge_reranker">
                     <div class="flex items-center justify-between mb-2">
                         <div class="bg-blue-100 dark:bg-blue-900/40 p-2 rounded-lg text-blue-600 dark:text-blue-400 group-hover:bg-red-100 dark:group-hover:bg-red-900/40 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                         </div>
                     </div>
                     <h4 class="scenario-title font-bold text-slate-900 dark:text-white text-base group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">個人知識庫</h4>
+                    <p class="mt-1 text-[11px] text-slate-500 dark:text-slate-400">English knowledge base</p>
                 </div>
 
                 <!-- 程式碼生成 -->
@@ -303,28 +306,28 @@
                     <h4 class="scenario-title font-bold text-slate-900 dark:text-white text-base group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Agentic AI</h4>
                 </div>
 
-                <!-- 基礎對話與總結 -->
-                <div class="scenario-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用基礎客服與摘要設定" data-model="ministral3_8b" data-context="4096" data-output="512">
+                <!-- 圖片生成 -->
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用圖片生成助理多模型組合" data-model="ministral3_8b" data-context="4096" data-output="512" data-addons="qwen25_vl_7b,sdxl">
                     <div class="flex items-center justify-between mb-2">
                         <div class="bg-purple-100 dark:bg-purple-900/40 p-2 rounded-lg text-purple-600 dark:text-purple-400 group-hover:bg-red-100 dark:group-hover:bg-red-900/40 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
                         </div>
                     </div>
-                    <h4 class="scenario-title font-bold text-slate-900 dark:text-white text-base group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">客服摘要</h4>
+                    <h4 class="scenario-title font-bold text-slate-900 dark:text-white text-base group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">圖片生成</h4>
                 </div>
 
                 <!-- 下列多模型情境與單一 LLM 情境共用同一層級；點選後才展開模型組合。 -->
-                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用圖片生成助理多模型組合" data-model="ministral3_8b" data-context="4096" data-output="512" data-addons="qwen25_vl_7b,sdxl">
-                    <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4-4a3 5 0 014 0l4 4m-2-2l1-1a3 5 0 014 0l1 1M14 8h.01M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">圖片生成</h4>
-                </div>
-                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用文件知識問答多模型組合" data-model="ministral3_8b" data-context="8192" data-output="512" data-addons="glm_ocr,bge_small_zh,bge_reranker">
-                    <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5l5 5v11a2 2 0 01-2 2z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">文件問答</h4>
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用影片生成多模型組合" data-model="ministral3_8b" data-context="4096" data-output="512" data-addons="wan21_t2v_1_3b">
+                    <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">影片生成</h4>
                 </div>
                 <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用視覺檢測 Agent 多模型組合" data-model="gemma4_e4b" data-context="4096" data-output="512" data-addons="qwen25_vl_7b,yolo11">
                     <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">視覺辨識</h4>
                 </div>
-                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用語音客服 STT、LLM 與 TTS 多模型組合" data-model="ministral3_8b" data-context="4096" data-output="512" data-addons="whisper_v3,kokoro_82m">
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用語音客服 STT、RAG、LLM 與 TTS 多模型組合" data-model="ministral3_8b" data-context="8192" data-output="512" data-addons="whisper_v3,bge_small_en,bge_reranker,kokoro_82m">
                     <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18v3m0-3a6 6 0 006-6v-1m-6 7a6 6 0 01-6-6v-1m6 3a3 3 0 003-3V5a3 3 0 10-6 0v6a3 3 0 003 3z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">語音客服</h4>
+                </div>
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="套用紙本文件管理 OCR 與 RAG 多模型組合" data-model="ministral3_8b" data-context="8192" data-output="512" data-addons="glm_ocr,bge_small_en,bge_reranker">
+                    <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5l5 5v11a2 2 0 01-2 2z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">紙本文件管理</h4>
                 </div>
             </div>
         </div>
@@ -363,19 +366,42 @@
                         <label class="field-label"><span>LLM／大型語言模型選擇</span><span class="field-label-en">Large Language Model</span></label>
                         <div class="flex gap-2">
                         <select id="model-select" class="min-w-0 flex-1 text-sm font-medium border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border form-trigger form-select-custom bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white transition-colors">
-                            <optgroup label="語言模型 (LLMs)">
-                                <option data-type="text" data-quants="4.8,6.56,8.0,16.0" data-pb="120.0" data-apb="5.1" data-layers="64" data-kvh="16" data-hd="128" value="gpt_oss_120b">GPT-OSS 120B (MoE Architecture)</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="70.6" data-apb="70.6" data-layers="80" data-kvh="8" data-hd="128" value="llama3_3_70b">Meta Llama 3.3 70B Instruct</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="70.0" data-apb="70.0" data-layers="80" data-kvh="8" data-hd="128" value="deepseek_r1_70b">DeepSeek R1 70B (Distill)</option>
-                                <option data-type="text" data-quants="8.0,16.0" data-pb="48.0" data-apb="3.0" data-layers="64" data-kvh="8" data-hd="128" value="kimi_linear_48b_a3b">Moonshot Kimi Linear 48B (MoE)</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="35.0" data-apb="3.0" data-layers="48" data-kvh="8" data-hd="128" value="qwen36_35b">Alibaba Qwen 3.6 35B (MoE)</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="32.5" data-apb="32.5" data-layers="64" data-kvh="8" data-hd="128" value="qwen25_32b">Alibaba Qwen 2.5 32B Coder</option>
-                                <option data-type="text" data-quants="6.56,8.0,16.0" data-pb="26.0" data-apb="3.8" data-layers="46" data-kvh="8" data-hd="128" value="gemma4_26b">Google Gemma 4 26B (MoE)</option>
-                                <option data-type="text" data-quants="4.8,8.0,16.0" data-pb="21.0" data-apb="3.6" data-layers="36" data-kvh="8" data-hd="128" value="gpt_oss_20b">GPT-OSS 20B (MoE Automation)</option>
-                                <option data-type="text" data-quants="6.56,8.0,16.0" data-pb="18.66" data-apb="18.66" data-layers="40" data-kvh="8" data-hd="256" value="gemma4_12b">Google Gemma 4 12B</option>
-                                <option data-type="text" data-quants="6.56,8.0,16.0" data-pb="18.0" data-apb="4.5" data-layers="36" data-kvh="8" data-hd="128" value="gemma4_e4b">Google Gemma 4 E4B (MoE Agent)</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="14.0" data-apb="14.0" data-layers="40" data-kvh="16" data-hd="128" value="phi_4">Microsoft Phi-4 14B</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="8.0" data-apb="8.0" data-layers="32" data-kvh="8" data-hd="128" value="ministral3_8b" selected>Ministral 3 8B</option>
+                            <optgroup label="Compact Instruct / Edge">
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="8.0" data-apb="8.0" data-layers="32" data-kvh="8" data-hd="128" value="ministral3_8b" selected>Ministral 3 8B · Instruct / Edge</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="3.2" data-apb="3.2" data-layers="28" data-kvh="8" data-hd="128" value="llama3_2_3b">Llama 3.2 3B · Compact Instruct</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="3.1" data-apb="3.1" data-layers="36" data-kvh="2" data-hd="128" value="qwen25_3b">Qwen 2.5 3B · Compact Instruct</option>
+                            </optgroup>
+                            <optgroup label="General Instruct / Chat">
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="8.0" data-apb="8.0" data-layers="32" data-kvh="8" data-hd="128" value="llama3_1_8b">Llama 3.1 8B · Instruct</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="7.6" data-apb="7.6" data-layers="28" data-kvh="4" data-hd="128" value="qwen25_7b">Qwen 2.5 7B · Instruct</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="12.2" data-apb="12.2" data-layers="40" data-kvh="8" data-hd="128" value="mistral_nemo_12b">Mistral NeMo 12B · Instruct</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="14.7" data-apb="14.7" data-layers="48" data-kvh="8" data-hd="128" value="qwen25_14b">Qwen 2.5 14B · Instruct</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="14.0" data-apb="14.0" data-layers="40" data-kvh="16" data-hd="128" value="phi_4">Phi-4 14B · Instruct</option>
+                                <option data-type="text" data-quants="6.56,8.0,16.0" data-pb="18.66" data-apb="18.66" data-layers="40" data-kvh="8" data-hd="256" value="gemma4_12b">Gemma 4 12B · Instruct</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="70.6" data-apb="70.6" data-layers="80" data-kvh="8" data-hd="128" value="llama3_3_70b">Llama 3.3 70B · Instruct</option>
+                            </optgroup>
+                            <optgroup label="Coder / Software Development">
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="6.7" data-apb="6.7" data-layers="32" data-kvh="8" data-hd="128" value="deepseek_coder_67b">DeepSeek Coder 6.7B · Coder</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="7.6" data-apb="7.6" data-layers="28" data-kvh="4" data-hd="128" value="qwen25_coder_7b">Qwen 2.5 Coder 7B · Coder</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="14.7" data-apb="14.7" data-layers="48" data-kvh="8" data-hd="128" value="qwen25_coder_14b">Qwen 2.5 Coder 14B · Coder</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="15.5" data-apb="15.5" data-layers="40" data-kvh="4" data-hd="128" value="starcoder2_15b">StarCoder2 15B · Code Completion</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="32.5" data-apb="32.5" data-layers="64" data-kvh="8" data-hd="128" value="qwen25_32b">Qwen 2.5 Coder 32B · Coder</option>
+                            </optgroup>
+                            <optgroup label="Reasoning">
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="14.7" data-apb="14.7" data-layers="48" data-kvh="8" data-hd="128" value="deepseek_r1_14b">DeepSeek R1 Distill Qwen 14B · Reasoning</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="32.5" data-apb="32.5" data-layers="64" data-kvh="8" data-hd="128" value="qwq_32b">Qwen QwQ 32B · Reasoning</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="70.0" data-apb="70.0" data-layers="80" data-kvh="8" data-hd="128" value="deepseek_r1_70b">DeepSeek R1 70B Distill · Reasoning</option>
+                            </optgroup>
+                            <optgroup label="Agent / Tool Use">
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="8.0" data-apb="8.0" data-layers="32" data-kvh="8" data-hd="128" value="hermes3_llama31_8b">Hermes 3 Llama 3.1 8B · Tool Use</option>
+                                <option data-type="text" data-quants="6.56,8.0,16.0" data-pb="18.0" data-apb="4.5" data-layers="36" data-kvh="8" data-hd="128" value="gemma4_e4b">Gemma 4 E4B · MoE Agent</option>
+                                <option data-type="text" data-quants="4.8,8.0,16.0" data-pb="21.0" data-apb="3.6" data-layers="36" data-kvh="8" data-hd="128" value="gpt_oss_20b">GPT-OSS 20B · MoE Automation</option>
+                            </optgroup>
+                            <optgroup label="Large MoE / Architecture Comparison">
+                                <option data-type="text" data-quants="4.8,6.56,8.0,16.0" data-pb="120.0" data-apb="5.1" data-layers="64" data-kvh="16" data-hd="128" value="gpt_oss_120b">GPT-OSS 120B · MoE</option>
+                                <option data-type="text" data-quants="8.0,16.0" data-pb="48.0" data-apb="3.0" data-layers="64" data-kvh="8" data-hd="128" value="kimi_linear_48b_a3b">Kimi Linear 48B · MoE</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="35.0" data-apb="3.0" data-layers="48" data-kvh="8" data-hd="128" value="qwen36_35b">Qwen 3.6 35B · MoE</option>
+                                <option data-type="text" data-quants="6.56,8.0,16.0" data-pb="26.0" data-apb="3.8" data-layers="46" data-kvh="8" data-hd="128" value="gemma4_26b">Gemma 4 26B · MoE</option>
                             </optgroup>
                         </select>
                         </div>
@@ -442,8 +468,9 @@
                                     </div>
                                     <button id="close-addon-panel" type="button" class="h-9 w-9 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 hover:text-red-600 hover:border-red-300 dark:text-slate-400 dark:hover:text-red-400 flex items-center justify-center" aria-label="關閉新增模型視窗">×</button>
                                 </div>
-                                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2 mb-5" role="group" aria-label="附加模型類型">
+                                <div class="grid grid-cols-[repeat(auto-fit,minmax(112px,1fr))] gap-3 mb-5" role="group" aria-label="附加模型類型">
                                     <button type="button" class="addon-category-button rounded-lg border border-red-400 bg-red-50 dark:bg-red-950/40 px-3 py-2.5 text-left transition-colors" data-category="image"><span class="block text-xs font-bold text-slate-800 dark:text-white">圖片生成</span><span class="text-[10px] text-slate-500">Image</span></button>
+                                    <button type="button" class="addon-category-button rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-left transition-colors" data-category="video"><span class="block text-xs font-bold text-slate-800 dark:text-white">影片生成</span><span class="text-[10px] text-slate-500">Video</span></button>
                                     <button type="button" class="addon-category-button rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-left transition-colors" data-category="embedding"><span class="block text-xs font-bold text-slate-800 dark:text-white">向量嵌入</span><span class="text-[10px] text-slate-500">Embedding</span></button>
                                     <button type="button" class="addon-category-button rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-left transition-colors" data-category="reranker"><span class="block text-xs font-bold text-slate-800 dark:text-white">重新排序</span><span class="text-[10px] text-slate-500">Reranker</span></button>
                                     <button type="button" class="addon-category-button rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-left transition-colors" data-category="vision"><span class="block text-xs font-bold text-slate-800 dark:text-white">視覺模型</span><span class="text-[10px] text-slate-500">VLM / YOLO</span></button>
@@ -465,6 +492,10 @@
                                         <option data-category="image" data-vram="16" data-precision="BF16" data-input="1024 × 1024" data-output="1 Image" value="z_image_turbo">#8 Z-Image-Turbo · 預留 16 GB</option>
                                         <option data-category="image" data-vram="24" data-precision="BF16" data-input="1024 × 1024" data-output="1 Image" value="flux1">#9 FLUX.1-schnell · 預留 24 GB</option>
                                         <option data-category="image" data-vram="4" data-precision="FP16" data-input="512 × 512" data-output="1 Image" value="realistic_vision">#10 Realistic Vision V5.1 · 預留 4 GB</option>
+
+                                        <!-- 影片生成：本頁僅將模型載入預留納入容量比較，生成速度需另行量測 -->
+                                        <option data-category="video" data-vram="12" data-precision="BF16" data-input="Text Prompt" data-output="Video" value="wan21_t2v_1_3b">#1 Wan 2.1 T2V 1.3B · 預留 12 GB</option>
+                                        <option data-category="video" data-vram="16" data-precision="BF16" data-input="Text / Image" data-output="Video" value="ltx_video_2b">#2 LTX-Video 2B · 預留 16 GB</option>
 
                                         <!-- 向量嵌入：Hugging Face Feature Extraction downloads + 文字檢索適配 -->
                                         <option data-category="embedding" data-vram="0.5" data-precision="FP16" data-input="512 Tokens" data-output="Vector" value="bge_small_en">#1 BGE Small EN v1.5 · 預留 0.5 GB</option>
@@ -536,16 +567,22 @@
                         </div>
 
                         <div id="addon-selection" class="hidden mt-2">
-                            <div class="flex items-center justify-between gap-3 mb-2 px-1">
-                                <span class="text-[10px] uppercase tracking-wider text-slate-400">Additional Models</span>
-                                <span id="addon-vram-summary" class="text-xs font-bold text-red-600 dark:text-red-400 whitespace-nowrap"></span>
-                            </div>
-                            <div id="addon-chips" class="space-y-3"></div>
+                            <button id="toggle-addon-selection" type="button" class="w-full flex items-center justify-between gap-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 px-4 py-3 text-left hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors" aria-expanded="false" aria-controls="addon-chips">
+                                <span>
+                                    <span class="block text-[10px] uppercase tracking-wider text-slate-400">Additional Models</span>
+                                    <span id="addon-count-summary" class="block mt-0.5 text-sm font-semibold text-slate-700 dark:text-slate-200"></span>
+                                </span>
+                                <span class="flex items-center gap-2">
+                                    <span id="addon-vram-summary" class="text-xs font-bold text-red-600 dark:text-red-400 whitespace-nowrap"></span>
+                                    <svg id="addon-selection-chevron" class="h-4 w-4 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </span>
+                            </button>
+                            <div id="addon-chips" class="hidden space-y-3 mt-3"></div>
                         </div>
                     </div>
 
                     <!-- TPS Filter -->
-                    <div class="sm:col-span-2 lg:col-span-12 pt-5 mt-1 border-t border-slate-100 dark:border-slate-700 transition-colors">
+                    <div class="sm:col-span-2 lg:col-span-12 pt-6 mt-2 transition-colors">
                         <label class="field-label min-h-0"><span>速度篩選</span><span class="field-label-en">Speed Filter</span></label>
                         <div class="flex flex-col sm:flex-row sm:items-center gap-3">
                            <select id="tps-threshold" class="w-full sm:w-72 text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-700 dark:text-slate-200 transition-colors">
@@ -561,7 +598,7 @@
             </div>
 
             <!-- 進階設定 (Advanced Configurations) -->
-            <details class="group border-t border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50 transition-colors">
+            <details class="group mt-2 bg-slate-50/50 dark:bg-slate-800/50 transition-colors">
                 <summary class="flex justify-between items-center min-h-14 font-medium cursor-pointer list-none px-5 md:px-6 py-4 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                     <span class="flex items-center gap-2 font-semibold">
                         <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -636,7 +673,7 @@
             </details>
 
             <!-- 電價與功耗 (Electricity & Power) -->
-            <details id="power-settings" class="group/power border-t border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50 transition-colors">
+            <details id="power-settings" class="group/power mt-2 bg-slate-50/50 dark:bg-slate-800/50 transition-colors">
                 <summary class="flex justify-between items-center min-h-14 font-medium cursor-pointer list-none px-5 md:px-6 py-4 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                     <span class="flex items-center gap-2 font-semibold">
                         <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"></path></svg>
@@ -1568,6 +1605,7 @@
                 const $chips = $('#addon-chips').empty();
                 const roleLabels = {
                     image: '圖片模型 · Image',
+                    video: '影片模型 · Video',
                     embedding: '向量嵌入 · Embedding',
                     reranker: '重新排序 · Reranker',
                     vision: '視覺模型 · Vision',
@@ -1592,11 +1630,17 @@
                     $chips.append($row);
                 });
                 $('#addon-selection').toggleClass('hidden', selectedAddons.size === 0);
+                if (selectedAddons.size === 0) {
+                    $('#addon-chips').addClass('hidden');
+                    $('#toggle-addon-selection').attr('aria-expanded', 'false');
+                    $('#addon-selection-chevron').removeClass('rotate-180');
+                }
                 updateModelStackSummary();
             }
 
             function updateModelStackSummary() {
                 $('#addon-vram-summary').text('附加模型預留 ' + getAddonVramGB().toFixed(1) + ' GB');
+                $('#addon-count-summary').text(selectedAddons.size + ' 個附加模型（點擊查看）');
             }
 
             function setSelectedAddons(ids) {
@@ -1615,6 +1659,13 @@
                 $('body').toggleClass('overflow-hidden', show);
                 if (show) $('#addon-model-select').trigger('focus');
             }
+
+            $('#toggle-addon-selection').on('click', function() {
+                const willExpand = $(this).attr('aria-expanded') !== 'true';
+                $(this).attr('aria-expanded', willExpand ? 'true' : 'false');
+                $('#addon-chips').toggleClass('hidden', !willExpand);
+                $('#addon-selection-chevron').toggleClass('rotate-180', willExpand);
+            });
 
             $('#toggle-addon-panel').click(function() { toggleAddonPanel($('#addon-panel').hasClass('hidden')); });
             $('#close-addon-panel').click(function() { toggleAddonPanel(false); $('#toggle-addon-panel').trigger('focus'); });
@@ -1818,11 +1869,12 @@
 
                 addHelp($('.scenario-prefill'), '此卡片套用的是典型輸入 token 數，而非模型支援的最大上下文長度。Prefill 主要影響 TTFT。');
                 addHelp($('.scenario-decode'), '此卡片套用的是最大輸出 token 數。Decode 階段主要觀察 TPS 或 TPOT。');
-                addHelp($('.scenario-card h4:contains("個人知識庫")'), '個人知識庫通常採用 RAG（Retrieval-Augmented Generation）：先檢索個人文件，再把相關內容放入 prompt，讓 LLM 依外部證據回答。');
+                addHelp($('.scenario-card h4:contains("個人知識庫")'), '此國際版預設以英文內容為主：BGE Small EN 負責向量檢索，BGE Reranker v2 M3 重新排序，再由 Ministral 3 8B 根據取回內容回答。');
                 addHelp($('.scenario-card h4:contains("程式開發")'), '此情境採用針對程式生成、補全、修復與程式推理調校的 Coder 模型。');
                 addHelp($('.scenario-card h4:contains("Agentic AI")'), 'Agentic AI 會依目標規劃多步驟、呼叫工具並根據結果繼續決策。本情境套用較長輸入、短輸出、低 batch 與多位同時使用者的互動型設定。');
-                addHelp($('.scenario-card h4:contains("語音客服")'), '語音客服由 STT 將使用者語音轉成文字、LLM 產生回覆，再由 TTS 合成語音。');
-                addHelp($('#measurement-scope'), 'TTFT 是從送出請求到第一個 token 出現的時間；TPS 是 Decode 階段每秒產生的 token 數。TPOT 指每個輸出 token 的平均延遲，但本頁目前未單獨計算，因此不列為結果指標。');
+                addHelp($('.scenario-card h4:contains("影片生成")'), '影片生成模型的載入預留會納入 VRAM 容量比較；影格數、解析度、採樣步數與實際生成時間不使用文字 TPS 估算。');
+                addHelp($('.scenario-card h4:contains("語音客服")'), '語音客服由 STT、英文 RAG、LLM 與 TTS 組成：先轉錄語音並檢索知識，再生成文字回覆與合成語音。');
+                addHelp($('.scenario-card h4:contains("紙本文件管理")'), '紙本文件先以 OCR 擷取文字與版面，再透過 Embedding、Reranker 與 LLM 完成分類、檢索及問答。');
                 addHelp($('p:contains("Roofline 物理模型")'), 'Roofline 模型以運算能力與記憶體頻寬兩項上限估算工作負載瓶頸；本頁結果仍需透過實機效能測試校準。');
 
                 $('.product-card').each(function() {
@@ -1858,14 +1910,6 @@
                     return $label;
                 }
 
-                addCitation($('#measurement-scope'), 1);
-
-                const $scenarios = $('.scenario-card');
-                addCitation($scenarios.eq(0).find('h4'), 3);
-                addCitation($scenarios.eq(0).find('h4'), 4);
-                addCitation($scenarios.eq(1).find('h4'), 5);
-                addCitation($scenarios.eq(2).find('h4'), 6);
-                addCitation($scenarios.eq(3).find('h4'), 7);
 
                 addCitation(fieldLabel('#model-select'), 14);
                 addCitation(fieldLabel('#quant-select'), 2);
@@ -2104,6 +2148,24 @@
             });
 
             // --- 應用場景卡片 (Scenario Cards) ---
+            function compactTokenCount(value) {
+                const count = parseInt(value) || 0;
+                if (count >= 1024 && count % 1024 === 0) return (count / 1024) + 'K';
+                return count.toLocaleString();
+            }
+
+            $('.scenario-card').each(function() {
+                const $card = $(this);
+                const modelId = String($card.data('model') || '');
+                const modelName = $('#model-select option[value="' + modelId + '"]').text().trim() || modelId;
+                const context = compactTokenCount($card.data('context'));
+                const output = compactTokenCount($card.data('output'));
+                const addons = String($card.attr('data-addons') || '').split(',').filter(Boolean).length;
+                const parts = [modelName, context + ' 輸入 / ' + output + ' 輸出'];
+                if (addons) parts.push(addons + ' 個附加模型');
+                $('<p>', { class: 'scenario-meta', text: parts.join(' · ') }).appendTo($card);
+            });
+
             $('.evidence-link, .citation-ref a').click(function(event) {
                 event.stopPropagation();
             });
@@ -2114,7 +2176,24 @@
                     $(this).trigger('click');
                 }
             }).click(function() {
+                const wasSelected = $(this).hasClass('ring-2');
                 $('.scenario-card').removeClass('ring-2 ring-red-500 border-red-500 dark:border-red-500 bg-red-50/50 dark:bg-slate-800 dark:shadow-[0_0_20px_rgba(220,38,38,0.15)]');
+
+                // 再次點擊已選情境時取消套用，回到第一個預設 LLM，並清除所有附加模型。
+                if (wasSelected) {
+                    const firstDefaultModel = $('#model-select option[data-type="text"]').first().val();
+                    $('#model-select').val(firstDefaultModel);
+                    $('#context-select').val('4096');
+                    $('#output-select').val('512');
+                    $('#batch-size').val('1');
+                    $('#concurrent-users').val('1');
+                    setSelectedAddons([]);
+                    updateQuantOptions();
+                    updateConcurrencyExample();
+                    calculateMetrics();
+                    return;
+                }
+
                 $(this).addClass('ring-2 ring-red-500 border-red-500 dark:border-red-500 bg-red-50/50 dark:bg-slate-800 dark:shadow-[0_0_20px_rgba(220,38,38,0.15)]');
                 
                 let targetModel = $(this).data('model');
