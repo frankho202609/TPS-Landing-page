@@ -457,12 +457,49 @@
             #calculator-app *::before,
             #calculator-app *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
         }
+
+        /* 2026 UI/UX refinement: clearer hierarchy, denser results, calmer motion. */
+        .skip-link { position: fixed; inset-block-start: .75rem; inset-inline-start: .75rem; z-index: 2000; transform: translateY(-160%); border-radius: .65rem; background: #fff; color: #111827; padding: .7rem 1rem; font-size: .875rem; font-weight: 800; box-shadow: 0 10px 30px rgba(0,0,0,.24); }
+        .skip-link:focus { transform: translateY(0); outline: 3px solid #ef4444; outline-offset: 3px; }
+        .hero-gradient h1 { text-wrap: balance; }
+        .hero-gradient p { text-wrap: pretty; }
+        #calculator-app > div.bg-white { box-shadow: 0 22px 55px rgba(2, 6, 23, .16); }
+        .info-tip { width: 24px; height: 24px; margin-left: 3px; font-size: 11px; }
+        .card-premium { transition-property: transform, box-shadow, border-color; transition-duration: 150ms; transition-timing-function: cubic-bezier(.2,0,0,1); }
+        @media (hover: hover) and (prefers-reduced-motion: no-preference) { .card-premium:hover { transform: translateY(-2px); } }
+        .product-card:first-of-type { border-color: rgba(239,68,68,.58); box-shadow: 0 10px 28px rgba(239,68,68,.1); }
+        .dark .product-card:first-of-type { border-color: rgba(248,113,113,.58); box-shadow: 0 12px 32px rgba(0,0,0,.3); }
+        .product-card .card-header h3 { text-wrap: balance; }
+        .metric-box { transition-property: border-color, background-color, box-shadow; transition-duration: 150ms; }
+        .tps-metric-button:focus-visible { outline: 2px solid #f87171; outline-offset: 3px; }
+        #product-pagination { box-shadow: none; }
+        #product-page-summary::before { content: "Results · "; color: #ef4444; font-weight: 800; }
+        @media (max-width: 640px) {
+            .hero-gradient { min-height: 430px !important; }
+            .hero-gradient > div { padding-block: 3rem !important; }
+            .hero-gradient h1 { font-size: clamp(2.45rem, 12vw, 3.5rem); line-height: 1.02; }
+            .hero-gradient p { margin-bottom: 1.75rem; line-height: 1.55; }
+            #calculator-app { padding-top: 2rem; }
+            .product-card .card-body { padding: 1rem; }
+            .product-card .card-header { align-items: flex-start; }
+            .see-pc-button { white-space: nowrap; }
+            .product-card .metric-grid { gap: .65rem; }
+            .product-card .metric-vram .mt-2 { display: grid; grid-template-columns: 1fr; gap: .3rem; }
+            #product-pagination { align-items: stretch; }
+            #product-pagination-controls { justify-content: space-between; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto !important; }
+            .card-premium, .hero-gradient a, .hardware-category-tab { transform: none !important; transition: none !important; }
+        }
+        @media (forced-colors: active) { .skip-link, .tps-metric-button:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid CanvasText !important; } }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 selection:bg-red-200 selection:text-red-900 dark:selection:bg-red-900 dark:selection:text-red-100 transition-colors duration-300">
+    <a class="skip-link" href="#calculator-app">Skip to calculator</a>
 
     <!-- Hero Section -->
-    <section class="hero-gradient min-h-[520px] md:min-h-[600px] flex items-center border-b border-slate-200 dark:border-slate-800 overflow-hidden relative transition-colors duration-300">
+    <section class="hero-gradient min-h-[460px] md:min-h-[500px] flex items-center border-b border-slate-200 dark:border-slate-800 overflow-hidden relative transition-colors duration-300">
         <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16 relative z-10">
             <div class="max-w-5xl">
                 <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-6 transition-colors">
@@ -473,7 +510,7 @@
                 </p>
                 <div class="flex gap-4">
                     <a href="#calculator-app" class="bg-red-600 text-white font-semibold px-8 py-3.5 rounded-lg shadow-md shadow-red-600/20 hover:bg-red-700 transition-colors flex items-center gap-2">
-                        Let's Explore
+                        Configure your AI
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                     </a>
                 </div>
@@ -629,7 +666,7 @@
                     </div>
 
                     <!-- 權重Quantization -->
-                    <div class="lg:col-span-3">
+                    <div class="lg:col-span-5">
                         <label class="field-label"><span>Quantization</span><span class="field-label-en">Quantization</span></label>
                         <select id="quant-select" class="w-full text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-700 dark:text-slate-200 transition-colors">
                             <optgroup label="GGUF / llama.cpp">
@@ -651,9 +688,9 @@
                         <label class="field-label"><span>Input Length</span><span class="field-label-en">Prompt / Prefill</span></label>
                         <select id="context-select" class="w-full text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-700 dark:text-slate-200 transition-colors">
                             <option value="512">512 Tokens</option>
-                            <option value="1024">1,024 Tokens</option>
+                            <option value="1024" selected>1,024 Tokens</option>
                             <option value="2048">2,048 Tokens</option>
-                            <option value="4096" selected>4,096 Tokens</option>
+                            <option value="4096">4,096 Tokens</option>
                             <option value="8192">8,192 Tokens</option>
                             <option value="16384">16K Tokens</option>
                             <option value="32768">32K Tokens</option>
@@ -661,7 +698,7 @@
                     </div>
                     
                     <!-- Output Length -->
-                    <div class="lg:col-span-2">
+                    <div class="hidden" aria-hidden="true">
                         <label class="field-label"><span>Maximum Output Length</span><span class="field-label-en">Maximum Output</span></label>
                         <select id="output-select" class="w-full text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-700 dark:text-slate-200 transition-colors">
                             <option value="128">128 Tokens</option>
@@ -801,7 +838,7 @@
                         <label class="field-label min-h-0"><span>Speed Filter</span><span class="field-label-en">Speed Filter</span></label>
                         <div class="flex flex-col sm:flex-row sm:items-center gap-3">
                            <select id="tps-threshold" class="w-full sm:w-72 text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-700 dark:text-slate-200 transition-colors">
-                               <option value="0" selected>Show All Hardware (Including OOM)</option>
+                               <option value="0" selected>Show all (including OOM)</option>
                                <option value="20">≥ 20 TPS per user</option>
                            </select>
                            <span id="oom-help" class="inline-flex items-center self-start sm:self-auto text-xs font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap bg-slate-100 dark:bg-slate-900 rounded-md px-2.5 py-2">OOM</span>
@@ -811,17 +848,7 @@
             </div>
 
             <!-- 進階設定 (Advanced Configurations) -->
-            <details class="group border-t border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50 transition-colors">
-                <summary class="flex justify-between items-center min-h-14 font-medium cursor-pointer list-none px-5 md:px-6 py-4 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                    <span class="flex items-center gap-2 font-semibold">
-                        <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                        Advanced Options
-                    </span>
-                    <span class="transition-transform duration-300 group-open:-rotate-180 text-slate-400">
-                        <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-                    </span>
-                </summary>
-                
+            <div class="border-t border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50 transition-colors">
                 <div class="px-5 md:px-6 pb-6 pt-2">
                     <div class="grid grid-cols-1 gap-6">
                         
@@ -872,7 +899,7 @@
 
                     </div>
                 </div>
-            </details>
+            </div>
 
             <!-- Electricity &amp; Power (Electricity & Power) -->
             <details id="power-settings" class="hidden" aria-hidden="true">
@@ -942,7 +969,7 @@
                 <p class="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-slate-500 dark:text-slate-400">
                     The current TPS threshold is <strong id="filter-empty-threshold" class="text-slate-700 dark:text-slate-200">—</strong>. Hardware with enough memory may not meet this speed, or the model may exceed available memory.
                 </p>
-                <button id="show-all-products" type="button" class="mt-5 inline-flex items-center rounded-lg border border-red-500 px-4 py-2 text-sm font-bold text-red-600 transition-colors hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/30">Show All Hardware (Including OOM)</button>
+                <button id="show-all-products" type="button" class="mt-5 inline-flex items-center rounded-lg border border-red-500 px-4 py-2 text-sm font-bold text-red-600 transition-colors hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/30">Show all hardware</button>
             </div>
 
             <!-- 機器 1: PRO MAX EDGE AI+ -->
@@ -1593,8 +1620,8 @@
         </div>
 
         <div id="product-pagination" class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 shadow-sm transition-colors">
-            <p id="product-page-summary" class="text-xs font-medium text-slate-500 dark:text-slate-400">Showing 1–6 of 13 Hardware Options</p>
-            <div class="flex items-center gap-2">
+            <p id="product-page-summary" role="status" aria-live="polite" class="text-xs font-medium text-slate-500 dark:text-slate-400">Showing 1–6 of 13 hardware options</p>
+            <div id="product-pagination-controls" class="flex items-center gap-2">
                 <button id="product-prev" type="button" class="rounded-lg border border-slate-200 dark:border-slate-600 px-3 py-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:border-red-400 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40">Previous</button>
                 <div id="product-page-buttons" class="flex items-center gap-1"></div>
                 <button id="product-next" type="button" class="rounded-lg border border-slate-200 dark:border-slate-600 px-3 py-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:border-red-400 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40">Next</button>
@@ -1650,7 +1677,7 @@
                 <li id="ref-10" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[10]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Speculative decoding.</span> Leviathan et al., <em>Fast Inference from Transformers via Speculative Decoding</em>; the speedup shown here is a simplified estimate and must be validated using the draft model and its acceptance rate. <a href="https://arxiv.org/abs/2211.17192" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">arXiv ↗</a></div></li>
                 <li id="ref-11" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[11]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Electricity-cost assumptions.</span> Monthly electricity cost = (TDP × average load factor ÷ 1000) × 24 hours × 30 days × electricity rate per kWh. PSU efficiency, CPU and memory, cooling, and idle power are excluded.</div></li>
                 <li id="ref-12" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[12]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Roofline model.</span> Williams, Waterman &amp; Patterson, <em>Roofline: An Insightful Visual Performance Model for Multicore Architectures</em>. The efficiency coefficients and fixed latency used here remain prototype assumptions. <a href="https://doi.org/10.1145/1498765.1498785" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">DOI ↗</a></div></li>
-                <li id="ref-13" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[13]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Hardware configuration data.</span> NVIDIA VRAM and bandwidth are based on the <a class="reference-link" href="https://www.nvidia.com/en-us/geforce/graphics-cards/compare/" target="_blank" rel="noopener noreferrer">Official GeForce Comparison ↗</a>; AMD Ryzen AI Max+ 395 is based on <a class="reference-link" href="https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo/ryzen-ai-max-plus-395.html" target="_blank" rel="noopener noreferrer">Official AMD Specifications ↗</a> (128 GB unified memory, 256 GB/s, and up to 96 GB Variable Graphics Memory); Intel Core Ultra 9 285H is based on <a class="reference-link" href="https://www.intel.com/content/www/us/en/products/sku/241747/intel-core-ultra-9-processor-285h-24m-cache-up-to-5-40-ghz/specifications.html" target="_blank" rel="noopener noreferrer">Official Intel Specifications ↗</a> (up to 128 GB system memory). Compute values are effective coefficients used by the estimator and must be calibrated on the target inference framework.</div></li>
+                <li id="ref-13" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[13]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Hardware configuration data.</span> NVIDIA VRAM and bandwidth are based on the <a class="reference-link" href="https://www.nvidia.com/en-us/geforce/graphics-cards/compare/" target="_blank" rel="noopener noreferrer">Official GeForce Comparison ↗</a>; AMD Ryzen AI Max+ 395 is based on <a class="reference-link" href="https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo/ryzen-ai-max-plus-395.html" target="_blank" rel="noopener noreferrer">Official AMD Specifications ↗</a> (128 GB unified memory, 256 GB/s, and up to 96 GB Variable Graphics Memory). Compute values are effective coefficients used by the estimator and must be calibrated on the target inference framework.</div></li>
                 <li id="ref-14" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[14]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Model architecture data note.</span> Parameter count, active parameters, layers, KV heads, and head dimension currently come from the prototype dataset. Each field should be locked to an official model config or model card before production release.</div></li>
                 <li id="ref-15" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[15]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Quantization formats.</span> GGUF Q4_K_M, Q5_K_M, and Q6_K formats come from llama.cpp. Hardware compatibility for AWQ, GPTQ, INT8, FP8, and other formats depends on the inference framework. <a href="https://github.com/ggml-org/llama.cpp/blob/master/tools/quantize/quantize.cpp" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">llama.cpp ↗</a> <a href="https://docs.vllm.ai/en/stable/features/quantization/" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">vLLM ↗</a></div></li>
                 <li id="ref-16" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[16]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Multimodel application estimates.</span> Scenario cards combine reserved memory for LLM, VLM, image-generation, embedding, reranker, YOLO, STT, or OCR models. Add-on models currently affect only capacity and OOM assessment; their speed and concurrent-loading strategy must be calibrated using the actual workflow.</div></li>
@@ -1933,7 +1960,6 @@
                 const hardwareCatalog = [
                     { brand: 'NVIDIA', name: 'EdgeMesa N AI+ (RTX Spark N1X)', subtitle: 'Compact AI Desktop · Up to 128 GB Unified Memory', capacity: 128, memory: 'Up to 128 GB LPDDR5x Unified Memory', bw: 273, compute: 150.0, power: 140, powerLabel: '140W Sustained TDP', pc: 'EdgeMesa N AI+', pcUrl: 'https://www.msi.com/Edge-AI-PC/EdgeMesa-N-AI-plus' },
                     { brand: 'AMD', name: 'Ryzen AI Max+ 395', subtitle: 'SoC · 128 GB Unified Memory (96 GB VGM)', capacity: 96, memory: '96 GB Available VGM', bw: 256, compute: 60.0, power: 120, powerLabel: '120W cTDP', pc: 'PRO MAX EDGE AI+ 11M', pcUrl: 'https://www.msi.com/Business-Productivity-PC/PRO-MAX-EDGE-AI-Plus-11M' },
-                    { brand: 'Intel', name: 'Core Ultra 9 285H', subtitle: 'SoC · Up to 128 GB System RAM', capacity: 128, memory: '128 GB System RAM', bw: 102.4, compute: 18.0, power: 45, powerLabel: '45W Base', pc: 'Browse MSI Desktop Series', pcUrl: 'https://www.msi.com/Desktop' },
                     { brand: 'NVIDIA', name: 'EdgeXpert / DGX Spark (GB10)', subtitle: 'AI Supercomputer · 128 GB Unified Memory', capacity: 128, memory: '128 GB LPDDR5x Unified Memory', bw: 273, compute: 150.0, power: 240, powerLabel: '240W USB-C Power Adapter', pc: 'EdgeXpert MS-C931', pcUrl: 'https://ipc.msi.com/product_detail/Industrial-Computer-Box-PC/AI-Supercomputer/EdgeXpert-MS-C931' },
                     { brand: 'NVIDIA', name: 'GeForce RTX 5090', subtitle: 'Discrete GPU · 32 GB GDDR7', capacity: 32, memory: '32 GB VRAM', bw: 1792, compute: 419.2, power: 575, powerLabel: '575W TGP', pcs: [
                         { name: 'MEG VISION X AI 2nd', url: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
@@ -2366,6 +2392,7 @@
                 const end = Math.min(start + productsPerPage, totalProducts);
                 $filteredProducts.slice(start, end).removeClass('page-hidden');
                 $('#product-page-summary').text('Showing ' + (start + 1) + '–' + end + ' / ' + totalProducts + ' hardware options');
+                $('#product-pagination-controls').toggleClass('is-hidden', totalPages === 1);
                 $('#product-prev').prop('disabled', currentProductPage === 1);
                 $('#product-next').prop('disabled', currentProductPage === totalPages);
 
@@ -2455,7 +2482,7 @@
                 if (wasSelected) {
                     const firstDefaultModel = $('#model-select option[data-type="text"]').first().val();
                     $('#model-select').val(firstDefaultModel);
-                    $('#context-select').val('4096');
+                    $('#context-select').val('1024');
                     $('#output-select').val('512');
                     $('#batch-size').val('1');
                     $('#concurrent-users').val('1');
