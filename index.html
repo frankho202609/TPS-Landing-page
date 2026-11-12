@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,7 +76,7 @@
         
         /* 透過 CSS 精準控制隱藏 */
         .is-hidden { display: none !important; }
-        .page-hidden { display: none !important; }
+        .page-hidden, .category-hidden { display: none !important; }
 
         /* 共用說明圖示與浮動 Tooltip */
         .info-tip {
@@ -236,23 +236,244 @@
         .product-card .card-metrics-wrapper { border-top: 0 !important; }
         .scenario-meta { margin-top: .45rem; color: #64748b; font-size: .7rem; line-height: 1.45; }
         .dark .scenario-meta { color: #94a3b8; }
+
+        /* Light, editorial UI inspired by the supplied 2026-10-19 design board. */
+        html:not(.dark) body {
+            background-color: #f5f4f7;
+            background-image:
+                radial-gradient(ellipse at 50% -12%, rgba(255,255,255,.98) 0, rgba(255,255,255,.7) 36%, transparent 73%),
+                radial-gradient(ellipse at 8% 35%, rgba(214,211,222,.2), transparent 42%),
+                radial-gradient(ellipse at 92% 68%, rgba(226,224,232,.24), transparent 40%);
+            color: #111114;
+        }
+        html:not(.dark) .hero-gradient {
+            min-height: 64vh;
+            background: transparent;
+            border-color: transparent;
+        }
+        html:not(.dark) .hero-gradient > div { padding-top: 5.5rem; padding-bottom: 3.5rem; }
+        html:not(.dark) .hero-gradient > div > div { max-width: 64rem; margin-inline: auto; text-align: center; }
+        html:not(.dark) .hero-gradient h1 {
+            max-width: 13ch;
+            margin-inline: auto;
+            color: #111114;
+            font-size: clamp(2.7rem, 6.2vw, 5.7rem);
+            line-height: 1.02;
+            letter-spacing: -.055em;
+            text-transform: uppercase;
+            text-wrap: balance;
+        }
+        html:not(.dark) .hero-gradient h1 span {
+            color: #111114;
+            background: none;
+            -webkit-text-fill-color: currentColor;
+        }
+        html:not(.dark) .hero-gradient p { max-width: 48rem; margin-inline: auto; color: #55535b; font-size: clamp(1rem, 1.5vw, 1.18rem); }
+        html:not(.dark) .hero-gradient a {
+            margin-inline: auto;
+            border-radius: 999px;
+            background: #09090b;
+            padding: .9rem 2rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,.12);
+            letter-spacing: .035em;
+        }
+        html:not(.dark) .hero-gradient a:hover { background: #29292d; }
+
+        html:not(.dark) #calculator-app { padding-top: 1.5rem; }
+        html:not(.dark) #calculator-app > .mb-8 { margin-bottom: 3rem; }
+        html:not(.dark) #calculator-app > .mb-8 > div:first-child { justify-content: center; text-align: center; }
+        html:not(.dark) #calculator-app > .mb-8 h3 {
+            justify-content: center;
+            font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+            color: #111114;
+            text-transform: uppercase;
+            letter-spacing: -.035em;
+        }
+        html:not(.dark) #calculator-app > .mb-8 h3 svg { display: none; }
+        html:not(.dark) #calculator-app > .mb-8 p { color: #66636c; font-size: .95rem; }
+        html:not(.dark) #calculator-app > .mb-8 .grid { gap: 1rem; }
+        html:not(.dark) .scenario-card {
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            min-height: 10.5rem;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.52) !important;
+            border-radius: 1.45rem;
+            padding: 1.15rem;
+            color: #fff;
+            box-shadow: 0 12px 26px rgba(20,18,28,.12);
+            cursor: pointer;
+        }
+        html:not(.dark) .scenario-card::before,
+        html:not(.dark) .scenario-card::after { content: ""; position: absolute; pointer-events: none; }
+        html:not(.dark) .scenario-card::before {
+            z-index: -2;
+            inset: 0;
+            background: var(--scenario-art, linear-gradient(135deg, #25242b, #55515f));
+            transition: transform 180ms cubic-bezier(.2,0,0,1), filter 180ms ease;
+        }
+        html:not(.dark) .scenario-card::after {
+            z-index: -1;
+            width: 12rem;
+            height: 12rem;
+            top: -5.5rem;
+            right: -3rem;
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 50%;
+            box-shadow: 0 0 0 1.15rem rgba(255,255,255,.045), 0 0 0 2.3rem rgba(255,255,255,.035);
+        }
+        html:not(.dark) .scenario-card:nth-child(1) { --scenario-art: radial-gradient(ellipse at 18% 105%, rgba(253,190,58,.8), transparent 48%), linear-gradient(135deg,#101116 15%,#36333c 60%,#554a3f); }
+        html:not(.dark) .scenario-card:nth-child(2) { --scenario-art: radial-gradient(ellipse at 82% 85%, rgba(72,226,222,.75), transparent 42%), linear-gradient(135deg,#20212b,#2c5562 62%,#72a9a8); }
+        html:not(.dark) .scenario-card:nth-child(3) { --scenario-art: radial-gradient(circle at 72% 48%, rgba(123,175,235,.45), transparent 26%), linear-gradient(135deg,#171b27,#454c5c 60%,#202733); }
+        html:not(.dark) .scenario-card:nth-child(4) { --scenario-art: radial-gradient(ellipse at 75% 80%, rgba(100,214,235,.72), transparent 32%), radial-gradient(ellipse at 28% 25%, rgba(235,112,199,.6), transparent 36%), linear-gradient(135deg,#30253c,#39657d 70%,#193444); }
+        html:not(.dark) .scenario-card:nth-child(5) { --scenario-art: radial-gradient(ellipse at 72% 25%, rgba(255,178,94,.55), transparent 34%), linear-gradient(135deg,#28243b,#55516b 65%,#364f65); }
+        html:not(.dark) .scenario-card:nth-child(6) { --scenario-art: radial-gradient(circle at 75% 64%, rgba(109,213,179,.58), transparent 30%), linear-gradient(135deg,#202a2d,#506669 65%,#26393a); }
+        html:not(.dark) .scenario-card:nth-child(7) { --scenario-art: radial-gradient(ellipse at 78% 70%, rgba(82,181,255,.7), transparent 38%), linear-gradient(135deg,#272231,#414767 64%,#23394f); }
+        html:not(.dark) .scenario-card:nth-child(8) { --scenario-art: radial-gradient(ellipse at 75% 88%, rgba(238,183,103,.72), transparent 34%), linear-gradient(135deg,#38302b,#6c5b50 65%,#30323b); }
+        html:not(.dark) .scenario-card > div:first-child { position: relative; z-index: 1; margin: 0 0 1.2rem; }
+        html:not(.dark) .scenario-card > div:first-child > div {
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: .72rem;
+            background: rgba(255,255,255,.13) !important;
+            color: #fff !important;
+            backdrop-filter: blur(8px);
+        }
+        html:not(.dark) .scenario-card > div:first-child svg { color: currentColor !important; }
+        html:not(.dark) .scenario-card h4 { position: relative; z-index: 1; color: #fff !important; font-size: 1.08rem; font-weight: 800; line-height: 1.12; text-wrap: balance; }
+        html:not(.dark) .scenario-card .scenario-meta,
+        html:not(.dark) .scenario-card p { position: relative; z-index: 1; color: rgba(255,255,255,.78) !important; }
+        html:not(.dark) .scenario-card.ring-2 { border: 2px solid #fff !important; box-shadow: 0 0 0 3px #111, 0 14px 30px rgba(20,18,28,.2); }
+        @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+            html:not(.dark) .scenario-card:hover::before { transform: scale(1.045); filter: saturate(1.1); }
+            html:not(.dark) .scenario-card:hover { transform: translateY(-3px); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html:not(.dark) .scenario-card,
+            html:not(.dark) .scenario-card::before { transition: none !important; }
+        }
+        html:not(.dark) .scenario-card:focus-visible,
+        html:not(.dark) summary:focus-visible { outline: 3px solid #111114; outline-offset: 4px; }
+
+        html:not(.dark) #calculator-app > div.bg-white {
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.88);
+            border-radius: 2rem;
+            background: rgba(255,255,255,.72);
+            box-shadow: 0 24px 70px rgba(24,22,31,.09);
+            backdrop-filter: blur(18px);
+        }
+        html:not(.dark) #calculator-app > div.bg-white > div:first-child { background: rgba(255,255,255,.56); }
+        html:not(.dark) .field-label { color: #242329; }
+        html:not(.dark) .field-label-en { color: #7e7b84; }
+        html:not(.dark) .form-trigger,
+        html:not(.dark) #addon-model-select {
+            border-color: #111114;
+            border-radius: .8rem;
+            background-color: #111114;
+            color: #fff;
+            box-shadow: none;
+        }
+        html:not(.dark) .form-trigger:focus,
+        html:not(.dark) #addon-model-select:focus { border-color: #555 !important; box-shadow: 0 0 0 3px rgba(17,17,20,.15); }
+        html:not(.dark) #toggle-addon-panel { border: 0; border-radius: 999px; background: #111114; color: #fff; }
+        html:not(.dark) #toggle-addon-panel:hover { background: #333; }
+        html:not(.dark) .addon-category-button { border-radius: 1rem; }
+        html:not(.dark) .addon-category-button[aria-pressed="true"] { border-color: #111114 !important; background: #111114 !important; }
+        html:not(.dark) #addon-panel,
+        html:not(.dark) #pc-modal,
+        html:not(.dark) #tps-visualizer { background-color: rgba(14,14,17,.72); }
+        html:not(.dark) #addon-panel > div,
+        html:not(.dark) #pc-modal > div,
+        html:not(.dark) #tps-visualizer > div {
+            border: 1px solid rgba(255,255,255,.9);
+            border-radius: 1.8rem;
+            background: rgba(250,249,252,.97);
+            box-shadow: 0 30px 90px rgba(0,0,0,.25);
+        }
+
+        html:not(.dark) #calculator-app > .mb-4 { margin-top: 3.5rem; margin-bottom: 1.2rem; text-align: center; }
+        html:not(.dark) #calculator-app > .mb-4 h2 { color: #111114; font-size: clamp(1.45rem, 2.6vw, 2rem); text-transform: uppercase; letter-spacing: -.035em; }
+        html:not(.dark) #calculator-app > .mb-4 p { max-width: 55rem; margin-inline: auto; color: #66636c; font-size: .9rem; }
+        html:not(.dark) #product-container { gap: 1.05rem; }
+        html:not(.dark) .product-card {
+            min-height: 10rem;
+            overflow: visible;
+            border: 1px solid rgba(255,255,255,.94);
+            border-radius: 1.65rem;
+            background: rgba(255,255,255,.74);
+            box-shadow: 0 15px 38px rgba(24,22,31,.075);
+            backdrop-filter: blur(14px);
+        }
+        html:not(.dark) .product-card:hover { transform: translateY(-2px); border-color: rgba(17,17,20,.22); box-shadow: 0 20px 42px rgba(24,22,31,.12); }
+        html:not(.dark) .product-card .card-header h3 { color: #111114; text-transform: uppercase; letter-spacing: -.025em; }
+        html:not(.dark) .product-card .card-header p { color: #69666e; }
+        html:not(.dark) .product-card .card-specs > span { border-color: #e4e2e8; background: #f0eff2; color: #4d4a52; }
+        html:not(.dark) .product-card .metric-box {
+            min-height: 6.5rem;
+            border: 1px solid rgba(255,255,255,.12) !important;
+            border-radius: 1.1rem;
+            background: #0d0d10 !important;
+            color: #fff;
+            padding: .9rem 1rem;
+        }
+        html:not(.dark) .product-card .metric-box > div:first-child { color: #b9b7c0 !important; }
+        html:not(.dark) .product-card .metric-box .val-ttft { color: #fff; }
+        html:not(.dark) .product-card .metric-box .text-slate-400 { color: #aaa7b0 !important; }
+        html:not(.dark) .product-card .metric-cost { background: #0d0d10 !important; border-color: rgba(255,255,255,.12) !important; }
+        html:not(.dark) .product-card .metric-vram .text-slate-500 { color: #66636c !important; }
+        html:not(.dark) .product-card .metric-vram .text-slate-900 { color: #111114 !important; }
+        html:not(.dark) .see-pc-button { border: 0 !important; border-radius: 999px !important; background: #0d0d10 !important; color: #fff !important; padding: .55rem 1rem !important; }
+        html:not(.dark) .see-pc-button:hover { background: #34343a !important; }
+        html:not(.dark) #filter-empty-message,
+        html:not(.dark) #non-llm-message { border-radius: 1.8rem; background: rgba(255,255,255,.78); box-shadow: 0 18px 44px rgba(24,22,31,.07); }
+        @media (max-width: 640px) {
+            html:not(.dark) .hero-gradient { min-height: 55vh; }
+            html:not(.dark) .hero-gradient > div { padding-top: 4.5rem; padding-bottom: 2.5rem; }
+            html:not(.dark) .scenario-card { min-height: 9.25rem; padding: .95rem; }
+            html:not(.dark) .scenario-card h4 { font-size: .98rem; }
+            html:not(.dark) .form-trigger,
+            html:not(.dark) #addon-model-select { font-size: 16px; }
+            html:not(.dark) .product-card .metric-box { min-height: 5.5rem; }
+        }
+        #calculator-app select,
+        #calculator-app input,
+        #calculator-app button { min-height: 44px; }
+        #calculator-app button:focus-visible,
+        #calculator-app select:focus-visible,
+        #calculator-app input:focus-visible,
+        #calculator-app summary:focus-visible {
+            outline: 2px solid #f87171;
+            outline-offset: 3px;
+        }
+        @media (max-width: 640px) {
+            #calculator-app select,
+            #calculator-app input { font-size: 16px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #calculator-app *,
+            #calculator-app *::before,
+            #calculator-app *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 selection:bg-red-200 selection:text-red-900 dark:selection:bg-red-900 dark:selection:text-red-100 transition-colors duration-300">
 
     <!-- Hero Section -->
-    <section class="hero-gradient min-h-screen flex items-center border-b border-slate-200 dark:border-slate-800 overflow-hidden relative transition-colors duration-300">
-        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24 relative z-10">
+    <section class="hero-gradient min-h-[520px] md:min-h-[600px] flex items-center border-b border-slate-200 dark:border-slate-800 overflow-hidden relative transition-colors duration-300">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16 relative z-10">
             <div class="max-w-5xl">
                 <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-6 transition-colors">
-                    Plan Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Edge AI Compute</span>
+                    Know What Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Local AI Needs.</span>
                 </h1>
                 <p class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed max-w-3xl transition-colors">
                     Select a large language model (LLM), quantization precision, prompt length, and output length to compare available memory, inference throughput (TPS), time to first token (TTFT), and estimated monthly electricity cost across GPUs, SoCs, and AI supercomputers.
                 </p>
                 <div class="flex gap-4">
                     <a href="#calculator-app" class="bg-red-600 text-white font-semibold px-8 py-3.5 rounded-lg shadow-md shadow-red-600/20 hover:bg-red-700 transition-colors flex items-center gap-2">
-                        Start Assessment
+                        Let's Explore
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                     </a>
                 </div>
@@ -262,8 +483,8 @@
 
     <main id="calculator-app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
         
-        <!-- Application Scenarios (Application Scenarios) -->
-        <div class="mb-8">
+        <!-- Application Scenarios temporarily disabled -->
+        <div class="hidden" aria-hidden="true">
             <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-5">
                 <div>
                     <h3 class="text-base font-bold text-slate-900 dark:text-slate-100 tracking-tight flex items-center gap-2 transition-colors">
@@ -341,8 +562,8 @@
                         <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
                     </div>
                     <div>
-                        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight transition-colors">Core Inference Engine Configuration</h2>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 transition-colors">Simulate memory allocation and throughput bottlenecks in real time.</p>
+                        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight transition-colors">Local AI Model Configuration</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 transition-colors">Core Inference Engine Configuration · Simulate memory allocation and throughput bottlenecks in real time.</p>
                     </div>
                 </div>
                 
@@ -359,7 +580,7 @@
 
             <!-- 基礎設定 (Basic Settings) -->
             <div class="p-5 md:p-6">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-5 gap-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-5 gap-y-5">
                     
                     <!-- 模型選擇 -->
                     <div class="lg:col-span-4" data-field="model">
@@ -453,12 +674,6 @@
 
                     <!-- 附加模型選擇器 -->
                     <div id="addon-builder" class="sm:col-span-2 lg:col-span-12">
-                        <div class="flex justify-center py-1.5">
-                            <button id="toggle-addon-panel" type="button" class="h-12 w-12 rounded-xl border border-dashed border-red-400 bg-red-50 text-red-600 shadow-sm hover:bg-red-100 hover:scale-105 dark:border-red-500/70 dark:bg-red-950/30 dark:text-red-400 dark:hover:bg-red-950/60 transition-all flex items-center justify-center" aria-expanded="false" aria-controls="addon-panel" title="Add Another Model" aria-label="Add Another Model">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 4v16m8-8H4"></path></svg>
-                            </button>
-                        </div>
-
                         <div id="addon-panel" class="hidden fixed inset-0 z-50 items-center justify-center bg-slate-950/70 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="addon-panel-title">
                             <div class="w-full max-w-3xl max-h-[88vh] overflow-y-auto rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 md:p-6 shadow-2xl">
                                 <div class="flex items-start justify-between gap-4 mb-5">
@@ -582,14 +797,12 @@
                     </div>
 
                     <!-- TPS Filter -->
-                    <div class="sm:col-span-2 lg:col-span-12 pt-6 mt-2 transition-colors">
+                    <div class="sm:col-span-2 lg:col-span-12 pt-2 transition-colors">
                         <label class="field-label min-h-0"><span>Speed Filter</span><span class="field-label-en">Speed Filter</span></label>
                         <div class="flex flex-col sm:flex-row sm:items-center gap-3">
                            <select id="tps-threshold" class="w-full sm:w-72 text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-700 dark:text-slate-200 transition-colors">
-                               <option value="0">Show All Hardware (Including OOM)</option>
-                               <option value="15">≥ 15 TPS (Basic Usability)</option>
-                               <option value="25" selected>≥ 25 TPS (Smooth Reading)</option>
-                               <option value="50">≥ 50 TPS (Very Smooth / Service Grade)</option>
+                               <option value="0" selected>Show All Hardware (Including OOM)</option>
+                               <option value="20">≥ 20 TPS per user</option>
                            </select>
                            <span id="oom-help" class="inline-flex items-center self-start sm:self-auto text-xs font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap bg-slate-100 dark:bg-slate-900 rounded-md px-2.5 py-2">OOM</span>
                         </div>
@@ -598,7 +811,7 @@
             </div>
 
             <!-- 進階設定 (Advanced Configurations) -->
-            <details class="group mt-2 bg-slate-50/50 dark:bg-slate-800/50 transition-colors">
+            <details class="group border-t border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50 transition-colors">
                 <summary class="flex justify-between items-center min-h-14 font-medium cursor-pointer list-none px-5 md:px-6 py-4 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                     <span class="flex items-center gap-2 font-semibold">
                         <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -609,11 +822,11 @@
                     </span>
                 </summary>
                 
-                <div class="px-6 pb-6 pt-2">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="px-5 md:px-6 pb-6 pt-2">
+                    <div class="grid grid-cols-1 gap-6">
                         
-                        <!-- Block 1: Memory -->
-                        <div class="space-y-4">
+                        <!-- Block 1: Memory (temporarily disabled) -->
+                        <div class="hidden" aria-hidden="true">
                             <h4 class="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 pb-2 transition-colors">Memory &amp; Allocation</h4>
                             
                             <div>
@@ -639,22 +852,11 @@
                             </div>
                         </div>
 
-                        <!-- Block 2: Operations & LoRA -->
-                        <div class="space-y-4">
-                            <h4 class="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 pb-2 transition-colors">Operations &amp; Add-ons</h4>
+                        <!-- Block 2: Throughput & concurrency -->
+                        <div class="space-y-4 max-w-3xl">
+                            <h4 class="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 pb-2 transition-colors">Throughput &amp; Concurrency</h4>
                             
                             <div class="grid grid-cols-2 gap-4">
-                                <div class="col-span-2">
-                                    <label class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1.5 transition-colors">LoRA Adapter</label>
-                                    <select id="lora-rank" class="w-full text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-800 dark:text-slate-200 transition-colors">
-                                        <option value="0">None</option>
-                                        <option value="16">Rank 16</option>
-                                        <option value="32">Rank 32</option>
-                                        <option value="64">Rank 64</option>
-                                        <option value="128">Rank 128</option>
-                                        <option value="256">Rank 256</option>
-                                    </select>
-                                </div>
                                 <div>
                                     <label class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1.5 transition-colors">Batch Size</label>
                                     <input type="number" id="batch-size" value="1" min="1" max="128" step="1" class="w-full text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2 border bg-white dark:bg-slate-900 form-trigger text-slate-800 dark:text-slate-200 transition-colors">
@@ -673,7 +875,7 @@
             </details>
 
             <!-- Electricity &amp; Power (Electricity & Power) -->
-            <details id="power-settings" class="group/power mt-2 bg-slate-50/50 dark:bg-slate-800/50 transition-colors">
+            <details id="power-settings" class="hidden" aria-hidden="true">
                 <summary class="flex justify-between items-center min-h-14 font-medium cursor-pointer list-none px-5 md:px-6 py-4 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                     <span class="flex items-center gap-2 font-semibold">
                         <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"></path></svg>
@@ -713,6 +915,10 @@
         <div class="mb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
             <div><h2 class="text-lg font-extrabold text-slate-900 dark:text-white">Hardware Configuration Feasibility</h2><p class="mt-1 text-xs text-slate-500 dark:text-slate-400">CPU and storage offloading are not used. A configuration is marked OOM when model memory demand exceeds available VRAM, unified memory, or shared memory.</p></div>
             <span class="text-[10px] uppercase tracking-wider text-slate-400">Hardware capacity comparison</span>
+        </div>
+        <div class="mb-4 inline-flex w-full sm:w-auto rounded-xl border border-slate-200 bg-slate-100 p-1 dark:border-slate-700 dark:bg-slate-800" role="tablist" aria-label="Hardware category">
+            <button id="hardware-tab-edge" type="button" role="tab" aria-selected="true" aria-controls="product-container" data-hardware-category="edge" class="hardware-category-tab min-h-11 flex-1 sm:flex-none rounded-lg bg-red-600 px-5 py-2 text-sm font-bold text-white shadow-sm transition-colors active:scale-[0.96]">Edge AI PC</button>
+            <button id="hardware-tab-gaming" type="button" role="tab" aria-selected="false" aria-controls="product-container" data-hardware-category="gaming" tabindex="-1" class="hardware-category-tab min-h-11 flex-1 sm:flex-none rounded-lg px-5 py-2 text-sm font-bold text-slate-600 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white transition-colors active:scale-[0.96]">Gaming Desktop</button>
         </div>
         <div id="product-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             
@@ -1397,12 +1603,13 @@
     </main>
 
     <!-- References & Calculation Notes -->
-    <section id="references" class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 py-10 transition-colors">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-6">
-                <h2 class="text-lg font-bold text-slate-900 dark:text-white">References and Estimation Notes</h2>
-                <p class="mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Red reference numbers link to the corresponding sources. Papers and official documentation support the calculation framework or capability assessment; they do not indicate that every estimate has been validated on physical hardware.</p>
-            </div>
+    <section id="references" class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 py-6 transition-colors">
+        <details class="group">
+            <summary class="max-w-7xl mx-auto cursor-pointer list-none px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+                <div><h2 class="text-lg font-bold text-slate-900 dark:text-white">References and Estimation Notes</h2><p class="mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Sources, terminology, and calculation assumptions.</p></div>
+                <span class="shrink-0 text-xs font-semibold text-slate-500 dark:text-slate-400"><span class="group-open:hidden">Expand</span><span class="hidden group-open:inline">Collapse</span></span>
+            </summary>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
             <details class="group mb-8 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/70">
                 <summary class="cursor-pointer list-none px-4 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 flex items-center justify-between">
                     <span>Terminology Glossary</span>
@@ -1432,13 +1639,13 @@
             </details>
             <ol class="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-4 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
                 <li id="ref-1" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[1]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Prefill, Decode, and latency metrics.</span> Zhong et al., <em>DistServe</em>: uses TTFT to evaluate Prefill and TPOT to evaluate Decode latency, and discusses the resource characteristics of both stages. <a href="https://arxiv.org/abs/2401.09670" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">arXiv ↗</a></div></li>
-                <li id="ref-2" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[2]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">LLM VRAM and throughput formula framework.</span> ApX LLM Memory Allocation &amp; Hardware Sizing Methodology: analytical formulas for model weights, KV cache, Prefill latency, and bandwidth-bound Decode. <a href="https://apxml.com/zh/tools/vram-calculator" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">Methodology ↗</a></div></li>
+                <li id="ref-2" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[2]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">LLM VRAM and throughput formula framework.</span> 本估算器依 ApX 公開說明採用 GPU 記憶體頻寬／FLOPS Roofline、Prefill／Decode 分流與批次飽和曲線；ApX 未公開的內部校正係數不在此複製，本站使用可見的原型係數並保留實機校正需求。 <a href="https://apxml.com/zh/tools/vram-calculator" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">Methodology ↗</a></div></li>
                 <li id="ref-3" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[3]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">RAG evaluation.</span> Es et al., <em>RAGAS</em>: evaluates RAG pipelines using context relevance, faithfulness, answer relevance, and related dimensions. <a href="https://arxiv.org/abs/2309.15217" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">arXiv ↗</a></div></li>
                 <li id="ref-4" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[4]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">RAG workload model.</span> The official Meta Llama 3.3 70B Instruct model card documents its 128K context, GQA architecture, and multilingual dialogue focus. <a href="https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">Model Card ↗</a></div></li>
                 <li id="ref-5" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[5]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Coder workload model.</span> The Qwen Team Qwen2.5-Coder family report covers code generation, repair, reasoning, and multilingual programming benchmarks. <a href="https://qwenlm.github.io/blog/qwen2.5-coder-family/" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">Official Report ↗</a></div></li>
                 <li id="ref-6" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[6]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Edge agent workload model.</span> The official Google Gemma 4 model card documents the E4B edge positioning, 128K context, function calling, and Tau2 agent benchmark. <a href="https://ai.google.dev/gemma/docs/core/model_card_4" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">Model Card ↗</a></div></li>
                 <li id="ref-7" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[7]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Customer service and summarization workload model.</span> Official Mistral AI documentation for Ministral 3 8B covers edge deployment, document Q&amp;A, structured output, and batch processing. <a href="https://docs.mistral.ai/models/ministral-3-8b-25-12" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">Official Documentation ↗</a></div></li>
-                <li id="ref-8" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[8]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">KV cache, batching, and concurrent requests.</span> Kwon et al., <em>Efficient Memory Management for Large Language Model Serving with PagedAttention</em>. This page defines the effective batch as the smaller of Batch Size and Concurrent Users. Requests above the batch limit are queued, and average TTFT is estimated in processing waves. <a href="https://arxiv.org/abs/2309.06180" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">arXiv ↗</a></div></li>
+                <li id="ref-8" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[8]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">KV cache, batching, and concurrent requests.</span> Kwon et al., <em>Efficient Memory Management for Large Language Model Serving with PagedAttention</em>. 本頁以 Batch Size 與 Concurrent Users 的較小值作為有效批次；所有並發工作階段都保留 KV Cache，而總 TPS 由有效批次決定，約略的每使用者速度為總 TPS ÷ Concurrent Users。 <a href="https://arxiv.org/abs/2309.06180" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">arXiv ↗</a></div></li>
                 <li id="ref-9" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[9]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">LoRA.</span> Hu et al., <em>LoRA: Low-Rank Adaptation of Large Language Models</em>; this page also applies prototype empirical coefficients to LoRA VRAM estimates. <a href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">arXiv ↗</a></div></li>
                 <li id="ref-10" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[10]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Speculative decoding.</span> Leviathan et al., <em>Fast Inference from Transformers via Speculative Decoding</em>; the speedup shown here is a simplified estimate and must be validated using the draft model and its acceptance rate. <a href="https://arxiv.org/abs/2211.17192" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">arXiv ↗</a></div></li>
                 <li id="ref-11" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[11]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Electricity-cost assumptions.</span> Monthly electricity cost = (TDP × average load factor ÷ 1000) × 24 hours × 30 days × electricity rate per kWh. PSU efficiency, CPU and memory, cooling, and idle power are excluded.</div></li>
@@ -1450,6 +1657,7 @@
                 <li id="ref-17" class="reference-item flex gap-3"><span class="font-bold text-red-600 dark:text-red-400">[17]</span><div><span class="font-semibold text-slate-800 dark:text-slate-100">Add-on model recommendations.</span> Ranked by public Hugging Face Model Hub download counts, then filtered to exclude test models and models unsuitable for the use case while considering PC/GPU deployment feasibility. Snapshot date: September 22, 2026. Rankings change with download counts, and reserved VRAM values are capacity-planning estimates. <a href="https://huggingface.co/models?sort=downloads" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 hover:underline">Hugging Face Models ↗</a></div></li>
             </ol>
         </div>
+        </details>
     </section>
 
     <!-- Global Footer -->
@@ -1483,8 +1691,9 @@
             <div class="flex flex-wrap items-center gap-3 text-xs">
                 <label for="language-select" class="font-semibold text-slate-300">Language</label>
                 <select id="language-select" class="rounded-md border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-slate-200 focus:border-red-500 focus:outline-none">
-                    <option value="zh-TW" disabled>Traditional Chinese</option>
                     <option value="en" selected>English</option>
+                    <option value="zh-TW">繁體中文</option>
+                    <option value="zh-CN">简体中文</option>
                 </select>
                 <button id="theme-toggle" type="button" class="inline-flex items-center gap-2 rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-200 hover:border-slate-500 hover:bg-slate-700 transition-colors" title="Toggle Light/Dark Mode">
                     <svg id="theme-toggle-light-icon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 4.22a1 1 0 011.415 0l.708.708a1 1 0 01-1.414 1.414l-.708-.708a1 1 0 010-1.414zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM15.636 15.636a1 1 0 010 1.415l-.708.708a1 1 0 01-1.414-1.414l.708-.708a1 1 0 011.415 0zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4.22-4.22a1 1 0 010 1.415l-.708.708a1 1 0 01-1.414-1.414l.708-.708a1 1 0 011.415 0zM4 10a1 1 0 01-1 1H2a1 1 0 110-2h1a1 1 0 011 1zM6.485 6.485a1 1 0 010-1.415l.708-.708a1 1 0 011.414 1.414l-.708.708a1 1 0 01-1.415 0z"></path><path d="M10 5a5 5 0 100 10 5 5 0 000-10z"></path></svg>
@@ -1559,8 +1768,17 @@
             });
 
             $('#language-select').change(function() {
-                $html.attr('lang', $(this).val());
+                const language = $(this).val();
+                $html.attr('lang', language);
+                try { localStorage.setItem('tps-language', language); } catch (error) {}
             });
+            try {
+                const savedLanguage = localStorage.getItem('tps-language');
+                if (savedLanguage && $('#language-select option[value="' + savedLanguage + '"]').length) {
+                    $('#language-select').val(savedLanguage);
+                    $html.attr('lang', savedLanguage);
+                }
+            } catch (error) {}
 
             // --- 附加模型與多模型工作流 ---
             const selectedAddons = new Map();
@@ -1713,20 +1931,45 @@
 
             function initializeHardwareCatalog() {
                 const hardwareCatalog = [
+                    { brand: 'NVIDIA', name: 'EdgeMesa N AI+ (RTX Spark N1X)', subtitle: 'Compact AI Desktop · Up to 128 GB Unified Memory', capacity: 128, memory: 'Up to 128 GB LPDDR5x Unified Memory', bw: 273, compute: 150.0, power: 140, powerLabel: '140W Sustained TDP', pc: 'EdgeMesa N AI+', pcUrl: 'https://www.msi.com/Edge-AI-PC/EdgeMesa-N-AI-plus' },
                     { brand: 'AMD', name: 'Ryzen AI Max+ 395', subtitle: 'SoC · 128 GB Unified Memory (96 GB VGM)', capacity: 96, memory: '96 GB Available VGM', bw: 256, compute: 60.0, power: 120, powerLabel: '120W cTDP', pc: 'PRO MAX EDGE AI+ 11M', pcUrl: 'https://www.msi.com/Business-Productivity-PC/PRO-MAX-EDGE-AI-Plus-11M' },
                     { brand: 'Intel', name: 'Core Ultra 9 285H', subtitle: 'SoC · Up to 128 GB System RAM', capacity: 128, memory: '128 GB System RAM', bw: 102.4, compute: 18.0, power: 45, powerLabel: '45W Base', pc: 'Browse MSI Desktop Series', pcUrl: 'https://www.msi.com/Desktop' },
                     { brand: 'NVIDIA', name: 'EdgeXpert / DGX Spark (GB10)', subtitle: 'AI Supercomputer · 128 GB Unified Memory', capacity: 128, memory: '128 GB LPDDR5x Unified Memory', bw: 273, compute: 150.0, power: 240, powerLabel: '240W USB-C Power Adapter', pc: 'EdgeXpert MS-C931', pcUrl: 'https://ipc.msi.com/product_detail/Industrial-Computer-Box-PC/AI-Supercomputer/EdgeXpert-MS-C931' },
                     { brand: 'NVIDIA', name: 'GeForce RTX 5090', subtitle: 'Discrete GPU · 32 GB GDDR7', capacity: 32, memory: '32 GB VRAM', bw: 1792, compute: 419.2, power: 575, powerLabel: '575W TGP', pcs: [
                         { name: 'MEG VISION X AI 2nd', url: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
-                        { name: 'MEG Trident X2 14th', url: 'https://tw.msi.com/Desktop/MEG-Trident-X2-14th' },
-                        { name: 'MPG Infinite X3 AI 2nd', url: 'https://tw.msi.com/Desktop/MPG-Infinite-X3-AI-2nd' }
+                        { name: 'MPG Infinite X3 AI 2nd', url: 'https://www.msi.com/Desktop/MPG-Infinite-X3-AI-2nd' },
+                        { name: 'MPG Infinite Z3 9th', url: 'https://www.msi.com/Desktop/MPG-Infinite-Z3-9th' }
                     ] },
-                    { brand: 'NVIDIA', name: 'GeForce RTX 5080', subtitle: 'Discrete GPU · 16 GB GDDR7', capacity: 16, memory: '16 GB VRAM', bw: 960, compute: 268.0, power: 360, powerLabel: '360W TGP', pc: 'MEG VISION X AI 2nd', pcUrl: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
-                    { brand: 'NVIDIA', name: 'GeForce RTX 5070 Ti', subtitle: 'Discrete GPU · 16 GB GDDR7', capacity: 16, memory: '16 GB VRAM', bw: 896, compute: 175.8, power: 300, powerLabel: '300W TGP', pc: 'MEG VISION X AI 2nd', pcUrl: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
-                    { brand: 'NVIDIA', name: 'GeForce RTX 5070', subtitle: 'Discrete GPU · 12 GB GDDR7', capacity: 12, memory: '12 GB VRAM', bw: 672, compute: 135.0, power: 250, powerLabel: '250W TGP', pc: 'MPG Trident AS AI 2nd', pcUrl: 'https://www.msi.com/Desktop/MPG-Trident-AS-AI-2nd' },
-                    { brand: 'NVIDIA', name: 'GeForce RTX 5060 Ti 16GB', subtitle: 'Discrete GPU · 16 GB GDDR7', capacity: 16, memory: '16 GB VRAM', bw: 448, compute: 88.0, power: 180, powerLabel: '180W TGP', pc: 'MAG Infinite E1', pcUrl: 'https://www.msi.com/Desktop/MAG-Infinite-E1' },
-                    { brand: 'NVIDIA', name: 'GeForce RTX 5060', subtitle: 'Discrete GPU · 8 GB GDDR7', capacity: 8, memory: '8 GB VRAM', bw: 448, compute: 60.0, power: 145, powerLabel: '145W TGP', pc: 'MAG Infinite E1', pcUrl: 'https://www.msi.com/Desktop/MAG-Infinite-E1' },
-                    { brand: 'NVIDIA', name: 'GeForce RTX 5050', subtitle: 'Discrete GPU · 8 GB GDDR6', capacity: 8, memory: '8 GB VRAM', bw: 320, compute: 40.0, power: 130, powerLabel: '130W TGP', pc: 'Browse MSI Desktop Series', pcUrl: 'https://www.msi.com/Desktop' },
+                    { brand: 'NVIDIA', name: 'GeForce RTX 5080', subtitle: 'Discrete GPU · 16 GB GDDR7', capacity: 16, memory: '16 GB VRAM', bw: 960, compute: 268.0, power: 360, powerLabel: '360W TGP', pcs: [
+                        { name: 'MEG VISION X AI 2nd', url: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
+                        { name: 'MPG Infinite X3 AI 2nd', url: 'https://www.msi.com/Desktop/MPG-Infinite-X3-AI-2nd' },
+                        { name: 'MPG Infinite Z3 9th', url: 'https://www.msi.com/Desktop/MPG-Infinite-Z3-9th' }
+                    ] },
+                    { brand: 'NVIDIA', name: 'GeForce RTX 5070 Ti', subtitle: 'Discrete GPU · 16 GB GDDR7', capacity: 16, memory: '16 GB VRAM', bw: 896, compute: 175.8, power: 300, powerLabel: '300W TGP', pcs: [
+                        { name: 'MEG VISION X AI 2nd', url: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
+                        { name: 'MPG Infinite X3 AI 2nd', url: 'https://www.msi.com/Desktop/MPG-Infinite-X3-AI-2nd' },
+                        { name: 'MPG Infinite Z3 9th', url: 'https://www.msi.com/Desktop/MPG-Infinite-Z3-9th' }
+                    ] },
+                    { brand: 'NVIDIA', name: 'GeForce RTX 5070', subtitle: 'Discrete GPU · 12 GB GDDR7', capacity: 12, memory: '12 GB VRAM', bw: 672, compute: 135.0, power: 250, powerLabel: '250W TGP', pcs: [
+                        { name: 'MPG Infinite Z3 9th', url: 'https://www.msi.com/Desktop/MPG-Infinite-Z3-9th' },
+                        { name: 'MPG Trident AS AI 2nd', url: 'https://www.msi.com/Desktop/MPG-Trident-AS-AI-2nd' },
+                        { name: 'MAG Infinite S3', url: 'https://www.msi.com/Desktop/MAG-Infinite-S3-14th' },
+                        { name: 'MAG Infinite E1', url: 'https://www.msi.com/Desktop/MAG-Infinite-E1' }
+                    ] },
+                    { brand: 'NVIDIA', name: 'GeForce RTX 5060 Ti 16GB', subtitle: 'Discrete GPU · 16 GB GDDR7', capacity: 16, memory: '16 GB VRAM', bw: 448, compute: 88.0, power: 180, powerLabel: '180W TGP', pcs: [
+                        { name: 'MPG Infinite Z3 9th', url: 'https://www.msi.com/Desktop/MPG-Infinite-Z3-9th' },
+                        { name: 'MAG Infinite S3', url: 'https://www.msi.com/Desktop/MAG-Infinite-S3-14th' },
+                        { name: 'MAG Infinite E1', url: 'https://www.msi.com/Desktop/MAG-Infinite-E1' }
+                    ] },
+                    { brand: 'NVIDIA', name: 'GeForce RTX 5060', subtitle: 'Discrete GPU · 8 GB GDDR7', capacity: 8, memory: '8 GB VRAM', bw: 448, compute: 60.0, power: 145, powerLabel: '145W TGP', pcs: [
+                        { name: 'MPG Infinite Z3 9th', url: 'https://www.msi.com/Desktop/MPG-Infinite-Z3-9th' },
+                        { name: 'MAG Infinite S3', url: 'https://www.msi.com/Desktop/MAG-Infinite-S3-14th' },
+                        { name: 'MAG Infinite E1', url: 'https://www.msi.com/Desktop/MAG-Infinite-E1' }
+                    ] },
+                    { brand: 'NVIDIA', name: 'GeForce RTX 5050', subtitle: 'Discrete GPU · 8 GB GDDR6', capacity: 8, memory: '8 GB VRAM', bw: 320, compute: 40.0, power: 130, powerLabel: '130W TGP', pcs: [
+                        { name: 'MAG Infinite S3', url: 'https://www.msi.com/Desktop/MAG-Infinite-S3-14th' },
+                        { name: 'MAG Infinite E1', url: 'https://www.msi.com/Desktop/MAG-Infinite-E1' }
+                    ] },
                     { brand: 'NVIDIA', name: 'GeForce RTX 4090', subtitle: 'Discrete GPU · 24 GB GDDR6X', capacity: 24, memory: '24 GB VRAM', bw: 1008, compute: 332.0, power: 450, powerLabel: '450W TGP', pc: 'Browse MSI Desktop Series', pcUrl: 'https://www.msi.com/Desktop' },
                     { brand: 'NVIDIA', name: 'GeForce RTX 4060 Ti 16GB', subtitle: 'Discrete GPU · 16 GB GDDR6', capacity: 16, memory: '16 GB VRAM', bw: 288, compute: 88.0, power: 165, powerLabel: '165W TGP', pc: 'Browse MSI Desktop Series', pcUrl: 'https://www.msi.com/Desktop' },
                     { brand: 'NVIDIA', name: 'GeForce RTX 3060 12GB', subtitle: 'Discrete GPU · 12 GB GDDR6', capacity: 12, memory: '12 GB VRAM', bw: 360, compute: 51.0, power: 170, powerLabel: '170W TGP', pc: 'Browse MSI Desktop Series', pcUrl: 'https://www.msi.com/Desktop' },
@@ -1738,7 +1981,8 @@
                 $('.product-card').remove();
                 hardwareCatalog.forEach(function(hw) {
                     const $card = $template.clone();
-                    $card.attr({ 'data-vram': hw.capacity, 'data-bw': hw.bw, 'data-tflops': hw.compute, 'data-tdp': hw.power, 'data-hardware': hw.name });
+                    const hardwareCategory = hw.name.indexOf('GeForce') === 0 ? 'gaming' : 'edge';
+                    $card.attr({ 'data-vram': hw.capacity, 'data-bw': hw.bw, 'data-tflops': hw.compute, 'data-tdp': hw.power, 'data-hardware': hw.name, 'data-category': hardwareCategory });
                     $card.find('.card-img-wrapper').remove();
                     $card.append('<span class="oom-tag is-hidden absolute top-3 right-3 bg-red-600/95 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1.5 rounded shadow-sm shadow-red-500/20 items-center gap-1.5 uppercase tracking-wide border border-red-500">OOM · Insufficient Memory</span>');
                     $card.find('.card-header h3').text(hw.name);
@@ -1785,8 +2029,8 @@
                         const originalText = $label.text().trim();
                         if (originalText.indexOf('Inference Throughput') === 0) {
                             const $badge = $label.find('.sd-badge').detach();
-                            $label.text('Inference Throughput (TPS)').append($badge);
-                            $(this).addClass('tps-metric-button cursor-pointer hover:border-red-400 dark:hover:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/40').attr({ role: 'button', tabindex: '0', 'aria-label': 'Open the TPS Visualizer' });
+                            $label.text('Per-User Throughput (TPS)').append($badge);
+                            $(this).addClass('tps-metric-button cursor-pointer hover:border-red-400 dark:hover:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/40').attr({ role: 'button', tabindex: '0', 'aria-label': 'Open the per-user TPS Visualizer' });
                         }
                         if (originalText.indexOf('Time to First Token') === 0) $label.text('Time to First Token (TTFT)');
                         if (originalText.indexOf('Monthly Electricity Cost') === 0) {
@@ -1846,12 +2090,12 @@
                     ['#quant-select', 'Quantization stores model weights at lower precision to reduce VRAM use and memory traffic. Q4_K_M, Q5_K_M, and Q6_K are GGUF/llama.cpp formats; AWQ, GPTQ, INT8, FP8, and FP16/BF16 are common GPU inference formats or precisions. Actual support depends on the checkpoint, hardware, and inference framework.'],
                     ['#context-select', 'Prefill processes the input prompt in one stage. More input tokens generally increase TTFT, KV cache usage, and computation.'],
                     ['#output-select', 'Decode generates the response one token at a time. This value is the maximum number of tokens a request may generate and also increases final KV cache usage.'],
-                    ['#tps-threshold', 'The speed filter displays hardware that meets the estimated TPS threshold. Values are analytical estimates, not measured benchmark results.'],
+                    ['#tps-threshold', 'The speed filter displays hardware that meets the estimated per-user TPS threshold. Values are analytical estimates, not measured benchmark results.'],
                     ['#kv-quant', 'KV cache stores the attention keys and values for each layer. Lower KV precision can greatly reduce memory use for long contexts and large batches, but may affect quality and requires inference-framework support.'],
                     ['#vram-utilization', 'The share of memory available to the inference engine. Reserved headroom reduces OOM risk from fragmentation, temporary tensors, and other processes.'],
                     ['#lora-rank', 'LoRA adds task-specific parameters using low-rank matrices. Higher rank generally increases adapter capacity and memory overhead.'],
-                    ['#batch-size', 'The maximum number of sequences processed together per inference step. The effective batch cannot exceed concurrent users. Larger batches often increase aggregate throughput but also increase KV cache use.'],
-                    ['#concurrent-users', 'The number of users sending inference requests at the same time. Batch Size sets the per-wave processing limit; excess requests queue and increase average wait time and TTFT.'],
+                    ['#batch-size', '每個推理步驟同時處理的最大序列數。有效批次不會超過 Concurrent Users；較大的批次通常提高總吞吐量。'],
+                    ['#concurrent-users', '同時進行推理的使用者數。每位使用者都會占用 KV Cache；當人數高於 Batch Size 時，使用者共享總吞吐量，因此每使用者速度下降。'],
                     ['#power-rate', 'The electricity rate per kWh used to estimate monthly cost. Cooling, power-conversion loss, and other system-component power are excluded.'],
                     ['#load-factor', 'TDP is multiplied by this factor to approximate average monthly power. This is a planning assumption, not measured wall power.']
                 ];
@@ -1892,8 +2136,8 @@
                     $card.find('.metric-grid .metric-box').each(function() {
                         const $label = $(this).children('div').first();
                         const labelText = $label.clone().children().remove().end().text().trim();
-                        if (labelText.indexOf('Inference Throughput') === 0) addHelp($label, 'TPS (Tokens per Second) is the number of tokens generated per second during Decode. This page models it using memory bandwidth, effective weights, and KV cache.');
-                        if (labelText.indexOf('Time to First Token') === 0) addHelp($label, 'TTFT (Time to First Token) is the time from request submission to the first output token. It is primarily affected by Prefill length, model computation, batching, and queueing.');
+                        if (labelText.indexOf('Per-User Throughput') === 0) addHelp($label, 'Per-user TPS is the estimated aggregate Decode throughput divided by Concurrent Users. Batch Size affects aggregate throughput; concurrent users share that throughput.');
+                        if (labelText.indexOf('Time to First Token') === 0) addHelp($label, 'TTFT (Time to First Token) is a per-request estimate from submission to the first output token. It is primarily affected by Prefill length, model computation, memory bandwidth, and fixed runtime overhead.');
                         if (labelText.indexOf('Monthly Operating Cost') === 0) addHelp($label, 'OpEx here means estimated monthly electricity cost, calculated from hardware TDP/TGP, average load factor, 24 hours per day, and 30 days per month. Cooling and other system power are excluded.');
                     });
                 });
@@ -1940,7 +2184,7 @@
                     $card.find('.metric-grid .metric-box').each(function() {
                         const $label = $(this).children('div').first();
                         const labelText = $label.clone().children().remove().end().text().trim();
-                        if (labelText.indexOf('Inference Throughput') === 0) {
+                        if (labelText.indexOf('Per-User Throughput') === 0) {
                             addCitation($label, 2);
                             addCitation($label, 12);
                         }
@@ -1974,7 +2218,7 @@
                 .on('keydown', function(event) { if (event.key === 'Escape') $('#global-tooltip').hide(); });
 
             let tpsSimulationTimer = null;
-            const tpsDemoTokens = 'This simulated AI response demonstrates how many tokens different hardware configurations can generate each second. A higher TPS makes text appear faster and helps users experience how smoothly the model responds. The estimate is based on the selected model, quantization, input length, output length, batch size, and concurrent users. Actual performance is also affected by the inference engine, memory bandwidth, cooling, and system load.'.split(' ');
+            const tpsDemoTokens = 'This simulated AI response demonstrates how many tokens each concurrent user can receive per second. A higher per-user TPS makes text appear faster and helps users experience how smoothly the model responds. The estimate is based on the selected model, quantization, input length, output length, batch size, and concurrent users. Actual performance is also affected by the inference engine, memory bandwidth, cooling, and system load.'.split(' ');
 
             function closePcModal() {
                 $('#pc-modal').addClass('hidden').removeClass('flex');
@@ -2051,9 +2295,9 @@
                 const tps = parseFloat(rawValue);
                 const hardware = $card.find('.card-header h3').first().clone().children().remove().end().text().trim();
                 const valid = Number.isFinite(tps);
-                const isUsable = valid && tps > 15;
+                const isUsable = valid && tps >= 20;
                 $('#tps-visualizer-hardware').text(hardware);
-                $('#tps-visualizer-status').text(isUsable ? 'Above 15 TPS · Usable' : (valid ? 'Below 15 TPS · Slow' : 'OOM · Cannot Load'))
+                $('#tps-visualizer-status').text(isUsable ? '≥ 20 TPS per user · Usable' : (valid ? '< 20 TPS per user · Slow' : 'OOM · Cannot Load'))
                     .attr('class', 'self-start rounded-full px-3 py-1.5 text-xs font-bold sm:mb-2 ' + (isUsable ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300' : 'bg-red-100 text-red-700 dark:bg-red-950/50 dark:text-red-300'));
                 $('#tps-simulator-input').val(valid ? tps.toFixed(1) : '').prop('disabled', !valid);
                 $('#start-tps-simulation').prop('disabled', !valid).addClass('hidden');
@@ -2097,10 +2341,11 @@
             // --- 產品分頁：每頁最多 6 項，並尊重 TPS / VRAM 篩選結果 ---
             const productsPerPage = 6;
             let currentProductPage = 1;
+            let currentHardwareCategory = 'edge';
 
             function renderProductPage(requestedPage) {
                 const $allProducts = $('.product-card');
-                const $filteredProducts = $allProducts.filter(':not(.is-hidden)');
+                const $filteredProducts = $allProducts.filter(':not(.is-hidden):not(.category-hidden)');
                 const totalProducts = $filteredProducts.length;
                 const totalPages = Math.max(1, Math.ceil(totalProducts / productsPerPage));
 
@@ -2146,6 +2391,33 @@
             $('#show-all-products').click(function() {
                 $('#tps-threshold').val('0').trigger('change');
             });
+
+            function setHardwareCategory(category, focusTab) {
+                currentHardwareCategory = category === 'gaming' ? 'gaming' : 'edge';
+                $('.product-card').each(function() {
+                    $(this).toggleClass('category-hidden', $(this).data('category') !== currentHardwareCategory);
+                });
+                $('.hardware-category-tab').each(function() {
+                    const $tab = $(this);
+                    const isSelected = $tab.data('hardware-category') === currentHardwareCategory;
+                    $tab.attr('aria-selected', isSelected ? 'true' : 'false')
+                        .attr('tabindex', isSelected ? '0' : '-1')
+                        .toggleClass('bg-red-600 text-white shadow-sm', isSelected)
+                        .toggleClass('text-slate-600 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white', !isSelected);
+                });
+                renderProductPage(1);
+                if (focusTab) $('.hardware-category-tab[data-hardware-category="' + currentHardwareCategory + '"]').trigger('focus');
+            }
+
+            $('.hardware-category-tab').on('click', function() {
+                setHardwareCategory($(this).data('hardware-category'), false);
+            }).on('keydown', function(event) {
+                if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+                event.preventDefault();
+                const nextCategory = event.key === 'ArrowLeft' || event.key === 'Home' ? 'edge' : 'gaming';
+                setHardwareCategory(nextCategory, true);
+            });
+            setHardwareCategory('edge', false);
 
             // --- 應用場景卡片 (Scenario Cards) ---
             function compactTokenCount(value) {
@@ -2222,15 +2494,8 @@
             function updateConcurrencyExample() {
                 const users = Math.max(1, Math.min(1024, parseInt($('#concurrent-users').val()) || 1));
                 const batch = Math.max(1, Math.min(128, parseInt($('#batch-size').val()) || 1));
-                const waves = Math.ceil(users / batch);
-                const groups = [];
-                let remaining = users;
-                for (let i = 0; i < waves; i++) {
-                    const current = Math.min(batch, remaining);
-                    groups.push(current + ' users');
-                    remaining -= current;
-                }
-                $('#concurrency-example').html('<strong>Example: </strong>Concurrent users: ' + users + ' users, Batch Size ' + batch + '; the inference engine processes up to ' + batch + ' users, resulting in ' + waves + ' waves (' + groups.join(' + ') + '). Later requests queue, increasing average TTFT.');
+                const activeBatch = Math.min(users, batch);
+                $('#concurrency-example').html('<strong>How it works: </strong>Effective batch = min(Batch Size, Concurrent Users) = ' + activeBatch + '. Aggregate TPS applies a roofline model and batch-saturation curve to the effective batch; all ' + users + ' concurrent users reserve KV cache, and approximate per-user speed is aggregate TPS ÷ ' + users + '.');
             }
 
             // 表單變更綁定
@@ -2257,6 +2522,7 @@
             // 核心物理運算函數 (Roofline Model)
             function calculateMetrics() {
                 let $selectedModel = $('#model-select').find('option:selected');
+                let selectedModelId = $selectedModel.val();
                 let modelType = $selectedModel.data('type');
                 
                 if (modelType !== 'text') {
@@ -2283,9 +2549,8 @@
                 let totalCtxLen = promptLen + outputLen; // 總長度影響最終 KV Cache
                 let batchSize = Math.max(1, Math.min(128, parseInt($('#batch-size').val()) || 1));
                 let concurrentUsers = Math.max(1, Math.min(1024, parseInt($('#concurrent-users').val()) || 1));
-                // 每輪實際處理量受 batch 上限與同時請求數共同限制；其餘請求進入等候佇列。
+                // ApX-style concurrency model: batch controls active throughput; users control allocated session KV memory.
                 let effectiveBatchSize = Math.min(batchSize, concurrentUsers);
-                let queueWaves = Math.ceil(concurrentUsers / batchSize);
                 let vramLimitFraction = parseFloat($('#vram-utilization').val()) || 0.90;
                 let loraRank = parseInt($('#lora-rank').val()) || 0;
                 let tpsThreshold = parseFloat($('#tps-threshold').val());
@@ -2299,7 +2564,9 @@
                 let loraOverheadGB = loraRank > 0 ? (layers * hd * loraRank * 4) / Math.pow(1024, 3) * 50 : 0; 
 
                 // KV Cache 精確計算
-                let kvCacheGB = (effectiveBatchSize * 2 * 2 * totalCtxLen * layers * kvh * hd) * (kvBits / 16.0) / Math.pow(1024, 3);
+                let kvCachePerUserGB = (2 * 2 * totalCtxLen * layers * kvh * hd) * (kvBits / 16.0) / Math.pow(1024, 3);
+                let kvCacheGB = kvCachePerUserGB * concurrentUsers;
+                let activeKvCacheGB = kvCachePerUserGB * effectiveBatchSize;
                 
                 let baseOverheadGB = 1.2;
                 let addonVramGB = getAddonVramGB();
@@ -2359,24 +2626,41 @@
                         $card.find('.val-ttft').removeClass('text-slate-300 dark:text-slate-600').addClass('text-slate-800 dark:text-white');
                         $card.find('.val-cost').removeClass('text-slate-300 dark:text-slate-600').addClass('text-amber-700 dark:text-amber-400');
                         
-                        // Decoding TPS
-                        let memTransferTime = (activeWeightGB + kvCacheGB) / (bw * 0.8);
-                        let iterationTime = memTransferTime + 0.00268; 
-                        let tps = effectiveBatchSize / iterationTime;
+                        // ApX-style roofline: batch improves utilization but follows a saturation curve.
+                        let batchSaturation = 1 - Math.exp(-effectiveBatchSize / 4);
+                        let bandwidthEfficiency = 0.72 + (0.23 * batchSaturation);
+                        let computeEfficiency = 0.52 + (0.28 * batchSaturation);
+                        let decodeMemoryTime = (activeWeightGB + activeKvCacheGB) / (bw * bandwidthEfficiency);
+                        let decodeComputeTime = (2 * apb * effectiveBatchSize) / (tflops * 1000 * computeEfficiency);
+                        let iterationTime = Math.max(decodeMemoryTime, decodeComputeTime) + 0.00268;
+                        let aggregateTps = effectiveBatchSize / iterationTime;
+
+                        // RTX Spark 使用同型號 NVIDIA 基準校正；其他硬體維持原 Roofline 估算。
+                        if ($card.data('hardware') === 'EdgeXpert / DGX Spark (GB10)' || $card.data('hardware') === 'EdgeMesa N AI+ (RTX Spark N1X)') {
+                            const sparkTpsCalibration = {
+                                qwen36_35b: 1.246826,
+                                gemma4_26b: 1.541055
+                            };
+                            aggregateTps *= sparkTpsCalibration[selectedModelId] || 1;
+                        }
+                        let perUserTps = aggregateTps / concurrentUsers;
                         
                         $card.find('.sd-badge').addClass('is-hidden');
                         
-                        // TTFT 計算
-                        let prefillTime = (2 * apb * promptLen * effectiveBatchSize) / (tflops * 1000 * 0.6);
-                        // 超過批次上限的同時請求會分波處理；以平均所在波次估算排隊延遲。
-                        let averageQueuedWaves = Math.max(0, (queueWaves - 1) / 2);
-                        let averageQueueDelay = averageQueuedWaves * (prefillTime + iterationTime * outputLen);
-                        let ttft = ((prefillTime + averageQueueDelay) * 1000) + (iterationTime * 1000 * 2);
+                        // TTFT is a per-request metric; batch/concurrency change aggregate throughput and memory, not prompt size.
+                        let prefillComputeTime = (2 * apb * promptLen) / (tflops * 1000 * 0.60);
+                        let prefillMemoryTime = (activeWeightGB + kvCachePerUserGB) / (bw * 0.80);
+                        let prefillTime = Math.max(prefillComputeTime, prefillMemoryTime);
+                        let firstTokenDecodeTime = Math.max(
+                            (activeWeightGB + kvCachePerUserGB) / (bw * 0.80),
+                            (2 * apb) / (tflops * 1000 * 0.60)
+                        ) + 0.00268;
+                        let ttft = (prefillTime * 1000) + (firstTokenDecodeTime * 1000 * 2);
 
                         // 更新 UI 數據
                         let $tpsEl = $card.find('.val-tps');
-                        $tpsEl.text(tps.toFixed(1)).removeClass('text-slate-300 dark:text-slate-600 text-emerald-600 dark:text-emerald-400 text-indigo-600 dark:text-indigo-400 text-slate-800 dark:text-white text-red-600 dark:text-red-400');
-                        if (tps > 15) $tpsEl.addClass('text-emerald-600 dark:text-emerald-400');
+                        $tpsEl.text(perUserTps.toFixed(1)).removeClass('text-slate-300 dark:text-slate-600 text-emerald-600 dark:text-emerald-400 text-indigo-600 dark:text-indigo-400 text-slate-800 dark:text-white text-red-600 dark:text-red-400');
+                        if (perUserTps >= 20) $tpsEl.addClass('text-emerald-600 dark:text-emerald-400');
                         else $tpsEl.addClass('text-red-600 dark:text-red-400');
 
                         $card.find('.val-ttft').text(ttft.toFixed(0));
@@ -2386,7 +2670,7 @@
                         let monthlyCost = monthlyKwh * powerRate;
                         $card.find('.val-cost').text(monthlyCost.toFixed(1));
 
-                        if (tps < tpsThreshold) { $card.addClass('is-hidden'); } 
+                        if (perUserTps < tpsThreshold) { $card.addClass('is-hidden'); }
                         else { $card.removeClass('is-hidden'); }
                     }
                 });
@@ -2394,7 +2678,7 @@
             }
 
             // 初始化
-            $('#tps-threshold').val('25');
+            $('#tps-threshold').val('0');
             updateQuantOptions();
             updateConcurrencyExample();
             calculateMetrics();
