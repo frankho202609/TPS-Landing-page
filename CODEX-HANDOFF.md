@@ -78,13 +78,15 @@ Search inside `index.html` for:
 7. Confirm official MSI product links open correctly.
 8. Confirm the simulator is closed by default, opens from a TPS metric, streams, replays, and collapses.
 9. Confirm the model selector has 51 deduplicated options and every optgroup label is a model family or publisher.
-10. Test English, Traditional Chinese, and Simplified Chinese, including simulator text.
+10. Confirm each model has positive `data-pb`, `data-apb`, `data-layers`, `data-kvh`, and `data-hd` values, with `data-pb >= data-apb`; consult `MODEL-PARAMETER-AUDIT.md` before changing model architecture data.
+11. Test English, Traditional Chinese, and Simplified Chinese, including simulator text.
 
 ## Package contents
 
 - `index.html` — production page
 - `README.md` — repository overview
 - `APPLICATION_SCENARIO_SOURCES.md` — retained research/source notes
+- `MODEL-PARAMETER-AUDIT.md` — model parameter-field policy, authoritative source routing, and important corrected cases
 - `CODEX-HANDOFF.md` — this handoff guide
 - `SOURCE-COMMIT.txt` — exact Git commit packaged
 
