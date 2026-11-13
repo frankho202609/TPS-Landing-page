@@ -25,7 +25,7 @@ The production options in `index.html` were checked against the publishers' offi
 
 ## Important corrected cases
 
-- Qwen3.8-Flash-Next: 180B checkpoint, 6B active, 48 layers, 2 KV heads, 256 head dimension.
+- Qwen3.8-Flash-Next: 125B language model with 6B activated, plus 51B N-gram embedding and 4B MTP (180B checkpoint tensors in total); 48 layers, 2 KV heads, 256 head dimension. The UI displays `125B-A6B`, while `data-pb="180"` intentionally retains the full no-offload memory footprint.
 - DeepSeek-V4.1-Flash-1017: 552B backbone plus conditional-memory and auxiliary checkpoint weights (763.21B checkpoint tensors); 16B active during decode and 8B during prefill.
 - DeepSeek-V4-Flash-0731: 284B backbone, 13B active; the released checkpoint contains 304.18B tensors including auxiliary/speculative weights.
 - DeepSeek-V4-Pro-0813: 1.65T total, 49B active.
