@@ -33,10 +33,10 @@ Open `http://127.0.0.1:8131/`. Tailwind CSS, jQuery, and Inter load from public 
 
 ## LLM scope
 
-- The selector intentionally contains exactly 10 models and only these families, in this order: Qwen, Gemma, DeepSeek, NVIDIA Nemotron.
+- The selector intentionally contains 40 models: the top 10 downloaded Unsloth entries for each family, in this order: Qwen, Gemma, DeepSeek, NVIDIA Nemotron.
 - Default: Qwen 3.8 27B.
 - Other LLM families were deliberately removed.
-- The list follows the user-supplied “Most downloaded Unsloth models of all time” reference, restricted to Qwen, Gemma, and DeepSeek, plus NVIDIA Nemotron as the requested fourth family. Llama and Mistral entries from the reference were intentionally excluded.
+- The list follows Hugging Face `unsloth` download rankings. Pure image/audio/embedding Qwen entries are excluded because the TPS calculator requires text generation; the next eligible text-capable Qwen entries are used instead.
 - Popularity snapshot: 2026-11-13. Download rankings are dynamic; re-query Hugging Face before changing the order.
 
 ## TPS behavior
@@ -53,7 +53,7 @@ Open `http://127.0.0.1:8131/`. Tailwind CSS, jQuery, and Inter load from public 
 - `#tps-visualizer` is directly below product cards and pagination.
 - It is a collapsed `<details>` panel by default.
 - Selecting the TPS metric on a product card opens the panel, loads that hardware's TPS, and starts token streaming.
-- Replay, OOM handling, progress, manual collapse, and all three UI languages must continue working.
+- Users can select a product TPS or type a custom TPS value. Replay, OOM handling, progress, manual collapse, and all three UI languages must continue working.
 
 ## Important implementation locations
 
@@ -77,7 +77,7 @@ Search inside `index.html` for:
 6. Confirm OOM and the per-user TPS filter work.
 7. Confirm official MSI product links open correctly.
 8. Confirm the simulator is closed by default, opens from a TPS metric, streams, replays, and collapses.
-9. Confirm the model selector has 10 options and only the four requested family groups.
+9. Confirm the model selector has 40 options (10 per requested family) and only the four requested family groups.
 10. Test English, Traditional Chinese, and Simplified Chinese, including simulator text.
 
 ## Package contents
