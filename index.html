@@ -524,10 +524,18 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-5 gap-y-5">
                     
                     <!-- 模型選擇 -->
-                    <div class="lg:col-span-4" data-field="model">
-                        <label for="model-select" class="field-label"><span id="model-label">大型語言模型（LLM）</span><span class="field-label-en">Large Language Model</span></label>
+                    <div class="relative z-50 lg:col-span-4" data-field="model">
+                        <label for="model-search" class="field-label"><span id="model-label">大型語言模型（LLM）</span><span class="field-label-en">Large Language Model</span></label>
                         <div class="flex gap-2">
-                        <select id="model-select" class="min-w-0 flex-1 text-sm font-medium border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border form-trigger form-select-custom bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white transition-colors">
+                        <div class="relative min-w-0 flex-1">
+                            <svg class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+                            <input id="model-search" type="text" autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls="model-search-list" aria-expanded="false" class="w-full rounded-lg border border-slate-300 bg-slate-50 py-2.5 pl-9 pr-10 text-sm font-medium text-slate-800 shadow-sm transition-colors focus:border-red-500 focus:ring-red-500 dark:border-slate-600 dark:bg-slate-900 dark:text-white" placeholder="搜尋模型名稱或規格">
+                            <button id="model-dropdown-toggle" type="button" class="absolute right-1 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-md text-slate-400 transition hover:bg-slate-200 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-red-500 dark:hover:bg-slate-700 dark:hover:text-white" aria-label="顯示全部模型" aria-controls="model-search-list" aria-expanded="false">
+                                <svg class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z" clip-rule="evenodd"/></svg>
+                            </button>
+                            <div id="model-search-list" role="listbox" class="absolute left-0 right-0 top-full z-50 mt-1 hidden max-h-80 overflow-y-auto rounded-xl border border-slate-200 bg-white p-1.5 shadow-2xl dark:border-slate-600 dark:bg-slate-900"></div>
+                        </div>
+                        <select id="model-select" class="sr-only form-trigger" tabindex="-1" aria-hidden="true">
                             <optgroup label="Qwen">
                                 <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="27" data-apb="27" data-layers="64" data-kvh="8" data-hd="128" value="qwen38_27b_gguf" selected>Qwen3.8 27B · GGUF</option>
                                 <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="35" data-apb="3" data-layers="48" data-kvh="8" data-hd="128" value="qwen36_35b_a3b_mtp_gguf">Qwen3.6 35B-A3B MTP · GGUF</option>
@@ -1718,13 +1726,13 @@
 
             const interfaceCopy = {
                 en: {
-                    skip: 'Skip to calculator', hero: 'Know What Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Local AI Needs.</span>', heroDescription: 'Select an LLM, quantization precision, and input length to compare memory capacity, per-user throughput (TPS), and time to first token (TTFT) across local AI hardware.', cta: 'Configure your AI', configTitle: 'Local AI model configuration', configDescription: 'Estimate memory allocation, inference throughput, and performance bottlenecks in real time.', model: 'Large language model (LLM)', quant: 'Quantization', context: 'Input length', speed: 'Speed filter', concurrency: 'Throughput & concurrency', batch: 'Batch size', users: 'Concurrent users', hardware: 'Hardware configuration feasibility', hardwareDescription: 'CPU and storage offloading are not used. A configuration is marked OOM when model memory demand exceeds available VRAM, unified memory, or shared memory.', hardwareCaption: 'Hardware capacity comparison', graphics: 'Graphics card', laptop: 'Laptop', workstation: 'Workstation', card: 'Card', list: 'List', seePc: 'See PC', light: 'Light mode', dark: 'Dark mode', all: 'Show all (including OOM)', threshold: '≥ 20 TPS per user', references: 'References and estimation notes', referencesDescription: 'Sources, terminology, and calculation assumptions.', resources: 'Resources & tools', contact: 'Contact us', language: 'Language', expand: 'Expand', collapse: 'Collapse', simulatorTitle: 'Live TPS generation simulator', simulatorHint: 'Select a product TPS or enter your own value.', simulatorEstimate: 'Simulation TPS', simulatorReplay: 'Replay', simulatorRunning: 'Simulating…', simulatorIdle: 'Enter a TPS value', simulatorPreview: 'Token streaming preview', simulatorSelect: 'Select a product TPS or enter a value above to start.', simulatorNoEstimate: 'Enter a valid TPS value greater than zero.', simulatorPreparing: 'Ready to simulate the token stream.', simulatorOom: 'The current configuration is OOM, so the token-stream simulation cannot run.', simulatorUsable: '≥ 20 TPS per user · Usable', simulatorSlow: '< 20 TPS per user · Slow', simulatorCannotLoad: 'OOM · Cannot load', simulatorWorkload: 'Current workload', footerDescription: 'This estimator uses the Roofline performance model and vLLM dynamic memory allocation principles. Results are for architecture planning only; actual performance varies by deployment environment.'
+                    skip: 'Skip to calculator', hero: 'Know What Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Local AI Needs.</span>', heroDescription: 'Select an LLM, quantization precision, and input length to compare memory capacity, per-user throughput (TPS), and time to first token (TTFT) across local AI hardware.', cta: 'Configure your AI', configTitle: 'Local AI model configuration', configDescription: 'Estimate memory allocation, inference throughput, and performance bottlenecks in real time.', model: 'Large language model (LLM)', modelSearch: 'Search by model name or specification', quant: 'Quantization', context: 'Input length', speed: 'Speed filter', concurrency: 'Throughput & concurrency', batch: 'Batch size', users: 'Concurrent users', hardware: 'Hardware configuration feasibility', hardwareDescription: 'CPU and storage offloading are not used. A configuration is marked OOM when model memory demand exceeds available VRAM, unified memory, or shared memory.', hardwareCaption: 'Hardware capacity comparison', graphics: 'Graphics card', laptop: 'Laptop', workstation: 'Workstation', card: 'Card', list: 'List', seePc: 'See PC', light: 'Light mode', dark: 'Dark mode', all: 'Show all (including OOM)', threshold: '≥ 20 TPS per user', references: 'References and estimation notes', referencesDescription: 'Sources, terminology, and calculation assumptions.', resources: 'Resources & tools', contact: 'Contact us', language: 'Language', expand: 'Expand', collapse: 'Collapse', simulatorTitle: 'Live TPS generation simulator', simulatorHint: 'Select a product TPS or enter your own value.', simulatorEstimate: 'Simulation TPS', simulatorReplay: 'Replay', simulatorRunning: 'Simulating…', simulatorIdle: 'Enter a TPS value', simulatorPreview: 'Token streaming preview', simulatorSelect: 'Select a product TPS or enter a value above to start.', simulatorNoEstimate: 'Enter a valid TPS value greater than zero.', simulatorPreparing: 'Ready to simulate the token stream.', simulatorOom: 'The current configuration is OOM, so the token-stream simulation cannot run.', simulatorUsable: '≥ 20 TPS per user · Usable', simulatorSlow: '< 20 TPS per user · Slow', simulatorCannotLoad: 'OOM · Cannot load', simulatorWorkload: 'Current workload', footerDescription: 'This estimator uses the Roofline performance model and vLLM dynamic memory allocation principles. Results are for architecture planning only; actual performance varies by deployment environment.'
                 },
                 'zh-TW': {
-                    skip: '跳至效能估算器', hero: '掌握您的<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">本機 AI 需求。</span>', heroDescription: '選擇大型語言模型、量化精度與輸入長度，比較各種本機 AI 硬體的記憶體容量、每位使用者吞吐量（TPS）及首字延遲（TTFT）。', cta: '開始設定', configTitle: '本機 AI 模型設定', configDescription: '即時估算記憶體配置、推論吞吐量與效能瓶頸。', model: '大型語言模型（LLM）', quant: '量化精度', context: '輸入長度', speed: '速度篩選', concurrency: '吞吐量與同時使用者', batch: '批次大小', users: '同時使用者', hardware: '硬體設定可行性', hardwareDescription: '估算不使用 CPU 或儲存裝置卸載；模型記憶體需求超過可用 VRAM、統一記憶體或共享記憶體時會標示為 OOM。', hardwareCaption: '硬體容量比較', graphics: '顯示卡', laptop: '筆記型電腦', workstation: '工作站', card: '卡片', list: '清單', seePc: '查看產品', light: '淺色模式', dark: '深色模式', all: '顯示全部（含 OOM）', threshold: '每位使用者 ≥ 20 TPS', references: '參考資料與估算說明', referencesDescription: '資料來源、術語與計算假設。', resources: '資源與工具', contact: '聯絡我們', language: '語言', expand: '展開', collapse: '收合', simulatorTitle: 'TPS 即時生成模擬', simulatorHint: '點選產品 TPS 或自行輸入數值', simulatorEstimate: '模擬 TPS', simulatorReplay: '重新播放', simulatorRunning: '模擬中…', simulatorIdle: '請輸入 TPS', simulatorPreview: 'Token 串流預覽', simulatorSelect: '請點選產品 TPS，或在上方輸入數值開始模擬。', simulatorNoEstimate: '請輸入大於 0 的有效 TPS。', simulatorPreparing: '已準備好進行 Token 串流模擬。', simulatorOom: '目前設定已超出記憶體容量，無法執行 Token 串流模擬。', simulatorUsable: '每位使用者 ≥ 20 TPS · 流暢', simulatorSlow: '每位使用者 < 20 TPS · 較慢', simulatorCannotLoad: 'OOM · 無法載入', simulatorWorkload: '目前工作負載', footerDescription: '本估算器採用 Roofline 效能模型與 vLLM 動態記憶體配置原則，結果僅供架構規劃參考；實際效能會依部署環境而異。'
+                    skip: '跳至效能估算器', hero: '掌握您的<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">本機 AI 需求。</span>', heroDescription: '選擇大型語言模型、量化精度與輸入長度，比較各種本機 AI 硬體的記憶體容量、每位使用者吞吐量（TPS）及首字延遲（TTFT）。', cta: '開始設定', configTitle: '本機 AI 模型設定', configDescription: '即時估算記憶體配置、推論吞吐量與效能瓶頸。', model: '大型語言模型（LLM）', modelSearch: '搜尋模型名稱或規格', quant: '量化精度', context: '輸入長度', speed: '速度篩選', concurrency: '吞吐量與同時使用者', batch: '批次大小', users: '同時使用者', hardware: '硬體設定可行性', hardwareDescription: '估算不使用 CPU 或儲存裝置卸載；模型記憶體需求超過可用 VRAM、統一記憶體或共享記憶體時會標示為 OOM。', hardwareCaption: '硬體容量比較', graphics: '顯示卡', laptop: '筆記型電腦', workstation: '工作站', card: '卡片', list: '清單', seePc: '查看產品', light: '淺色模式', dark: '深色模式', all: '顯示全部（含 OOM）', threshold: '每位使用者 ≥ 20 TPS', references: '參考資料與估算說明', referencesDescription: '資料來源、術語與計算假設。', resources: '資源與工具', contact: '聯絡我們', language: '語言', expand: '展開', collapse: '收合', simulatorTitle: 'TPS 即時生成模擬', simulatorHint: '點選產品 TPS 或自行輸入數值', simulatorEstimate: '模擬 TPS', simulatorReplay: '重新播放', simulatorRunning: '模擬中…', simulatorIdle: '請輸入 TPS', simulatorPreview: 'Token 串流預覽', simulatorSelect: '請點選產品 TPS，或在上方輸入數值開始模擬。', simulatorNoEstimate: '請輸入大於 0 的有效 TPS。', simulatorPreparing: '已準備好進行 Token 串流模擬。', simulatorOom: '目前設定已超出記憶體容量，無法執行 Token 串流模擬。', simulatorUsable: '每位使用者 ≥ 20 TPS · 流暢', simulatorSlow: '每位使用者 < 20 TPS · 較慢', simulatorCannotLoad: 'OOM · 無法載入', simulatorWorkload: '目前工作負載', footerDescription: '本估算器採用 Roofline 效能模型與 vLLM 動態記憶體配置原則，結果僅供架構規劃參考；實際效能會依部署環境而異。'
                 },
                 'zh-CN': {
-                    skip: '跳至性能估算器', hero: '了解您的<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">本地 AI 需求。</span>', heroDescription: '选择大型语言模型、量化精度与输入长度，比较各种本地 AI 硬件的内存容量、每位用户吞吐量（TPS）及首字延迟（TTFT）。', cta: '开始设置', configTitle: '本地 AI 模型设置', configDescription: '实时估算内存配置、推理吞吐量与性能瓶颈。', model: '大型语言模型（LLM）', quant: '量化精度', context: '输入长度', speed: '速度筛选', concurrency: '吞吐量与并发用户', batch: '批次大小', users: '并发用户', hardware: '硬件配置可行性', hardwareDescription: '估算不使用 CPU 或存储卸载；模型内存需求超过可用显存、统一内存或共享内存时会标记为 OOM。', hardwareCaption: '硬件容量比较', graphics: '显卡', laptop: '笔记本电脑', workstation: '工作站', card: '卡片', list: '列表', seePc: '查看产品', light: '浅色模式', dark: '深色模式', all: '显示全部（含 OOM）', threshold: '每位用户 ≥ 20 TPS', references: '参考资料与估算说明', referencesDescription: '资料来源、术语与计算假设。', resources: '资源与工具', contact: '联系我们', language: '语言', expand: '展开', collapse: '收起', simulatorTitle: 'TPS 实时生成模拟', simulatorHint: '点击产品 TPS 或自行输入数值', simulatorEstimate: '模拟 TPS', simulatorReplay: '重新播放', simulatorRunning: '模拟中…', simulatorIdle: '请输入 TPS', simulatorPreview: 'Token 流式预览', simulatorSelect: '请点击产品 TPS，或在上方输入数值开始模拟。', simulatorNoEstimate: '请输入大于 0 的有效 TPS。', simulatorPreparing: '已准备好进行 Token 流式模拟。', simulatorOom: '当前设置已超出显存容量，无法执行 Token 流模拟。', simulatorUsable: '每位用户 ≥ 20 TPS · 流畅', simulatorSlow: '每位用户 < 20 TPS · 较慢', simulatorCannotLoad: 'OOM · 无法载入', simulatorWorkload: '当前工作负载', footerDescription: '本估算器采用 Roofline 性能模型与 vLLM 动态内存配置原则，结果仅供架构规划参考；实际性能会因部署环境而异。'
+                    skip: '跳至性能估算器', hero: '了解您的<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">本地 AI 需求。</span>', heroDescription: '选择大型语言模型、量化精度与输入长度，比较各种本地 AI 硬件的内存容量、每位用户吞吐量（TPS）及首字延迟（TTFT）。', cta: '开始设置', configTitle: '本地 AI 模型设置', configDescription: '实时估算内存配置、推理吞吐量与性能瓶颈。', model: '大型语言模型（LLM）', modelSearch: '搜索模型名称或规格', quant: '量化精度', context: '输入长度', speed: '速度筛选', concurrency: '吞吐量与并发用户', batch: '批次大小', users: '并发用户', hardware: '硬件配置可行性', hardwareDescription: '估算不使用 CPU 或存储卸载；模型内存需求超过可用显存、统一内存或共享内存时会标记为 OOM。', hardwareCaption: '硬件容量比较', graphics: '显卡', laptop: '笔记本电脑', workstation: '工作站', card: '卡片', list: '列表', seePc: '查看产品', light: '浅色模式', dark: '深色模式', all: '显示全部（含 OOM）', threshold: '每位用户 ≥ 20 TPS', references: '参考资料与估算说明', referencesDescription: '资料来源、术语与计算假设。', resources: '资源与工具', contact: '联系我们', language: '语言', expand: '展开', collapse: '收起', simulatorTitle: 'TPS 实时生成模拟', simulatorHint: '点击产品 TPS 或自行输入数值', simulatorEstimate: '模拟 TPS', simulatorReplay: '重新播放', simulatorRunning: '模拟中…', simulatorIdle: '请输入 TPS', simulatorPreview: 'Token 流式预览', simulatorSelect: '请点击产品 TPS，或在上方输入数值开始模拟。', simulatorNoEstimate: '请输入大于 0 的有效 TPS。', simulatorPreparing: '已准备好进行 Token 流式模拟。', simulatorOom: '当前设置已超出显存容量，无法执行 Token 流模拟。', simulatorUsable: '每位用户 ≥ 20 TPS · 流畅', simulatorSlow: '每位用户 < 20 TPS · 较慢', simulatorCannotLoad: 'OOM · 无法载入', simulatorWorkload: '当前工作负载', footerDescription: '本估算器采用 Roofline 性能模型与 vLLM 动态内存配置原则，结果仅供架构规划参考；实际性能会因部署环境而异。'
                 }
             };
 
@@ -1740,6 +1748,7 @@
                 $('#config-title').text(copy.configTitle);
                 $('#config-description').text(copy.configDescription);
                 $('#model-label').text(copy.model);
+                $('#model-search').attr('placeholder', copy.modelSearch);
                 $('#quant-label').text(copy.quant);
                 $('#context-label').text(copy.context);
                 $('#speed-filter-label').text(copy.speed);
@@ -2530,6 +2539,135 @@
             });
             setHardwareCategory('edge', false);
 
+            // --- 可搜尋的模型 Combobox ---
+            const $modelSelect = $('#model-select');
+            const $modelSearch = $('#model-search');
+            const $modelSearchList = $('#model-search-list');
+            const $modelDropdownToggle = $('#model-dropdown-toggle');
+            const modelSearchEntries = [];
+
+            $modelSelect.find('option[data-type="text"]').each(function() {
+                const $option = $(this);
+                const name = $option.text().trim();
+                const family = $option.parent('optgroup').attr('label') || '';
+                modelSearchEntries.push({ value: $option.val(), name: name, family: family });
+            });
+
+            function normalizeModelSearch(value) {
+                return String(value || '').trim().toLocaleLowerCase();
+            }
+
+            function syncModelSearchFromSelect() {
+                $modelSearch.val($modelSelect.find('option:selected').text().trim());
+            }
+
+            function setModelDropdownOpen(open) {
+                $modelSearchList.toggleClass('hidden', !open);
+                $modelSearch.attr('aria-expanded', String(open));
+                $modelDropdownToggle.attr('aria-expanded', String(open)).find('svg').toggleClass('rotate-180', open);
+            }
+
+            function renderModelDropdown(query) {
+                const normalizedQuery = normalizeModelSearch(query);
+                const matches = modelSearchEntries.filter(function(entry) {
+                    return !normalizedQuery || normalizeModelSearch(entry.family + ' ' + entry.name).includes(normalizedQuery);
+                });
+                $modelSearchList.empty();
+                let previousFamily = '';
+                matches.forEach(function(entry) {
+                    if (entry.family !== previousFamily) {
+                        $('<div>', { class: 'px-3 pb-1 pt-2 text-[10px] font-bold uppercase tracking-wider text-slate-400', text: entry.family }).appendTo($modelSearchList);
+                        previousFamily = entry.family;
+                    }
+                    $('<button>', {
+                        type: 'button',
+                        role: 'option',
+                        class: 'model-search-option flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm text-slate-700 hover:bg-red-50 hover:text-red-700 focus:bg-red-50 focus:text-red-700 focus:outline-none dark:text-slate-200 dark:hover:bg-slate-700 dark:hover:text-white dark:focus:bg-slate-700 dark:focus:text-white',
+                        text: entry.name,
+                        'data-value': entry.value,
+                        'aria-selected': String($modelSelect.val() === entry.value)
+                    }).appendTo($modelSearchList);
+                });
+                if (!matches.length) {
+                    const copy = getUiLanguage() === 'en' ? 'No matching models' : (getUiLanguage() === 'zh-CN' ? '没有符合的模型' : '沒有符合的模型');
+                    $('<p>', { class: 'px-3 py-5 text-center text-sm text-slate-500', text: copy }).appendTo($modelSearchList);
+                }
+            }
+
+            function selectModelFromSearch(allowPartial) {
+                const query = normalizeModelSearch($modelSearch.val());
+                if (!query) return false;
+                let match = modelSearchEntries.find(function(entry) {
+                    return normalizeModelSearch(entry.name) === query;
+                });
+                if (!match && allowPartial) {
+                    match = modelSearchEntries.find(function(entry) {
+                        return normalizeModelSearch(entry.name).includes(query) || normalizeModelSearch(entry.family + ' ' + entry.name).includes(query);
+                    });
+                }
+                if (!match) return false;
+                if ($modelSelect.val() !== match.value) $modelSelect.val(match.value).trigger('change');
+                syncModelSearchFromSelect();
+                setModelDropdownOpen(false);
+                return true;
+            }
+
+            $modelSearch.on('input', function() {
+                selectModelFromSearch(false);
+                renderModelDropdown(this.value);
+                setModelDropdownOpen(true);
+            }).on('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    selectModelFromSearch(true);
+                } else if (event.key === 'ArrowDown') {
+                    event.preventDefault();
+                    renderModelDropdown(this.value);
+                    setModelDropdownOpen(true);
+                    $modelSearchList.find('.model-search-option').first().trigger('focus');
+                } else if (event.key === 'Escape') {
+                    syncModelSearchFromSelect();
+                    setModelDropdownOpen(false);
+                }
+            }).on('blur', function() {
+                if (!$modelSearchList.find(':focus').length && !selectModelFromSearch(false)) syncModelSearchFromSelect();
+            }).on('focus', function() {
+                this.select();
+            });
+
+            $modelDropdownToggle.on('click', function() {
+                const shouldOpen = $modelSearchList.hasClass('hidden');
+                renderModelDropdown(shouldOpen ? '' : $modelSearch.val());
+                setModelDropdownOpen(shouldOpen);
+                if (shouldOpen) $modelSearch.trigger('focus');
+            });
+
+            $modelSearchList.on('mousedown', '.model-search-option', function(event) {
+                event.preventDefault();
+            }).on('click', '.model-search-option', function() {
+                $modelSelect.val($(this).data('value')).trigger('change');
+                syncModelSearchFromSelect();
+                setModelDropdownOpen(false);
+                $modelSearch.trigger('focus');
+            }).on('keydown', '.model-search-option', function(event) {
+                const $options = $modelSearchList.find('.model-search-option');
+                const index = $options.index(this);
+                if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+                    event.preventDefault();
+                    $options.eq((index + (event.key === 'ArrowDown' ? 1 : -1) + $options.length) % $options.length).trigger('focus');
+                } else if (event.key === 'Escape') {
+                    setModelDropdownOpen(false);
+                    $modelSearch.trigger('focus');
+                }
+            });
+
+            $(document).on('mousedown.modelSearch', function(event) {
+                if (!$(event.target).closest('[data-field="model"]').length) setModelDropdownOpen(false);
+            });
+
+            $modelSelect.on('change.modelSearch', syncModelSearchFromSelect);
+            syncModelSearchFromSelect();
+
             // --- 應用場景卡片 (Scenario Cards) ---
             function compactTokenCount(value) {
                 const count = parseInt(value) || 0;
@@ -2566,6 +2704,7 @@
                 if (wasSelected) {
                     const firstDefaultModel = $('#model-select option[data-type="text"]').first().val();
                     $('#model-select').val(firstDefaultModel);
+                    syncModelSearchFromSelect();
                     $('#context-select').val('1024');
                     $('#output-select').val('512');
                     $('#batch-size').val('1');
@@ -2587,6 +2726,7 @@
                 let targetAddons = $(this).hasClass('multi-model-card') ? String($(this).attr('data-addons') || '').split(',') : [];
 
                 $('#model-select').val(targetModel);
+                syncModelSearchFromSelect();
                 $('#context-select').val(targetContext);
                 if (targetOutput) $('#output-select').val(targetOutput);
                 if (targetBatch) $('#batch-size').val(targetBatch);
@@ -2598,7 +2738,7 @@
                 calculateMetrics();
                 
                 $('html, body').animate({
-                    scrollTop: $("#model-select").offset().top - 100
+                    scrollTop: $("#model-search").offset().top - 100
                 }, 500);
             });
 
