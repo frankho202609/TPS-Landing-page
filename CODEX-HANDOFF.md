@@ -34,9 +34,9 @@ Open `http://127.0.0.1:8131/`. Tailwind CSS, jQuery, and Inter load from public 
 ## LLM scope
 
 - The selector intentionally contains exactly 10 models and only these families, in this order: Qwen, Gemma, DeepSeek, NVIDIA Nemotron.
-- Default: Qwen 2.5 7B Instruct.
+- Default: Qwen 3.8 27B.
 - Other LLM families were deliberately removed.
-- The list is based on Hugging Face download popularity in the requested families, while preserving family representation and local-deployment relevance.
+- The list follows the user-supplied “Most downloaded Unsloth models of all time” reference, restricted to Qwen, Gemma, and DeepSeek, plus NVIDIA Nemotron as the requested fourth family. Llama and Mistral entries from the reference were intentionally excluded.
 - Popularity snapshot: 2026-11-13. Download rankings are dynamic; re-query Hugging Face before changing the order.
 
 ## TPS behavior
