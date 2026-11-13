@@ -268,6 +268,11 @@
         #product-container:not(.view-list) .product-card .metric-vram,
         #product-container:not(.view-list) .product-card .metric-cost,
         #product-container:not(.view-list) .product-card .metric-costs { display: none !important; }
+        .card-memory-control { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: .75rem; }
+        .card-memory-control label { font-size: .7rem; font-weight: 800; color: #64748b; }
+        .card-memory-select { min-height: 2.25rem; min-width: 6.5rem; border-radius: .5rem; border: 1px solid #cbd5e1; background: #fff; padding: .4rem 1.8rem .4rem .65rem; font-size: .75rem; font-weight: 800; color: #0f172a; }
+        .dark .card-memory-select { border-color: #475569; background: #0f172a; color: #f8fafc; }
+        .card-memory-select:disabled { cursor: not-allowed; opacity: .7; }
         #product-container:not(.view-list) .product-card .card-body { padding: .9rem; }
         #product-container:not(.view-list) .product-card .card-header { min-height: 3.6rem; margin-bottom: .75rem; gap: .5rem; }
         #product-container:not(.view-list) .product-card .card-header h3 {
@@ -286,7 +291,7 @@
             padding: .4rem .55rem;
         }
         #product-container:not(.view-list) .product-card .card-metrics-wrapper { margin-top: auto; padding-top: 0; }
-        #product-container:not(.view-list) .product-card .metric-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .5rem; }
+        #product-container:not(.view-list) .product-card .metric-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
         #product-container:not(.view-list) .product-card .metric-box {
             min-width: 0;
             min-height: 4.4rem;
@@ -295,12 +300,15 @@
         }
         #product-container:not(.view-list) .product-card .metric-box > div:first-child { min-height: 1.65rem; line-height: 1.25; }
         #product-container:not(.view-list) .product-card .val-tps,
-        #product-container:not(.view-list) .product-card .val-ttft { font-variant-numeric: tabular-nums; }
+        #product-container:not(.view-list) .product-card .val-ttft,
+        #product-container:not(.view-list) .product-card .val-memory-usage { font-variant-numeric: tabular-nums; }
         @media (hover: hover) and (prefers-reduced-motion: no-preference) {
             #product-container:not(.view-list) .product-card:hover .card-img-wrapper img { transform: scale(1.035); }
         }
         @media (max-width: 899px) {
             #product-container:not(.view-list) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            #product-container:not(.view-list) .product-card .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            #product-container:not(.view-list) .product-card .metric-memory-usage { grid-column: span 2; }
         }
         @media (max-width: 599px) {
             #product-container:not(.view-list) { grid-template-columns: minmax(0, 1fr); gap: .625rem; }
@@ -310,6 +318,7 @@
             #product-container:not(.view-list) .product-card .card-header .text-right { width: 100%; text-align: start; }
             #product-container:not(.view-list) .product-card .card-header h3 { font-size: .84rem; }
             #product-container:not(.view-list) .product-card .metric-grid { grid-template-columns: 1fr; }
+            #product-container:not(.view-list) .product-card .metric-memory-usage { grid-column: span 1; }
             #product-container:not(.view-list) .product-card .metric-box { min-height: 3.8rem; }
         }
         .product-card .card-metrics-wrapper .metric-grid { order: 1; }
@@ -320,207 +329,6 @@
         .scenario-meta { margin-top: .45rem; color: #64748b; font-size: .7rem; line-height: 1.45; }
         .dark .scenario-meta { color: #94a3b8; }
 
-        /* Light, editorial UI inspired by the supplied 2026-10-19 design board. */
-        html:not(.dark) body {
-            background-color: #f5f4f7;
-            background-image:
-                radial-gradient(ellipse at 50% -12%, rgba(255,255,255,.98) 0, rgba(255,255,255,.7) 36%, transparent 73%),
-                radial-gradient(ellipse at 8% 35%, rgba(214,211,222,.2), transparent 42%),
-                radial-gradient(ellipse at 92% 68%, rgba(226,224,232,.24), transparent 40%);
-            color: #111114;
-        }
-        html:not(.dark) .hero-gradient {
-            min-height: 64vh;
-            background: transparent;
-            border-color: transparent;
-        }
-        html:not(.dark) .hero-gradient > div { padding-top: 5.5rem; padding-bottom: 3.5rem; }
-        html:not(.dark) .hero-gradient > div > div { max-width: 64rem; margin-inline: auto; text-align: center; }
-        html:not(.dark) .hero-gradient h1 {
-            max-width: 13ch;
-            margin-inline: auto;
-            color: #111114;
-            font-size: clamp(2.7rem, 6.2vw, 5.7rem);
-            line-height: 1.02;
-            letter-spacing: -.055em;
-            text-transform: uppercase;
-            text-wrap: balance;
-        }
-        html:not(.dark) .hero-gradient h1 span {
-            color: #111114;
-            background: none;
-            -webkit-text-fill-color: currentColor;
-        }
-        html:not(.dark) .hero-gradient p { max-width: 48rem; margin-inline: auto; color: #55535b; font-size: clamp(1rem, 1.5vw, 1.18rem); }
-        html:not(.dark) .hero-gradient a {
-            margin-inline: auto;
-            border-radius: 999px;
-            background: #09090b;
-            padding: .9rem 2rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,.12);
-            letter-spacing: .035em;
-        }
-        html:not(.dark) .hero-gradient a:hover { background: #29292d; }
-
-        html:not(.dark) #calculator-app { padding-top: 1.5rem; }
-        html:not(.dark) #calculator-app > .mb-8 { margin-bottom: 3rem; }
-        html:not(.dark) #calculator-app > .mb-8 > div:first-child { justify-content: center; text-align: center; }
-        html:not(.dark) #calculator-app > .mb-8 h3 {
-            justify-content: center;
-            font-size: clamp(1.4rem, 2.4vw, 1.9rem);
-            color: #111114;
-            text-transform: uppercase;
-            letter-spacing: -.035em;
-        }
-        html:not(.dark) #calculator-app > .mb-8 h3 svg { display: none; }
-        html:not(.dark) #calculator-app > .mb-8 p { color: #66636c; font-size: .95rem; }
-        html:not(.dark) #calculator-app > .mb-8 .grid { gap: 1rem; }
-        html:not(.dark) .scenario-card {
-            position: relative;
-            isolation: isolate;
-            display: flex;
-            min-height: 10.5rem;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,.52) !important;
-            border-radius: 1.45rem;
-            padding: 1.15rem;
-            color: #fff;
-            box-shadow: 0 12px 26px rgba(20,18,28,.12);
-            cursor: pointer;
-        }
-        html:not(.dark) .scenario-card::before,
-        html:not(.dark) .scenario-card::after { content: ""; position: absolute; pointer-events: none; }
-        html:not(.dark) .scenario-card::before {
-            z-index: -2;
-            inset: 0;
-            background: var(--scenario-art, linear-gradient(135deg, #25242b, #55515f));
-            transition: transform 180ms cubic-bezier(.2,0,0,1), filter 180ms ease;
-        }
-        html:not(.dark) .scenario-card::after {
-            z-index: -1;
-            width: 12rem;
-            height: 12rem;
-            top: -5.5rem;
-            right: -3rem;
-            border: 1px solid rgba(255,255,255,.18);
-            border-radius: 50%;
-            box-shadow: 0 0 0 1.15rem rgba(255,255,255,.045), 0 0 0 2.3rem rgba(255,255,255,.035);
-        }
-        html:not(.dark) .scenario-card:nth-child(1) { --scenario-art: radial-gradient(ellipse at 18% 105%, rgba(253,190,58,.8), transparent 48%), linear-gradient(135deg,#101116 15%,#36333c 60%,#554a3f); }
-        html:not(.dark) .scenario-card:nth-child(2) { --scenario-art: radial-gradient(ellipse at 82% 85%, rgba(72,226,222,.75), transparent 42%), linear-gradient(135deg,#20212b,#2c5562 62%,#72a9a8); }
-        html:not(.dark) .scenario-card:nth-child(3) { --scenario-art: radial-gradient(circle at 72% 48%, rgba(123,175,235,.45), transparent 26%), linear-gradient(135deg,#171b27,#454c5c 60%,#202733); }
-        html:not(.dark) .scenario-card:nth-child(4) { --scenario-art: radial-gradient(ellipse at 75% 80%, rgba(100,214,235,.72), transparent 32%), radial-gradient(ellipse at 28% 25%, rgba(235,112,199,.6), transparent 36%), linear-gradient(135deg,#30253c,#39657d 70%,#193444); }
-        html:not(.dark) .scenario-card:nth-child(5) { --scenario-art: radial-gradient(ellipse at 72% 25%, rgba(255,178,94,.55), transparent 34%), linear-gradient(135deg,#28243b,#55516b 65%,#364f65); }
-        html:not(.dark) .scenario-card:nth-child(6) { --scenario-art: radial-gradient(circle at 75% 64%, rgba(109,213,179,.58), transparent 30%), linear-gradient(135deg,#202a2d,#506669 65%,#26393a); }
-        html:not(.dark) .scenario-card:nth-child(7) { --scenario-art: radial-gradient(ellipse at 78% 70%, rgba(82,181,255,.7), transparent 38%), linear-gradient(135deg,#272231,#414767 64%,#23394f); }
-        html:not(.dark) .scenario-card:nth-child(8) { --scenario-art: radial-gradient(ellipse at 75% 88%, rgba(238,183,103,.72), transparent 34%), linear-gradient(135deg,#38302b,#6c5b50 65%,#30323b); }
-        html:not(.dark) .scenario-card > div:first-child { position: relative; z-index: 1; margin: 0 0 1.2rem; }
-        html:not(.dark) .scenario-card > div:first-child > div {
-            border: 1px solid rgba(255,255,255,.2);
-            border-radius: .72rem;
-            background: rgba(255,255,255,.13) !important;
-            color: #fff !important;
-            backdrop-filter: blur(8px);
-        }
-        html:not(.dark) .scenario-card > div:first-child svg { color: currentColor !important; }
-        html:not(.dark) .scenario-card h4 { position: relative; z-index: 1; color: #fff !important; font-size: 1.08rem; font-weight: 800; line-height: 1.12; text-wrap: balance; }
-        html:not(.dark) .scenario-card .scenario-meta,
-        html:not(.dark) .scenario-card p { position: relative; z-index: 1; color: rgba(255,255,255,.78) !important; }
-        html:not(.dark) .scenario-card.ring-2 { border: 2px solid #fff !important; box-shadow: 0 0 0 3px #111, 0 14px 30px rgba(20,18,28,.2); }
-        @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-            html:not(.dark) .scenario-card:hover::before { transform: scale(1.045); filter: saturate(1.1); }
-            html:not(.dark) .scenario-card:hover { transform: translateY(-3px); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            html:not(.dark) .scenario-card,
-            html:not(.dark) .scenario-card::before { transition: none !important; }
-        }
-        html:not(.dark) .scenario-card:focus-visible,
-        html:not(.dark) summary:focus-visible { outline: 3px solid #111114; outline-offset: 4px; }
-
-        html:not(.dark) #calculator-app > div.bg-white {
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,.88);
-            border-radius: 2rem;
-            background: rgba(255,255,255,.72);
-            box-shadow: 0 24px 70px rgba(24,22,31,.09);
-            backdrop-filter: blur(18px);
-        }
-        html:not(.dark) #calculator-app > div.bg-white > div:first-child { background: rgba(255,255,255,.56); }
-        html:not(.dark) .field-label { color: #242329; }
-        html:not(.dark) .field-label-en { color: #7e7b84; }
-        html:not(.dark) .form-trigger,
-        html:not(.dark) #addon-model-select {
-            border-color: #111114;
-            border-radius: .8rem;
-            background-color: #111114;
-            color: #fff;
-            box-shadow: none;
-        }
-        html:not(.dark) .form-trigger:focus,
-        html:not(.dark) #addon-model-select:focus { border-color: #555 !important; box-shadow: 0 0 0 3px rgba(17,17,20,.15); }
-        html:not(.dark) #toggle-addon-panel { border: 0; border-radius: 999px; background: #111114; color: #fff; }
-        html:not(.dark) #toggle-addon-panel:hover { background: #333; }
-        html:not(.dark) .addon-category-button { border-radius: 1rem; }
-        html:not(.dark) .addon-category-button[aria-pressed="true"] { border-color: #111114 !important; background: #111114 !important; }
-        html:not(.dark) #addon-panel,
-        html:not(.dark) #pc-modal,
-        html:not(.dark) #tps-visualizer { background-color: rgba(14,14,17,.72); }
-        html:not(.dark) #addon-panel > div,
-        html:not(.dark) #pc-modal > div,
-        html:not(.dark) #tps-visualizer > div {
-            border: 1px solid rgba(255,255,255,.9);
-            border-radius: 1.8rem;
-            background: rgba(250,249,252,.97);
-            box-shadow: 0 30px 90px rgba(0,0,0,.25);
-        }
-
-        html:not(.dark) #calculator-app > .mb-4 { margin-top: 3.5rem; margin-bottom: 1.2rem; text-align: center; }
-        html:not(.dark) #calculator-app > .mb-4 h2 { color: #111114; font-size: clamp(1.45rem, 2.6vw, 2rem); text-transform: uppercase; letter-spacing: -.035em; }
-        html:not(.dark) #calculator-app > .mb-4 p { max-width: 55rem; margin-inline: auto; color: #66636c; font-size: .9rem; }
-        html:not(.dark) #product-container { gap: 1.05rem; }
-        html:not(.dark) .product-card {
-            min-height: 10rem;
-            overflow: visible;
-            border: 1px solid rgba(255,255,255,.94);
-            border-radius: 1.65rem;
-            background: rgba(255,255,255,.74);
-            box-shadow: 0 15px 38px rgba(24,22,31,.075);
-            backdrop-filter: blur(14px);
-        }
-        html:not(.dark) .product-card:hover { transform: translateY(-2px); border-color: rgba(17,17,20,.22); box-shadow: 0 20px 42px rgba(24,22,31,.12); }
-        html:not(.dark) .product-card .card-header h3 { color: #111114; text-transform: uppercase; letter-spacing: -.025em; }
-        html:not(.dark) .product-card .card-header p { color: #69666e; }
-        html:not(.dark) .product-card .card-specs > span { border-color: #e4e2e8; background: #f0eff2; color: #4d4a52; }
-        html:not(.dark) .product-card .metric-box {
-            min-height: 6.5rem;
-            border: 1px solid rgba(255,255,255,.12) !important;
-            border-radius: 1.1rem;
-            background: #0d0d10 !important;
-            color: #fff;
-            padding: .9rem 1rem;
-        }
-        html:not(.dark) .product-card .metric-box > div:first-child { color: #b9b7c0 !important; }
-        html:not(.dark) .product-card .metric-box .val-ttft { color: #fff; }
-        html:not(.dark) .product-card .metric-box .text-slate-400 { color: #aaa7b0 !important; }
-        html:not(.dark) .product-card .metric-cost { background: #0d0d10 !important; border-color: rgba(255,255,255,.12) !important; }
-        html:not(.dark) .product-card .metric-vram .text-slate-500 { color: #66636c !important; }
-        html:not(.dark) .product-card .metric-vram .text-slate-900 { color: #111114 !important; }
-        html:not(.dark) .see-pc-button { border: 0 !important; border-radius: 999px !important; background: #0d0d10 !important; color: #fff !important; padding: .55rem 1rem !important; }
-        html:not(.dark) .see-pc-button:hover { background: #34343a !important; }
-        html:not(.dark) #filter-empty-message,
-        html:not(.dark) #non-llm-message { border-radius: 1.8rem; background: rgba(255,255,255,.78); box-shadow: 0 18px 44px rgba(24,22,31,.07); }
-        @media (max-width: 640px) {
-            html:not(.dark) .hero-gradient { min-height: 55vh; }
-            html:not(.dark) .hero-gradient > div { padding-top: 4.5rem; padding-bottom: 2.5rem; }
-            html:not(.dark) .scenario-card { min-height: 9.25rem; padding: .95rem; }
-            html:not(.dark) .scenario-card h4 { font-size: .98rem; }
-            html:not(.dark) .form-trigger,
-            html:not(.dark) #addon-model-select { font-size: 16px; }
-            html:not(.dark) .product-card .metric-box { min-height: 5.5rem; }
-        }
         #calculator-app select,
         #calculator-app input,
         #calculator-app button { min-height: 44px; }
@@ -1802,33 +1610,17 @@
     </section>
 
     <!-- Global Footer -->
-    <footer class="bg-slate-900 dark:bg-slate-950 border-t border-slate-800 dark:border-slate-900 text-slate-400 py-12 mt-12 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="col-span-1 md:col-span-2">
-                <div class="font-black text-xl tracking-tighter text-white mb-4">
-                    M<span class="text-red-500">S</span>I
-                </div>
-                <p id="footer-description" class="text-sm leading-relaxed max-w-sm">
-                    本估算器採用 Roofline 效能模型與 vLLM 動態記憶體配置原則，結果僅供架構規劃參考；實際效能會依部署環境而異。
-                </p>
-            </div>
+    <footer class="bg-slate-900 dark:bg-slate-950 border-t border-slate-800 dark:border-slate-900 text-slate-400 py-8 mt-12 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div>
-                <h4 id="resources-title" class="text-white font-semibold mb-4">資源與工具</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="https://www.msi.com/Landing/compatible-products" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">硬體相容性清單（QVL）</a></li>
-                    <li><a href="https://www.msi.com/AI-PC" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">MSI AI PC</a></li>
-                    <li><a href="https://people.eecs.berkeley.edu/~kubitron/cs252/handouts/papers/roofline.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Roofline 效能模型白皮書</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 id="contact-title" class="text-white font-semibold mb-4">聯絡我們</h4>
-                <ul class="space-y-2 text-sm">
+                <h4 id="contact-title" class="text-white font-semibold mb-3">聯絡我們</h4>
+                <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
                     <li><a href="https://www.msi.com/about/contact-us" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">企業採購聯絡</a></li>
                     <li><a href="https://www.msi.com/support" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">技術支援中心</a></li>
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-slate-800 dark:border-slate-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 pt-6 border-t border-slate-800 dark:border-slate-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div class="flex flex-wrap items-center gap-3 text-xs">
                 <label id="language-label" for="language-select" class="font-semibold text-slate-300">語言</label>
                 <select id="language-select" class="rounded-md border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-slate-200 focus:border-red-500 focus:outline-none">
@@ -1936,12 +1728,10 @@
                 $('#tps-threshold option[value="20"]').text(copy.threshold);
                 $('#references-title').text(copy.references);
                 $('#references-description').text(copy.referencesDescription);
-                $('#resources-title').text(copy.resources);
                 $('#contact-title').text(copy.contact);
                 $('#language-label').text(copy.language);
                 $('#references-expand').text(copy.expand);
                 $('#references-collapse').text(copy.collapse);
-                $('#footer-description').text(copy.footerDescription);
                 $('.see-pc-button').text(copy.seePc);
                 updateThemeUI();
                 updateConcurrencyExample();
@@ -2126,10 +1916,10 @@
 
             function initializeHardwareCatalog() {
                 const hardwareCatalog = [
-                    { brand: 'NVIDIA', name: 'EdgeMesa N AI+ (RTX Spark N1X)', subtitle: 'Compact AI Desktop · Up to 128 GB Unified Memory', image: 'https://storage-asset.msi.com/global/picture/product/product_1788935793517aa45a92c7b08f165c6f71c81bc826.webp', capacity: 128, memory: 'Up to 128 GB LPDDR5x Unified Memory', bw: 273, compute: 150.0, power: 140, powerLabel: '140W Sustained TDP', pc: 'EdgeMesa N AI+', pcUrl: 'https://www.msi.com/Edge-AI-PC/EdgeMesa-N-AI-plus' },
-                    { brand: 'AMD', name: 'Ryzen AI Max+ 395', subtitle: 'SoC · 128 GB Unified Memory (96 GB VGM)', image: 'https://storage-asset.msi.com/global/picture/product/product_1782292234ea9c518512ba8384e144b6b069265468.webp', capacity: 96, memory: '96 GB Available VGM', bw: 256, compute: 60.0, power: 120, powerLabel: '120W cTDP', pc: 'PRO MAX EDGE AI+ 11M', pcUrl: 'https://www.msi.com/Edge-AI-PC/PRO-MAX-EDGE-AI-Plus' },
-                    { brand: 'NVIDIA', name: 'EdgeXpert / DGX Spark (GB10)', subtitle: 'AI Supercomputer · 128 GB Unified Memory', image: 'https://storage-asset.msi.com/global/picture/product/product_175686100704b1a75fc1f20b2de1b0354880526c9a.webp', capacity: 128, memory: '128 GB LPDDR5x Unified Memory', bw: 273, compute: 150.0, power: 240, powerLabel: '240W USB-C Power Adapter', pc: 'EdgeXpert MS-C931', pcUrl: 'https://ipc.msi.com/product_detail/Industrial-Computer-Box-PC/AI-Supercomputer/EdgeXpert-MS-C931' },
-                    { category: 'laptop', brand: 'NVIDIA', name: 'Prestige N16 Flip AI+ (RTX Spark N1X)', subtitle: '2-in-1 AI Laptop · Up to 128 GB Unified Memory', image: 'https://storage-asset.msi.com/global/picture/product/product_179142378538dfb85452a9e7c8ad443331b27632e3.webp', capacity: 128, memory: 'Up to 128 GB LPDDR5x Unified Memory', bw: 273, compute: 150.0, power: 140, powerLabel: '140W PD 3.1 Charging', pc: 'Prestige N16 Flip AI+ C1XM', pcUrl: 'https://www.msi.com/Business-Productivity/Prestige-N16-Flip-AI-Plus-C1XMX' },
+                    { brand: 'NVIDIA', name: 'EdgeMesa N AI+ (RTX Spark N1X)', subtitle: 'Compact AI Desktop · Up to 128 GB Unified Memory', image: 'https://storage-asset.msi.com/global/picture/product/product_1788935793517aa45a92c7b08f165c6f71c81bc826.webp', capacity: 128, memory: '128 GB LPDDR5x Unified Memory', memoryOptions: [128, 64], bw: 273, compute: 150.0, power: 140, powerLabel: '140W Sustained TDP', pc: 'EdgeMesa N AI+', pcUrl: 'https://www.msi.com/Edge-AI-PC/EdgeMesa-N-AI-plus' },
+                    { brand: 'AMD', name: 'PRO MAX EDGE AI+ 11M', subtitle: 'Edge AI PC · AMD Ryzen AI Max+ 395 · 128 GB Unified Memory', image: 'https://storage-asset.msi.com/global/picture/product/product_1782292234ea9c518512ba8384e144b6b069265468.webp', capacity: 128, memory: '128 GB LPDDR5x Unified Memory', memoryOptions: [128], bw: 256, compute: 60.0, power: 120, powerLabel: '120W cTDP', pc: 'PRO MAX EDGE AI+ 11M', pcUrl: 'https://www.msi.com/Edge-AI-PC/PRO-MAX-EDGE-AI-Plus' },
+                    { brand: 'NVIDIA', name: 'EdgeXpert / DGX Spark (GB10)', subtitle: 'AI Supercomputer · Up to 128 GB Unified Memory', image: 'https://storage-asset.msi.com/global/picture/product/product_175686100704b1a75fc1f20b2de1b0354880526c9a.webp', capacity: 128, memory: '128 GB LPDDR5x Unified Memory', memoryOptions: [128, 64], bw: 273, compute: 150.0, power: 240, powerLabel: '240W USB-C Power Adapter', pc: 'EdgeXpert MS-C931', pcUrl: 'https://ipc.msi.com/product_detail/Industrial-Computer-Box-PC/AI-Supercomputer/EdgeXpert-MS-C931' },
+                    { category: 'laptop', brand: 'NVIDIA', name: 'Prestige N16 Flip AI+ (RTX Spark N1X)', subtitle: '2-in-1 AI Laptop · Up to 128 GB Unified Memory', image: 'https://storage-asset.msi.com/global/picture/product/product_179142378538dfb85452a9e7c8ad443331b27632e3.webp', capacity: 128, memory: '128 GB LPDDR5x Unified Memory', memoryOptions: [128, 64, 32], bw: 273, compute: 150.0, power: 140, powerLabel: '140W PD 3.1 Charging', pc: 'Prestige N16 Flip AI+ C1XM', pcUrl: 'https://www.msi.com/Business-Productivity/Prestige-N16-Flip-AI-Plus-C1XMX' },
                     { category: 'workstation', brand: 'NVIDIA', name: 'XpertStation WS300T60L', subtitle: 'DGX Station · Blackwell Ultra · 748 GB Coherent Memory', image: 'https://storage-asset.msi.com/global/picture/product/product_1777367705fcaac7e43e30aa007bfe987743c3f43b.png', capacity: 748, memory: '748 GB Coherent Memory', bw: 7100, compute: 5000.0, power: 1600, powerLabel: '1,600W Total System Power', pc: 'WS300T60L', pcUrl: 'https://eps.msi.com/tw/product/barebones/WS300T60L' },
                     { brand: 'NVIDIA', name: 'GeForce RTX 5090', subtitle: 'Discrete GPU · 32 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_17373640990ca0a03d5837c522f92eb9d1f487b252.webp', capacity: 32, memory: '32 GB VRAM', bw: 1792, compute: 419.2, power: 575, powerLabel: '575W TGP', pcs: [
                         { name: 'MEG VISION X AI 2nd', url: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
@@ -2171,7 +1961,7 @@
                 const $container = $('#product-container');
                 const $template = $('.product-card').first().clone();
                 $('.product-card').remove();
-                hardwareCatalog.forEach(function(hw) {
+                hardwareCatalog.forEach(function(hw, index) {
                     const $card = $template.clone();
                     const hardwareCategory = hw.category || (hw.name.indexOf('GeForce') === 0 ? 'graphics' : 'edge');
                     $card.attr({ 'data-vram': hw.capacity, 'data-bw': hw.bw, 'data-tflops': hw.compute, 'data-tdp': hw.power, 'data-hardware': hw.name, 'data-category': hardwareCategory });
@@ -2192,6 +1982,22 @@
                     const pcProducts = hw.pcs || [{ name: hw.pc, url: hw.pcUrl }];
                     const $pcButton = $('<button>', { type: 'button', class: 'see-pc-button inline-flex items-center rounded-lg border border-red-400/70 bg-red-50 px-3 py-1.5 text-[11px] font-bold text-red-600 hover:bg-red-100 dark:border-red-500/60 dark:bg-red-950/30 dark:text-red-400 dark:hover:bg-red-950/60', text: 'See PC', 'data-hardware': hw.name, 'data-pcs': JSON.stringify(pcProducts), 'aria-label': 'View ' + hw.name + ' MSI systems' });
                     $card.find('.card-header .text-right').empty().append($pcButton);
+                    if (Array.isArray(hw.memoryOptions) && hw.memoryOptions.length) {
+                        const selectId = 'memory-size-' + index;
+                        const $memoryControl = $('<div>', { class: 'card-memory-control' });
+                        $('<label>', { for: selectId, text: 'Memory Size' }).appendTo($memoryControl);
+                        const $memorySelect = $('<select>', {
+                            id: selectId,
+                            class: 'card-memory-select',
+                            'aria-label': hw.name + ' Memory Size',
+                            disabled: hw.memoryOptions.length === 1
+                        });
+                        hw.memoryOptions.forEach(function(size) {
+                            $('<option>', { value: size, text: size + ' GB', selected: size === hw.capacity }).appendTo($memorySelect);
+                        });
+                        $memorySelect.appendTo($memoryControl);
+                        $card.find('.card-header').after($memoryControl);
+                    }
                     const $specRow = $card.find('.card-specs').removeClass('mb-5');
                     const $details = $('<details>', { class: 'hardware-details mt-2 text-xs text-slate-500 dark:text-slate-400' });
                     $details.append($('<summary>', { class: 'inline-flex items-center gap-1 font-semibold text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400', text: 'Hardware Specs +' }));
@@ -2235,8 +2041,21 @@
                             $(this).addClass('metric-cost');
                         }
                     });
+                    const $memoryMetric = $('<div>', { class: 'metric-box metric-memory-usage bg-slate-50 dark:bg-slate-900 rounded-lg p-2.5 border border-slate-100 dark:border-slate-700 flex flex-col justify-center transition-colors' });
+                    $memoryMetric.append($('<div>', { class: 'text-[9px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider mb-1 transition-colors', text: 'VRAM / Memory Usage' }));
+                    $memoryMetric.append($('<div>', { class: 'text-base font-black text-slate-800 dark:text-white data-font tracking-tight transition-colors' }).append($('<span>', { class: 'val-memory-usage', text: '--' })));
+                    $card.find('.metric-grid .metric-cost').before($memoryMetric);
                 });
             }
+
+            $('#product-container').on('change', '.card-memory-select', function() {
+                const $card = $(this).closest('.product-card');
+                const memorySize = parseFloat($(this).val());
+                if (!Number.isFinite(memorySize)) return;
+                $card.attr('data-vram', memorySize).data('vram', memorySize);
+                $card.find('.card-specs span').first().text(memorySize + ' GB LPDDR5x Unified Memory');
+                calculateMetrics();
+            });
 
             initializeTerminologyLabels();
 
@@ -2840,6 +2659,7 @@
                     // UI 更新：VRAM 文字與進度條
                     $card.find('.val-vram').text(totalVramGB.toFixed(1));
                     $card.find('.val-vram-limit').text((effectiveVram).toFixed(1) + 'G');
+                    $card.find('.val-memory-usage').text(totalVramGB.toFixed(1) + ' / ' + maxVram.toFixed(0) + ' GB');
                     
                     let vramPercent = (totalVramGB / effectiveVram) * 100;
                     
@@ -2848,6 +2668,7 @@
                     let overheadPct = (totalOverheadGB / effectiveVram) * 100;
                     
                     if (vramPercent > 100) {
+                        $card.find('.val-memory-usage').removeClass('text-slate-800 dark:text-white').addClass('text-red-600 dark:text-red-400');
                         let scale = 100 / vramPercent;
                         weightPct *= scale;
                         kvPct *= scale;
@@ -2874,6 +2695,7 @@
                         if (tpsThreshold > 0) { $card.addClass('is-hidden'); } 
                         else { $card.removeClass('is-hidden'); }
                     } else {
+                        $card.find('.val-memory-usage').removeClass('text-red-600 dark:text-red-400').addClass('text-slate-800 dark:text-white');
                         $card.find('.oom-tag').addClass('is-hidden');
                         $card.find('.vram-status').text('Sufficient').removeClass('bg-red-100 text-red-700 dark:bg-red-950/60 dark:text-red-300').addClass('bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300');
                         $card.removeClass('opacity-75 grayscale-[30%] border-slate-200 dark:border-slate-800');
