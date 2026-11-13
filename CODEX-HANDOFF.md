@@ -33,7 +33,7 @@ Open `http://127.0.0.1:8131/`. Tailwind CSS, jQuery, and Inter load from public 
 
 ## LLM scope
 
-- The selector starts from the top 10 downloaded Unsloth entries for each family, then deduplicates entries with the same base LLM and parameter count. Different packaging or quantization variants (GGUF, NVFP4, QAT, Fast) do not create separate options.
+- The selector is grouped only by model family or publisher, never by workload type such as Coder, Instruct, VL, or Math. Capability terms remain in individual model names.
 - Default: Qwen 3.8 27B.
 - Other LLM families were deliberately removed.
 - The list follows Hugging Face `unsloth` download rankings. Pure image/audio/embedding-only entries are excluded. Four larger Qwen Coder models are included; the 7B, 3B, 1.5B, and 0.5B Coder variants were intentionally removed. A Math / Reasoning group includes QwQ 32B, Qwen2.5 Math 7B and 72B, DeepSeekMath 7B, and NuminaMath 7B TIR. The latest official Llama 4 Scout and Maverick Instruct models are included. Instruct and Vision Language groups add four recognizable instruction models and five Qwen VL models. For VL entries, TPS estimates cover text decoding and do not include image-encoder latency. The selector contains 51 models.
@@ -77,7 +77,7 @@ Search inside `index.html` for:
 6. Confirm OOM and the per-user TPS filter work.
 7. Confirm official MSI product links open correctly.
 8. Confirm the simulator is closed by default, opens from a TPS metric, streams, replays, and collapses.
-9. Confirm the model selector has 51 deduplicated options, including Instruct, Vision Language, Math / Reasoning, and Meta Llama groups.
+9. Confirm the model selector has 51 deduplicated options and every optgroup label is a model family or publisher.
 10. Test English, Traditional Chinese, and Simplified Chinese, including simulator text.
 
 ## Package contents
