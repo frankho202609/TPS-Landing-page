@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="zh-TW" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e11d2e'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white'%3ETPS%3C/text%3E%3C/svg%3E">
     <title>MSI Edge AI Inference Performance Estimator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -573,9 +574,10 @@
         #product-side-navigation .product-side-button:active { transform: translateY(-50%) scale(.96); }
         #product-side-navigation .product-side-button:focus-visible { outline: 3px solid #ef4444; outline-offset: 3px; }
         #product-pagination { box-shadow: none; }
-        #product-page-summary::before { content: "Results · "; color: #ef4444; font-weight: 800; }
+        #product-carousel.list-mode #product-side-navigation { display: none !important; }
+        #pc-modal, #tps-visualizer { overscroll-behavior: contain; }
         @media (max-width: 640px) {
-            .hero-gradient { min-height: 430px !important; }
+            .hero-gradient { min-height: 390px !important; }
             .hero-gradient > div { padding-block: 3rem !important; }
             .hero-gradient h1 { font-size: clamp(2.45rem, 12vw, 3.5rem); line-height: 1.02; }
             .hero-gradient p { margin-bottom: 1.75rem; line-height: 1.55; }
@@ -599,21 +601,21 @@
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 selection:bg-red-200 selection:text-red-900 dark:selection:bg-red-900 dark:selection:text-red-100 transition-colors duration-300">
-    <a class="skip-link" href="#calculator-app">Skip to calculator</a>
+    <a id="skip-link" class="skip-link" href="#calculator-app">跳至效能估算器</a>
 
     <!-- Hero Section -->
-    <section class="hero-gradient min-h-[460px] md:min-h-[500px] flex items-center border-b border-slate-200 dark:border-slate-800 overflow-hidden relative transition-colors duration-300">
+    <section class="hero-gradient min-h-[400px] md:min-h-[430px] flex items-center border-b border-slate-200 dark:border-slate-800 overflow-hidden relative transition-colors duration-300">
         <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16 relative z-10">
             <div class="max-w-5xl">
-                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-6 transition-colors">
+                <h1 id="hero-title" class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-6 transition-colors">
                     Know What Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Local AI Needs.</span>
                 </h1>
-                <p class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed max-w-3xl transition-colors">
+                <p id="hero-description" class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed max-w-3xl transition-colors">
                     Select a large language model (LLM), quantization precision, prompt length, and output length to compare available memory, inference throughput (TPS), time to first token (TTFT), and estimated monthly electricity cost across GPUs, SoCs, and AI supercomputers.
                 </p>
                 <div class="flex gap-4">
-                    <a href="#calculator-app" class="bg-red-600 text-white font-semibold px-8 py-3.5 rounded-lg shadow-md shadow-red-600/20 hover:bg-red-700 transition-colors flex items-center gap-2">
-                        Configure your AI
+                    <a id="hero-cta" href="#calculator-app" class="bg-red-600 text-white font-semibold px-8 py-3.5 rounded-lg shadow-md shadow-red-600/20 hover:bg-red-700 transition-colors flex items-center gap-2">
+                        開始設定
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                     </a>
                 </div>
@@ -702,8 +704,8 @@
                         <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
                     </div>
                     <div>
-                        <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight transition-colors">Local AI Model Configuration</h2>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 transition-colors">Core Inference Engine Configuration · Simulate memory allocation and throughput bottlenecks in real time.</p>
+                        <h2 id="config-title" class="text-lg font-bold text-slate-900 dark:text-white tracking-tight transition-colors">本機 AI 模型設定</h2>
+                        <p id="config-description" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 transition-colors">即時估算記憶體配置、推論吞吐量與效能瓶頸。</p>
                     </div>
                 </div>
                 
@@ -715,7 +717,7 @@
                     
                     <!-- 模型選擇 -->
                     <div class="lg:col-span-4" data-field="model">
-                        <label class="field-label"><span>Large Language Model (LLM)</span><span class="field-label-en">Large Language Model</span></label>
+                        <label for="model-select" class="field-label"><span id="model-label">大型語言模型（LLM）</span><span class="field-label-en">Large Language Model</span></label>
                         <div class="flex gap-2">
                         <select id="model-select" class="min-w-0 flex-1 text-sm font-medium border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border form-trigger form-select-custom bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white transition-colors">
                             <optgroup label="Compact Instruct / Edge">
@@ -761,7 +763,7 @@
 
                     <!-- 權重Quantization -->
                     <div class="lg:col-span-5">
-                        <label class="field-label"><span>Quantization</span><span class="field-label-en">Quantization</span></label>
+                        <label for="quant-select" class="field-label"><span id="quant-label">量化精度</span><span class="field-label-en">Quantization</span></label>
                         <select id="quant-select" class="w-full text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-700 dark:text-slate-200 transition-colors">
                             <optgroup label="GGUF / llama.cpp">
                                 <option value="4.8">Q4_K_M · Approx. 4.8-bit</option>
@@ -779,7 +781,7 @@
 
                     <!-- Context Length -->
                     <div class="lg:col-span-3">
-                        <label class="field-label"><span>Input Length</span><span class="field-label-en">Prompt / Prefill</span></label>
+                        <label for="context-select" class="field-label"><span id="context-label">輸入長度</span><span class="field-label-en">Prompt / Prefill</span></label>
                         <select id="context-select" class="w-full text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-700 dark:text-slate-200 transition-colors">
                             <option value="512">512 Tokens</option>
                             <option value="1024" selected>1,024 Tokens</option>
@@ -929,7 +931,7 @@
 
                     <!-- TPS Filter -->
                     <div class="sm:col-span-2 lg:col-span-12 pt-2 transition-colors">
-                        <label class="field-label min-h-0"><span>Speed Filter</span><span class="field-label-en">Speed Filter</span></label>
+                        <label for="tps-threshold" class="field-label min-h-0"><span id="speed-filter-label">速度篩選</span><span class="field-label-en">Speed Filter</span></label>
                         <div class="flex flex-col sm:flex-row sm:items-center gap-3">
                            <select id="tps-threshold" class="w-full sm:w-72 text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border bg-white dark:bg-slate-900 form-trigger form-select-custom text-slate-700 dark:text-slate-200 transition-colors">
                                <option value="0" selected>Show all (including OOM)</option>
@@ -975,15 +977,15 @@
 
                         <!-- Block 2: Throughput & concurrency -->
                         <div class="space-y-4 max-w-3xl">
-                            <h4 class="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 pb-2 transition-colors">Throughput &amp; Concurrency</h4>
+                            <h3 id="concurrency-title" class="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 pb-2 transition-colors">吞吐量與同時使用者</h3>
                             
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1.5 transition-colors">Batch Size</label>
+                                    <label id="batch-label" for="batch-size" class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1.5 transition-colors">批次大小</label>
                                     <input type="number" id="batch-size" value="1" min="1" max="128" step="1" class="w-full text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2 border bg-white dark:bg-slate-900 form-trigger text-slate-800 dark:text-slate-200 transition-colors">
                                 </div>
                                 <div>
-                                    <label class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1.5 transition-colors">Concurrent Users</label>
+                                    <label id="users-label" for="concurrent-users" class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1.5 transition-colors">同時使用者</label>
                                     <input type="number" id="concurrent-users" value="1" min="1" max="1024" step="1" class="w-full text-sm border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2 border bg-white dark:bg-slate-900 form-trigger text-slate-800 dark:text-slate-200 transition-colors">
                                 </div>
                                 <div id="concurrency-example" class="col-span-2 rounded-lg border border-blue-200 dark:border-blue-900/60 bg-blue-50 dark:bg-blue-950/30 px-3 py-2.5 text-xs leading-relaxed text-blue-800 dark:text-blue-200" aria-live="polite"></div>
@@ -1034,24 +1036,24 @@
 
         <!-- 硬體組態展示區 -->
         <div class="mb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
-            <div><h2 class="text-lg font-extrabold text-slate-900 dark:text-white">Hardware Configuration Feasibility</h2><p class="mt-1 text-xs text-slate-500 dark:text-slate-400">CPU and storage offloading are not used. A configuration is marked OOM when model memory demand exceeds available VRAM, unified memory, or shared memory.</p></div>
-            <span class="text-[10px] uppercase tracking-wider text-slate-400">Hardware capacity comparison</span>
+            <div><h2 id="hardware-title" class="text-lg font-extrabold text-slate-900 dark:text-white">硬體設定可行性</h2><p id="hardware-description" class="mt-1 text-xs text-slate-500 dark:text-slate-400">估算不使用 CPU 或儲存裝置卸載；模型記憶體需求超過可用 VRAM、統一記憶體或共享記憶體時會標示為 OOM。</p></div>
+            <span id="hardware-caption" class="text-[10px] uppercase tracking-wider text-slate-400">硬體容量比較</span>
         </div>
         <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div class="grid w-full grid-cols-2 gap-1 sm:inline-flex sm:w-auto rounded-xl border border-slate-200 bg-slate-100 p-1 dark:border-slate-700 dark:bg-slate-800" role="tablist" aria-label="Hardware category">
             <button id="hardware-tab-edge" type="button" role="tab" aria-selected="true" aria-controls="product-container" data-hardware-category="edge" class="hardware-category-tab min-h-11 flex-1 sm:flex-none rounded-lg bg-red-600 px-5 py-2 text-sm font-bold text-white shadow-sm transition-colors active:scale-[0.96]">Edge AI PC</button>
-            <button id="hardware-tab-graphics" type="button" role="tab" aria-selected="false" aria-controls="product-container" data-hardware-category="graphics" tabindex="-1" class="hardware-category-tab min-h-11 flex-1 sm:flex-none rounded-lg px-5 py-2 text-sm font-bold text-slate-600 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white transition-colors active:scale-[0.96]">Graphics Card</button>
-            <button id="hardware-tab-laptop" type="button" role="tab" aria-selected="false" aria-controls="product-container" data-hardware-category="laptop" tabindex="-1" class="hardware-category-tab min-h-11 flex-1 sm:flex-none rounded-lg px-5 py-2 text-sm font-bold text-slate-600 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white transition-colors active:scale-[0.96]">Laptop</button>
-            <button id="hardware-tab-workstation" type="button" role="tab" aria-selected="false" aria-controls="product-container" data-hardware-category="workstation" tabindex="-1" class="hardware-category-tab min-h-11 flex-1 sm:flex-none rounded-lg px-5 py-2 text-sm font-bold text-slate-600 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white transition-colors active:scale-[0.96]">Workstation</button>
+            <button id="hardware-tab-graphics" type="button" role="tab" aria-selected="false" aria-controls="product-container" data-hardware-category="graphics" tabindex="-1" class="hardware-category-tab min-h-11 flex-1 sm:flex-none rounded-lg px-5 py-2 text-sm font-bold text-slate-600 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white transition-colors active:scale-[0.96]">顯示卡</button>
+            <button id="hardware-tab-laptop" type="button" role="tab" aria-selected="false" aria-controls="product-container" data-hardware-category="laptop" tabindex="-1" class="hardware-category-tab min-h-11 flex-1 sm:flex-none rounded-lg px-5 py-2 text-sm font-bold text-slate-600 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white transition-colors active:scale-[0.96]">筆記型電腦</button>
+            <button id="hardware-tab-workstation" type="button" role="tab" aria-selected="false" aria-controls="product-container" data-hardware-category="workstation" tabindex="-1" class="hardware-category-tab min-h-11 flex-1 sm:flex-none rounded-lg px-5 py-2 text-sm font-bold text-slate-600 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white transition-colors active:scale-[0.96]">工作站</button>
         </div>
         <div class="inline-flex self-end gap-1 rounded-xl border border-slate-200 bg-slate-100 p-1 shadow-inner dark:border-slate-700 dark:bg-slate-800" role="group" aria-label="Product presentation">
             <button id="view-grid" type="button" class="inline-flex min-h-10 items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs font-bold text-slate-800 shadow-sm ring-1 ring-slate-200 transition dark:bg-slate-700 dark:text-white dark:ring-slate-600" title="Card view" aria-pressed="true">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                <span>Card</span>
+                <span>卡片</span>
             </button>
             <button id="view-list" type="button" class="inline-flex min-h-10 items-center gap-2 rounded-lg px-3 py-2 text-xs font-bold text-slate-500 transition hover:bg-white/70 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white" title="List view" aria-pressed="false">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                <span>List</span>
+                <span>清單</span>
             </button>
         </div>
         </div>
@@ -1495,7 +1497,7 @@
             <div class="product-card bg-white rounded-2xl overflow-hidden flex flex-col relative card-premium" data-vram="128" data-bw="273" data-tflops="150.0" data-tdp="240">
                 <div class="card-img-wrapper h-48 bg-slate-50/50 dark:bg-slate-900/50 flex items-center justify-center p-6 relative group border-b border-slate-100 dark:border-slate-800 transition-colors">
                     <span class="absolute top-3 left-3 bg-slate-800/90 dark:bg-black/90 backdrop-blur text-white text-[9px] font-bold px-2 py-1 rounded shadow-sm tracking-wider z-10 border border-slate-700">ENTERPRISE EDGE</span>
-                    <img src="image_12ead6.png" class="h-full object-contain mix-blend-multiply dark:mix-blend-normal transition-transform duration-500 group-hover:scale-110 drop-shadow-sm">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" class="h-full object-contain mix-blend-multiply dark:mix-blend-normal transition-transform duration-500 group-hover:scale-110 drop-shadow-sm">
                     <span class="oom-tag is-hidden absolute top-4 right-4 bg-red-600/95 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1.5 rounded shadow-sm shadow-red-500/20 flex items-center gap-1.5 uppercase tracking-wide border border-red-500 z-20 transition-opacity duration-300"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg> Capacity Exceeded</span>
                 </div>
                 <div class="card-body p-6 flex-1 flex flex-col bg-transparent relative z-10 transition-colors">
@@ -1555,7 +1557,7 @@
                 <div class="card-img-wrapper h-48 bg-slate-50/50 dark:bg-slate-900/50 flex items-center justify-center relative group border-b border-slate-100 dark:border-slate-800 overflow-hidden transition-colors">
                     <span class="absolute top-3 left-3 bg-slate-800/90 dark:bg-black/90 backdrop-blur text-white text-[9px] font-bold px-2 py-1 rounded shadow-sm tracking-wider z-10 border border-slate-700">INDUSTRIAL BOX</span>
                     <!-- 使用精準裁切擷取圖中中央的設備 -->
-                    <div class="w-full h-full transition-transform duration-500 group-hover:scale-110 absolute inset-0 mix-blend-multiply dark:mix-blend-normal" style="background-image: url('image_12eaf6.png'); background-size: 300% auto; background-position: 50% 50%; background-repeat: no-repeat;"></div>
+                    <div class="w-full h-full transition-transform duration-500 group-hover:scale-110 absolute inset-0 mix-blend-multiply dark:mix-blend-normal"></div>
                     <span class="oom-tag is-hidden absolute top-4 right-4 bg-red-600/95 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1.5 rounded shadow-sm shadow-red-500/20 flex items-center gap-1.5 uppercase tracking-wide border border-red-500 z-20 transition-opacity duration-300"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg> Capacity Exceeded</span>
                 </div>
                 <div class="card-body p-6 flex-1 flex flex-col bg-transparent relative z-10 transition-colors">
@@ -1615,7 +1617,7 @@
                 <div class="card-img-wrapper h-48 bg-slate-50/50 dark:bg-slate-900/50 flex items-center justify-center relative group border-b border-slate-100 dark:border-slate-800 overflow-hidden transition-colors">
                     <span class="absolute top-3 left-3 bg-slate-800/90 dark:bg-black/90 backdrop-blur text-white text-[9px] font-bold px-2 py-1 rounded shadow-sm tracking-wider z-10 border border-slate-700">INDUSTRIAL BOX</span>
                     <!-- 使用精準裁切擷取圖中右側的設備 -->
-                    <div class="w-full h-full transition-transform duration-500 group-hover:scale-110 absolute inset-0 mix-blend-multiply dark:mix-blend-normal" style="background-image: url('image_12eaf6.png'); background-size: 300% auto; background-position: 100% 50%; background-repeat: no-repeat;"></div>
+                    <div class="w-full h-full transition-transform duration-500 group-hover:scale-110 absolute inset-0 mix-blend-multiply dark:mix-blend-normal"></div>
                     <span class="oom-tag is-hidden absolute top-4 right-4 bg-red-600/95 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1.5 rounded shadow-sm shadow-red-500/20 flex items-center gap-1.5 uppercase tracking-wide border border-red-500 z-20 transition-opacity duration-300"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg> Capacity Exceeded</span>
                 </div>
                 <div class="card-body p-6 flex-1 flex flex-col bg-transparent relative z-10 transition-colors">
@@ -1675,7 +1677,7 @@
                 <div class="card-img-wrapper h-48 bg-slate-50/50 dark:bg-slate-900/50 flex items-center justify-center relative group border-b border-slate-100 dark:border-slate-800 overflow-hidden transition-colors">
                     <span class="absolute top-3 left-3 bg-slate-800/90 dark:bg-black/90 backdrop-blur text-white text-[9px] font-bold px-2 py-1 rounded shadow-sm tracking-wider z-10 border border-slate-700">INDUSTRIAL EDGE</span>
                     <!-- 使用精準裁切擷取圖中左側的設備 -->
-                    <div class="w-full h-full transition-transform duration-500 group-hover:scale-110 absolute inset-0 mix-blend-multiply dark:mix-blend-normal" style="background-image: url('image_12eaf6.png'); background-size: 300% auto; background-position: 0% 50%; background-repeat: no-repeat;"></div>
+                    <div class="w-full h-full transition-transform duration-500 group-hover:scale-110 absolute inset-0 mix-blend-multiply dark:mix-blend-normal"></div>
                     <span class="oom-tag is-hidden absolute top-4 right-4 bg-red-600/95 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1.5 rounded shadow-sm shadow-red-500/20 flex items-center gap-1.5 uppercase tracking-wide border border-red-500 z-20 transition-opacity duration-300"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg> Capacity Exceeded</span>
                 </div>
                 <div class="card-body p-6 flex-1 flex flex-col bg-transparent relative z-10 transition-colors">
@@ -1745,8 +1747,8 @@
     <section id="references" class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 py-6 transition-colors">
         <details class="group">
             <summary class="max-w-7xl mx-auto cursor-pointer list-none px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-                <div><h2 class="text-lg font-bold text-slate-900 dark:text-white">References and Estimation Notes</h2><p class="mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Sources, terminology, and calculation assumptions.</p></div>
-                <span class="shrink-0 text-xs font-semibold text-slate-500 dark:text-slate-400"><span class="group-open:hidden">Expand</span><span class="hidden group-open:inline">Collapse</span></span>
+                <div><h2 id="references-title" class="text-lg font-bold text-slate-900 dark:text-white">參考資料與估算說明</h2><p id="references-description" class="mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">資料來源、術語與計算假設。</p></div>
+                <span class="shrink-0 text-xs font-semibold text-slate-500 dark:text-slate-400"><span id="references-expand" class="group-open:hidden">展開</span><span id="references-collapse" class="hidden group-open:inline">收合</span></span>
             </summary>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
             <details class="group mb-8 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/70">
@@ -1806,32 +1808,32 @@
                 <div class="font-black text-xl tracking-tighter text-white mb-4">
                     M<span class="text-red-500">S</span>I
                 </div>
-                <p class="text-sm leading-relaxed max-w-sm">
-                    This compute estimator is based on the Roofline performance model and vLLM dynamic memory allocation principles. Values are for architecture planning only; actual performance may vary with the deployment environment.
+                <p id="footer-description" class="text-sm leading-relaxed max-w-sm">
+                    本估算器採用 Roofline 效能模型與 vLLM 動態記憶體配置原則，結果僅供架構規劃參考；實際效能會依部署環境而異。
                 </p>
             </div>
             <div>
-                <h4 class="text-white font-semibold mb-4">Resources &amp; Tools</h4>
+                <h4 id="resources-title" class="text-white font-semibold mb-4">資源與工具</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition-colors">Hardware Compatibility List (QVL)</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">AI Deployment Best Practices</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Roofline Performance White Paper</a></li>
+                    <li><a href="https://www.msi.com/Landing/compatible-products" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">硬體相容性清單（QVL）</a></li>
+                    <li><a href="https://www.msi.com/AI-PC" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">MSI AI PC</a></li>
+                    <li><a href="https://people.eecs.berkeley.edu/~kubitron/cs252/handouts/papers/roofline.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Roofline 效能模型白皮書</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-semibold mb-4">Contact Us</h4>
+                <h4 id="contact-title" class="text-white font-semibold mb-4">聯絡我們</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition-colors">Enterprise Sales Inquiry</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Technical Support Center</a></li>
+                    <li><a href="https://www.msi.com/about/contact-us" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">企業採購聯絡</a></li>
+                    <li><a href="https://www.msi.com/support" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">技術支援中心</a></li>
                 </ul>
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-slate-800 dark:border-slate-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div class="flex flex-wrap items-center gap-3 text-xs">
-                <label for="language-select" class="font-semibold text-slate-300">Language</label>
+                <label id="language-label" for="language-select" class="font-semibold text-slate-300">語言</label>
                 <select id="language-select" class="rounded-md border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-slate-200 focus:border-red-500 focus:outline-none">
-                    <option value="en" selected>English</option>
-                    <option value="zh-TW">繁體中文</option>
+                    <option value="en">English</option>
+                    <option value="zh-TW" selected>繁體中文</option>
                     <option value="zh-CN">简体中文</option>
                 </select>
                 <button id="theme-toggle" type="button" class="inline-flex items-center gap-2 rounded-md border border-slate-700 bg-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-200 hover:border-slate-500 hover:bg-slate-700 transition-colors" title="Toggle Light/Dark Mode">
@@ -1841,8 +1843,8 @@
                 </button>
             </div>
             <div class="flex gap-4 text-xs">
-                <a href="#" class="hover:text-white">Privacy Policy</a>
-                <a href="#" class="hover:text-white">Terms of Use</a>
+                <a href="https://www.msi.com/page/privacy-policy" target="_blank" rel="noopener noreferrer" class="hover:text-white">隱私權政策</a>
+                <a href="https://www.msi.com/page/website-terms-of-use" target="_blank" rel="noopener noreferrer" class="hover:text-white">網站使用條款</a>
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-5 pt-5 border-t border-slate-800 dark:border-slate-900 text-xs flex justify-between items-center">
@@ -1891,12 +1893,67 @@
             const $html = $('html');
             const $iconLight = $('#theme-toggle-light-icon');
             const $iconDark = $('#theme-toggle-dark-icon');
+
+            const interfaceCopy = {
+                en: {
+                    skip: 'Skip to calculator', hero: 'Know What Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Local AI Needs.</span>', heroDescription: 'Select an LLM, quantization precision, and input length to compare memory capacity, per-user throughput (TPS), and time to first token (TTFT) across local AI hardware.', cta: 'Configure your AI', configTitle: 'Local AI model configuration', configDescription: 'Estimate memory allocation, inference throughput, and performance bottlenecks in real time.', model: 'Large language model (LLM)', quant: 'Quantization', context: 'Input length', speed: 'Speed filter', concurrency: 'Throughput & concurrency', batch: 'Batch size', users: 'Concurrent users', hardware: 'Hardware configuration feasibility', hardwareDescription: 'CPU and storage offloading are not used. A configuration is marked OOM when model memory demand exceeds available VRAM, unified memory, or shared memory.', hardwareCaption: 'Hardware capacity comparison', graphics: 'Graphics card', laptop: 'Laptop', workstation: 'Workstation', card: 'Card', list: 'List', seePc: 'See PC', light: 'Light mode', dark: 'Dark mode', all: 'Show all (including OOM)', threshold: '≥ 20 TPS per user', references: 'References and estimation notes', referencesDescription: 'Sources, terminology, and calculation assumptions.', resources: 'Resources & tools', contact: 'Contact us', language: 'Language', expand: 'Expand', collapse: 'Collapse', footerDescription: 'This estimator uses the Roofline performance model and vLLM dynamic memory allocation principles. Results are for architecture planning only; actual performance varies by deployment environment.'
+                },
+                'zh-TW': {
+                    skip: '跳至效能估算器', hero: '掌握您的<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">本機 AI 需求。</span>', heroDescription: '選擇大型語言模型、量化精度與輸入長度，比較各種本機 AI 硬體的記憶體容量、每位使用者吞吐量（TPS）及首字延遲（TTFT）。', cta: '開始設定', configTitle: '本機 AI 模型設定', configDescription: '即時估算記憶體配置、推論吞吐量與效能瓶頸。', model: '大型語言模型（LLM）', quant: '量化精度', context: '輸入長度', speed: '速度篩選', concurrency: '吞吐量與同時使用者', batch: '批次大小', users: '同時使用者', hardware: '硬體設定可行性', hardwareDescription: '估算不使用 CPU 或儲存裝置卸載；模型記憶體需求超過可用 VRAM、統一記憶體或共享記憶體時會標示為 OOM。', hardwareCaption: '硬體容量比較', graphics: '顯示卡', laptop: '筆記型電腦', workstation: '工作站', card: '卡片', list: '清單', seePc: '查看產品', light: '淺色模式', dark: '深色模式', all: '顯示全部（含 OOM）', threshold: '每位使用者 ≥ 20 TPS', references: '參考資料與估算說明', referencesDescription: '資料來源、術語與計算假設。', resources: '資源與工具', contact: '聯絡我們', language: '語言', expand: '展開', collapse: '收合', footerDescription: '本估算器採用 Roofline 效能模型與 vLLM 動態記憶體配置原則，結果僅供架構規劃參考；實際效能會依部署環境而異。'
+                },
+                'zh-CN': {
+                    skip: '跳至性能估算器', hero: '了解您的<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">本地 AI 需求。</span>', heroDescription: '选择大型语言模型、量化精度与输入长度，比较各种本地 AI 硬件的内存容量、每位用户吞吐量（TPS）及首字延迟（TTFT）。', cta: '开始设置', configTitle: '本地 AI 模型设置', configDescription: '实时估算内存配置、推理吞吐量与性能瓶颈。', model: '大型语言模型（LLM）', quant: '量化精度', context: '输入长度', speed: '速度筛选', concurrency: '吞吐量与并发用户', batch: '批次大小', users: '并发用户', hardware: '硬件配置可行性', hardwareDescription: '估算不使用 CPU 或存储卸载；模型内存需求超过可用显存、统一内存或共享内存时会标记为 OOM。', hardwareCaption: '硬件容量比较', graphics: '显卡', laptop: '笔记本电脑', workstation: '工作站', card: '卡片', list: '列表', seePc: '查看产品', light: '浅色模式', dark: '深色模式', all: '显示全部（含 OOM）', threshold: '每位用户 ≥ 20 TPS', references: '参考资料与估算说明', referencesDescription: '资料来源、术语与计算假设。', resources: '资源与工具', contact: '联系我们', language: '语言', expand: '展开', collapse: '收起', footerDescription: '本估算器采用 Roofline 性能模型与 vLLM 动态内存配置原则，结果仅供架构规划参考；实际性能会因部署环境而异。'
+                }
+            };
+
+            function getUiLanguage() { return interfaceCopy[$('#language-select').val()] ? $('#language-select').val() : 'zh-TW'; }
+
+            function applyLanguage(language) {
+                const copy = interfaceCopy[language] || interfaceCopy['zh-TW'];
+                $html.attr('lang', language);
+                $('#skip-link').text(copy.skip);
+                $('#hero-title').html(copy.hero);
+                $('#hero-description').text(copy.heroDescription);
+                $('#hero-cta').contents().first()[0].textContent = copy.cta + ' ';
+                $('#config-title').text(copy.configTitle);
+                $('#config-description').text(copy.configDescription);
+                $('#model-label').text(copy.model);
+                $('#quant-label').text(copy.quant);
+                $('#context-label').text(copy.context);
+                $('#speed-filter-label').text(copy.speed);
+                $('#concurrency-title').text(copy.concurrency);
+                $('#batch-label').text(copy.batch);
+                $('#users-label').text(copy.users);
+                $('#hardware-title').text(copy.hardware);
+                $('#hardware-description').text(copy.hardwareDescription);
+                $('#hardware-caption').text(copy.hardwareCaption);
+                $('#hardware-tab-graphics').text(copy.graphics);
+                $('#hardware-tab-laptop').text(copy.laptop);
+                $('#hardware-tab-workstation').text(copy.workstation);
+                $('#view-grid span').text(copy.card);
+                $('#view-list span').text(copy.list);
+                $('#tps-threshold option[value="0"]').text(copy.all);
+                $('#tps-threshold option[value="20"]').text(copy.threshold);
+                $('#references-title').text(copy.references);
+                $('#references-description').text(copy.referencesDescription);
+                $('#resources-title').text(copy.resources);
+                $('#contact-title').text(copy.contact);
+                $('#language-label').text(copy.language);
+                $('#references-expand').text(copy.expand);
+                $('#references-collapse').text(copy.collapse);
+                $('#footer-description').text(copy.footerDescription);
+                $('.see-pc-button').text(copy.seePc);
+                updateThemeUI();
+                updateConcurrencyExample();
+                renderProductPage(currentProductPage || 1);
+            }
             
             function updateThemeUI() {
                 const isDark = $html.hasClass('dark');
                 $iconLight.toggleClass('hidden', !isDark);
                 $iconDark.toggleClass('hidden', isDark);
-                $('#theme-toggle-label').text(isDark ? 'Light Mode' : 'Dark Mode');
+                const copy = interfaceCopy[getUiLanguage()] || interfaceCopy['zh-TW'];
+                $('#theme-toggle-label').text(isDark ? copy.light : copy.dark);
             }
 
             updateThemeUI();
@@ -1908,14 +1965,13 @@
 
             $('#language-select').change(function() {
                 const language = $(this).val();
-                $html.attr('lang', language);
+                applyLanguage(language);
                 try { localStorage.setItem('tps-language', language); } catch (error) {}
             });
             try {
                 const savedLanguage = localStorage.getItem('tps-language');
                 if (savedLanguage && $('#language-select option[value="' + savedLanguage + '"]').length) {
                     $('#language-select').val(savedLanguage);
-                    $html.attr('lang', savedLanguage);
                 }
             } catch (error) {}
 
@@ -2075,33 +2131,33 @@
                     { brand: 'NVIDIA', name: 'EdgeXpert / DGX Spark (GB10)', subtitle: 'AI Supercomputer · 128 GB Unified Memory', image: 'https://storage-asset.msi.com/global/picture/product/product_175686100704b1a75fc1f20b2de1b0354880526c9a.webp', capacity: 128, memory: '128 GB LPDDR5x Unified Memory', bw: 273, compute: 150.0, power: 240, powerLabel: '240W USB-C Power Adapter', pc: 'EdgeXpert MS-C931', pcUrl: 'https://ipc.msi.com/product_detail/Industrial-Computer-Box-PC/AI-Supercomputer/EdgeXpert-MS-C931' },
                     { category: 'laptop', brand: 'NVIDIA', name: 'Prestige N16 Flip AI+ (RTX Spark N1X)', subtitle: '2-in-1 AI Laptop · Up to 128 GB Unified Memory', image: 'https://storage-asset.msi.com/global/picture/product/product_179142378538dfb85452a9e7c8ad443331b27632e3.webp', capacity: 128, memory: 'Up to 128 GB LPDDR5x Unified Memory', bw: 273, compute: 150.0, power: 140, powerLabel: '140W PD 3.1 Charging', pc: 'Prestige N16 Flip AI+ C1XM', pcUrl: 'https://www.msi.com/Business-Productivity/Prestige-N16-Flip-AI-Plus-C1XMX' },
                     { category: 'workstation', brand: 'NVIDIA', name: 'XpertStation WS300T60L', subtitle: 'DGX Station · Blackwell Ultra · 748 GB Coherent Memory', image: 'https://storage-asset.msi.com/global/picture/product/product_1777367705fcaac7e43e30aa007bfe987743c3f43b.png', capacity: 748, memory: '748 GB Coherent Memory', bw: 7100, compute: 5000.0, power: 1600, powerLabel: '1,600W Total System Power', pc: 'WS300T60L', pcUrl: 'https://eps.msi.com/tw/product/barebones/WS300T60L' },
-                    { brand: 'NVIDIA', name: 'GeForce RTX 5090', subtitle: 'Discrete GPU · 32 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_1737081391df0edd81daeead5bd52c24e71abeae13.webp', capacity: 32, memory: '32 GB VRAM', bw: 1792, compute: 419.2, power: 575, powerLabel: '575W TGP', pcs: [
+                    { brand: 'NVIDIA', name: 'GeForce RTX 5090', subtitle: 'Discrete GPU · 32 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_17373640990ca0a03d5837c522f92eb9d1f487b252.webp', capacity: 32, memory: '32 GB VRAM', bw: 1792, compute: 419.2, power: 575, powerLabel: '575W TGP', pcs: [
                         { name: 'MEG VISION X AI 2nd', url: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
                         { name: 'MPG Infinite X3 AI 2nd', url: 'https://www.msi.com/Desktop/MPG-Infinite-X3-AI-2nd' },
                         { name: 'MPG Infinite Z3 9th', url: 'https://www.msi.com/Desktop/MPG-Infinite-Z3-9th' }
                     ] },
-                    { brand: 'NVIDIA', name: 'GeForce RTX 5080', subtitle: 'Discrete GPU · 16 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_173710004234f04a0f44dd01f025e8bee23592ca90.webp', capacity: 16, memory: '16 GB VRAM', bw: 960, compute: 268.0, power: 360, powerLabel: '360W TGP', pcs: [
+                    { brand: 'NVIDIA', name: 'GeForce RTX 5080', subtitle: 'Discrete GPU · 16 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_17373636064fcd11cd87f79db1017e31e5a8292a1e.webp', capacity: 16, memory: '16 GB VRAM', bw: 960, compute: 268.0, power: 360, powerLabel: '360W TGP', pcs: [
                         { name: 'MEG VISION X AI 2nd', url: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
                         { name: 'MPG Infinite X3 AI 2nd', url: 'https://www.msi.com/Desktop/MPG-Infinite-X3-AI-2nd' },
                         { name: 'MPG Infinite Z3 9th', url: 'https://www.msi.com/Desktop/MPG-Infinite-Z3-9th' }
                     ] },
-                    { brand: 'NVIDIA', name: 'GeForce RTX 5070 Ti', subtitle: 'Discrete GPU · 16 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_1738567494b5a1a4c58600a87f33be548bb80e081d.webp', capacity: 16, memory: '16 GB VRAM', bw: 896, compute: 175.8, power: 300, powerLabel: '300W TGP', pcs: [
+                    { brand: 'NVIDIA', name: 'GeForce RTX 5070 Ti', subtitle: 'Discrete GPU · 16 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_1737537897910d6be43d549ef26449b630ff95227d.webp', capacity: 16, memory: '16 GB VRAM', bw: 896, compute: 175.8, power: 300, powerLabel: '300W TGP', pcs: [
                         { name: 'MEG VISION X AI 2nd', url: 'https://www.msi.com/Desktop/MEG-Vision-X-AI-2nd' },
                         { name: 'MPG Infinite X3 AI 2nd', url: 'https://www.msi.com/Desktop/MPG-Infinite-X3-AI-2nd' },
                         { name: 'MPG Infinite Z3 9th', url: 'https://www.msi.com/Desktop/MPG-Infinite-Z3-9th' }
                     ] },
-                    { brand: 'NVIDIA', name: 'GeForce RTX 5070', subtitle: 'Discrete GPU · 12 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_1738649526e86a50585ee31273e268bbb486c9a59c.webp', capacity: 12, memory: '12 GB VRAM', bw: 672, compute: 135.0, power: 250, powerLabel: '250W TGP', pcs: [
+                    { brand: 'NVIDIA', name: 'GeForce RTX 5070', subtitle: 'Discrete GPU · 12 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_17376136507b04b2df0060471afef9dc0c9e844805.webp', capacity: 12, memory: '12 GB VRAM', bw: 672, compute: 135.0, power: 250, powerLabel: '250W TGP', pcs: [
                         { name: 'MPG Infinite Z3 9th', url: 'https://www.msi.com/Desktop/MPG-Infinite-Z3-9th' },
                         { name: 'MPG Trident AS AI 2nd', url: 'https://www.msi.com/Desktop/MPG-Trident-AS-AI-2nd' },
                         { name: 'MAG Infinite S3', url: 'https://www.msi.com/Desktop/MAG-Infinite-S3-14th' },
                         { name: 'MAG Infinite E1', url: 'https://www.msi.com/Desktop/MAG-Infinite-E1' }
                     ] },
-                    { brand: 'NVIDIA', name: 'GeForce RTX 5060 Ti 16GB', subtitle: 'Discrete GPU · 16 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_1744682874d5006eba1cb79b08639e5ef587b09e45.webp', capacity: 16, memory: '16 GB VRAM', bw: 448, compute: 88.0, power: 180, powerLabel: '180W TGP', pcs: [
+                    { brand: 'NVIDIA', name: 'GeForce RTX 5060 Ti 16GB', subtitle: 'Discrete GPU · 16 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_174469985997a9b3a0f329a80543ebebd41172fd92.webp', capacity: 16, memory: '16 GB VRAM', bw: 448, compute: 88.0, power: 180, powerLabel: '180W TGP', pcs: [
                         { name: 'MPG Infinite Z3 9th', url: 'https://www.msi.com/Desktop/MPG-Infinite-Z3-9th' },
                         { name: 'MAG Infinite S3', url: 'https://www.msi.com/Desktop/MAG-Infinite-S3-14th' },
                         { name: 'MAG Infinite E1', url: 'https://www.msi.com/Desktop/MAG-Infinite-E1' }
                     ] },
-                    { brand: 'NVIDIA', name: 'GeForce RTX 5060', subtitle: 'Discrete GPU · 8 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_17446955973acbf7143d82495e15d623436e02a7d5.webp', capacity: 8, memory: '8 GB VRAM', bw: 448, compute: 60.0, power: 145, powerLabel: '145W TGP', pcs: [
+                    { brand: 'NVIDIA', name: 'GeForce RTX 5060', subtitle: 'Discrete GPU · 8 GB GDDR7', image: 'https://storage-asset.msi.com/global/picture/product/product_17452145758add3ea4fa24be006996e132aab927fd.webp', capacity: 8, memory: '8 GB VRAM', bw: 448, compute: 60.0, power: 145, powerLabel: '145W TGP', pcs: [
                         { name: 'MPG Infinite Z3 9th', url: 'https://www.msi.com/Desktop/MPG-Infinite-Z3-9th' },
                         { name: 'MAG Infinite S3', url: 'https://www.msi.com/Desktop/MAG-Infinite-S3-14th' },
                         { name: 'MAG Infinite E1', url: 'https://www.msi.com/Desktop/MAG-Infinite-E1' }
@@ -2359,14 +2415,18 @@
                 .on('keydown', function(event) { if (event.key === 'Escape') $('#global-tooltip').hide(); });
 
             let tpsSimulationTimer = null;
+            let lastPcTrigger = null;
+            let lastTpsTrigger = null;
             const tpsDemoTokens = 'This simulated AI response demonstrates how many tokens each concurrent user can receive per second. A higher per-user TPS makes text appear faster and helps users experience how smoothly the model responds. The estimate is based on the selected model, quantization, input length, output length, batch size, and concurrent users. Actual performance is also affected by the inference engine, memory bandwidth, cooling, and system load.'.split(' ');
 
             function closePcModal() {
                 $('#pc-modal').addClass('hidden').removeClass('flex');
                 $('body').removeClass('overflow-hidden');
+                if (lastPcTrigger) $(lastPcTrigger).trigger('focus');
             }
 
             $('#product-container').on('click', '.see-pc-button', function() {
+                lastPcTrigger = this;
                 $('#pc-modal-hardware').text($(this).data('hardware'));
                 const products = $(this).data('pcs') || [];
                 const $products = $('#pc-modal-products').empty();
@@ -2429,6 +2489,7 @@
                 stopTpsSimulation();
                 $('#tps-visualizer').addClass('hidden').removeClass('flex');
                 $('body').removeClass('overflow-hidden');
+                if (lastTpsTrigger) $(lastTpsTrigger).trigger('focus');
             }
 
             function openTpsVisualizer($card) {
@@ -2451,21 +2512,32 @@
                 if (valid) runTpsSimulation();
             }
 
-            $('#product-container').on('click', '.tps-metric-button', function() { openTpsVisualizer($(this).closest('.product-card')); });
+            $('#product-container').on('click', '.tps-metric-button', function() { lastTpsTrigger = this; openTpsVisualizer($(this).closest('.product-card')); });
             $('#product-container').on('keydown', '.tps-metric-button', function(event) {
-                if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openTpsVisualizer($(this).closest('.product-card')); }
+                if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); lastTpsTrigger = this; openTpsVisualizer($(this).closest('.product-card')); }
             });
             $('#close-tps-visualizer').click(closeTpsVisualizer);
             $('#start-tps-simulation').click(runTpsSimulation);
             $('#tps-visualizer').click(function(event) { if (event.target === this) closeTpsVisualizer(); });
             $(document).on('keydown.modals', function(event) {
-                if (event.key !== 'Escape') return;
-                if (!$('#pc-modal').hasClass('hidden')) closePcModal();
-                if (!$('#tps-visualizer').hasClass('hidden')) closeTpsVisualizer();
+                const $activeModal = !$('#pc-modal').hasClass('hidden') ? $('#pc-modal') : (!$('#tps-visualizer').hasClass('hidden') ? $('#tps-visualizer') : $());
+                if (!$activeModal.length) return;
+                if (event.key === 'Escape') {
+                    if ($activeModal.is('#pc-modal')) closePcModal(); else closeTpsVisualizer();
+                    return;
+                }
+                if (event.key !== 'Tab') return;
+                const $focusable = $activeModal.find('a[href], button:not(:disabled), input:not(:disabled), select:not(:disabled), [tabindex]:not([tabindex="-1"])').filter(':visible');
+                if (!$focusable.length) return;
+                const first = $focusable.get(0);
+                const last = $focusable.get($focusable.length - 1);
+                if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+                else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
             });
 
             // --- 視圖切換 (Grid / List) ---
             $('#view-list').click(function() {
+                $('#product-carousel').addClass('list-mode');
                 $('#product-container').removeClass('grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6').addClass('flex flex-col gap-4 view-list');
                 $(this).addClass('bg-white dark:bg-slate-700 shadow-sm ring-1 ring-slate-200 dark:ring-slate-600 text-slate-800 dark:text-white').removeClass('text-slate-500 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800');
                 $('#view-grid').removeClass('bg-white dark:bg-slate-700 shadow-sm ring-1 ring-slate-200 dark:ring-slate-600 text-slate-800 dark:text-white').addClass('text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800');
@@ -2473,6 +2545,7 @@
                 $('#view-grid').attr('aria-pressed', 'false');
             });
             $('#view-grid').click(function() {
+                $('#product-carousel').removeClass('list-mode');
                 $('#product-container').removeClass('flex flex-col gap-4 view-list').addClass('grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6');
                 $(this).addClass('bg-white dark:bg-slate-700 shadow-sm ring-1 ring-slate-200 dark:ring-slate-600 text-slate-800 dark:text-white').removeClass('text-slate-500 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800');
                 $('#view-list').removeClass('bg-white dark:bg-slate-700 shadow-sm ring-1 ring-slate-200 dark:ring-slate-600 text-slate-800 dark:text-white').addClass('text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800');
@@ -2517,7 +2590,11 @@
                 const start = (currentProductPage - 1) * productsPerPage;
                 const end = Math.min(start + productsPerPage, totalProducts);
                 $filteredProducts.slice(start, end).removeClass('page-hidden');
-                $('#product-page-summary').text('Showing ' + (start + 1) + '–' + end + ' / ' + totalProducts + ' hardware options');
+                const language = getUiLanguage();
+                const summary = language === 'en'
+                    ? 'Results · Showing ' + (start + 1) + '–' + end + ' of ' + totalProducts + ' hardware options'
+                    : (language === 'zh-CN' ? '结果 · 显示第 ' : '結果 · 顯示第 ') + (start + 1) + '–' + end + ' / ' + totalProducts + (language === 'zh-CN' ? ' 项硬件' : ' 項硬體');
+                $('#product-page-summary').text(summary);
                 $('#product-pagination-controls, #product-side-navigation').toggleClass('is-hidden', totalPages === 1);
                 $('#product-prev').prop('disabled', currentProductPage === 1);
                 $('#product-next').prop('disabled', currentProductPage === totalPages);
@@ -2665,7 +2742,14 @@
                 const users = Math.max(1, Math.min(1024, parseInt($('#concurrent-users').val()) || 1));
                 const batch = Math.max(1, Math.min(128, parseInt($('#batch-size').val()) || 1));
                 const activeBatch = Math.min(users, batch);
-                $('#concurrency-example').html('<strong>How it works: </strong>Effective batch = min(Batch Size, Concurrent Users) = ' + activeBatch + '. Aggregate TPS applies a roofline model and batch-saturation curve to the effective batch; all ' + users + ' concurrent users reserve KV cache, and approximate per-user speed is aggregate TPS ÷ ' + users + '.');
+                const language = getUiLanguage();
+                if (language === 'en') {
+                    $('#concurrency-example').html('<strong>How it works: </strong>Effective batch = min(Batch size, Concurrent users) = ' + activeBatch + '. Aggregate TPS uses the effective batch; all ' + users + ' concurrent users reserve KV cache, and estimated per-user speed is aggregate TPS ÷ ' + users + '.');
+                } else if (language === 'zh-CN') {
+                    $('#concurrency-example').html('<strong>计算方式：</strong>有效批次 = min（批次大小，并发用户）= ' + activeBatch + '。总 TPS 依有效批次估算；' + users + ' 位并发用户各自占用 KV Cache，每位用户的估算速度为总 TPS ÷ ' + users + '。');
+                } else {
+                    $('#concurrency-example').html('<strong>計算方式：</strong>有效批次 = min（批次大小，同時使用者）= ' + activeBatch + '。總 TPS 依有效批次估算；' + users + ' 位同時使用者各自占用 KV Cache，每位使用者的估算速度為總 TPS ÷ ' + users + '。');
+                }
             }
 
             // 表單變更綁定
@@ -2852,6 +2936,7 @@
             updateQuantOptions();
             updateConcurrencyExample();
             calculateMetrics();
+            applyLanguage(getUiLanguage());
         });
     </script>
 </body>
