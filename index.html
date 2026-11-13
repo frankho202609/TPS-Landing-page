@@ -447,7 +447,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 
                 <!-- Personal Knowledge Base -->
-                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="Apply the English personal knowledge base RAG configuration" data-model="ministral3_8b" data-context="8192" data-output="1024" data-addons="bge_small_en,bge_reranker">
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="Apply the English personal knowledge base RAG configuration" data-model="qwen25_7b" data-context="8192" data-output="1024" data-addons="bge_small_en,bge_reranker">
                     <div class="flex items-center justify-between mb-2">
                         <div class="bg-blue-100 dark:bg-blue-900/40 p-2 rounded-lg text-blue-600 dark:text-blue-400 group-hover:bg-red-100 dark:group-hover:bg-red-900/40 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
@@ -478,7 +478,7 @@
                 </div>
 
                 <!-- Image Generation -->
-                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="Apply the image generation multimodel configuration" data-model="ministral3_8b" data-context="4096" data-output="512" data-addons="qwen25_vl_7b,sdxl">
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="Apply the image generation multimodel configuration" data-model="qwen25_7b" data-context="4096" data-output="512" data-addons="qwen25_vl_7b,sdxl">
                     <div class="flex items-center justify-between mb-2">
                         <div class="bg-purple-100 dark:bg-purple-900/40 p-2 rounded-lg text-purple-600 dark:text-purple-400 group-hover:bg-red-100 dark:group-hover:bg-red-900/40 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
@@ -488,16 +488,16 @@
                 </div>
 
                 <!-- 下列多模型情境與單一 LLM 情境共用同一層級；點選後才展開模型組合。 -->
-                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="Apply the video generation multimodel configuration" data-model="ministral3_8b" data-context="4096" data-output="512" data-addons="wan21_t2v_1_3b">
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="Apply the video generation multimodel configuration" data-model="qwen25_7b" data-context="4096" data-output="512" data-addons="wan21_t2v_1_3b">
                     <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Video Generation</h4>
                 </div>
                 <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="Apply the visual recognition multimodel configuration" data-model="gemma4_e4b" data-context="4096" data-output="512" data-addons="qwen25_vl_7b,yolo11">
                     <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Visual Recognition</h4>
                 </div>
-                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="Apply the voice customer service STT, RAG, LLM, and TTS configuration" data-model="ministral3_8b" data-context="8192" data-output="512" data-addons="whisper_v3,bge_small_en,bge_reranker,kokoro_82m">
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="Apply the voice customer service STT, RAG, LLM, and TTS configuration" data-model="qwen25_7b" data-context="8192" data-output="512" data-addons="whisper_v3,bge_small_en,bge_reranker,kokoro_82m">
                     <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18v3m0-3a6 6 0 006-6v-1m-6 7a6 6 0 01-6-6v-1m6 3a3 3 0 003-3V5a3 3 0 10-6 0v6a3 3 0 003 3z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Voice Customer Service</h4>
                 </div>
-                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="Apply the paper document management OCR and RAG configuration" data-model="ministral3_8b" data-context="8192" data-output="512" data-addons="glm_ocr,bge_small_en,bge_reranker">
+                <div class="scenario-card multi-model-card cursor-pointer bg-white dark:bg-slate-800 rounded-xl p-5 min-h-28 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-red-400 dark:hover:border-red-500 transition-all group" role="button" tabindex="0" aria-label="Apply the paper document management OCR and RAG configuration" data-model="qwen25_7b" data-context="8192" data-output="512" data-addons="glm_ocr,bge_small_en,bge_reranker">
                     <div class="flex items-center justify-between mb-2"><div class="h-9 w-9 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5l5 5v11a2 2 0 01-2 2z"></path></svg></div></div><h4 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Paper Document Management</h4>
                 </div>
             </div>
@@ -528,42 +528,23 @@
                         <label for="model-select" class="field-label"><span id="model-label">大型語言模型（LLM）</span><span class="field-label-en">Large Language Model</span></label>
                         <div class="flex gap-2">
                         <select id="model-select" class="min-w-0 flex-1 text-sm font-medium border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:ring-red-500 focus:border-red-500 p-2.5 border form-trigger form-select-custom bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white transition-colors">
-                            <optgroup label="Compact Instruct / Edge">
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="8.0" data-apb="8.0" data-layers="32" data-kvh="8" data-hd="128" value="ministral3_8b" selected>Ministral 3 8B · Instruct / Edge</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="3.2" data-apb="3.2" data-layers="28" data-kvh="8" data-hd="128" value="llama3_2_3b">Llama 3.2 3B · Compact Instruct</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="3.1" data-apb="3.1" data-layers="36" data-kvh="2" data-hd="128" value="qwen25_3b">Qwen 2.5 3B · Compact Instruct</option>
+                            <optgroup label="Qwen">
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="0.6" data-apb="0.6" data-layers="28" data-kvh="8" data-hd="128" value="qwen3_06b">Qwen 3 0.6B · General / Reasoning</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="14.8" data-apb="14.8" data-layers="40" data-kvh="8" data-hd="128" value="qwen3_14b">Qwen 3 14B · General / Reasoning</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="7.6" data-apb="7.6" data-layers="28" data-kvh="4" data-hd="128" value="qwen25_7b" selected>Qwen 2.5 7B · Instruct</option>
                             </optgroup>
-                            <optgroup label="General Instruct / Chat">
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="8.0" data-apb="8.0" data-layers="32" data-kvh="8" data-hd="128" value="llama3_1_8b">Llama 3.1 8B · Instruct</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="7.6" data-apb="7.6" data-layers="28" data-kvh="4" data-hd="128" value="qwen25_7b">Qwen 2.5 7B · Instruct</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="12.2" data-apb="12.2" data-layers="40" data-kvh="8" data-hd="128" value="mistral_nemo_12b">Mistral NeMo 12B · Instruct</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="14.7" data-apb="14.7" data-layers="48" data-kvh="8" data-hd="128" value="qwen25_14b">Qwen 2.5 14B · Instruct</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="14.0" data-apb="14.0" data-layers="40" data-kvh="16" data-hd="128" value="phi_4">Phi-4 14B · Instruct</option>
-                                <option data-type="text" data-quants="6.56,8.0,16.0" data-pb="18.66" data-apb="18.66" data-layers="40" data-kvh="8" data-hd="256" value="gemma4_12b">Gemma 4 12B · Instruct</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="70.6" data-apb="70.6" data-layers="80" data-kvh="8" data-hd="128" value="llama3_3_70b">Llama 3.3 70B · Instruct</option>
-                            </optgroup>
-                            <optgroup label="Coder / Software Development">
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="6.7" data-apb="6.7" data-layers="32" data-kvh="8" data-hd="128" value="deepseek_coder_67b">DeepSeek Coder 6.7B · Coder</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="7.6" data-apb="7.6" data-layers="28" data-kvh="4" data-hd="128" value="qwen25_coder_7b">Qwen 2.5 Coder 7B · Coder</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="14.7" data-apb="14.7" data-layers="48" data-kvh="8" data-hd="128" value="qwen25_coder_14b">Qwen 2.5 Coder 14B · Coder</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="15.5" data-apb="15.5" data-layers="40" data-kvh="4" data-hd="128" value="starcoder2_15b">StarCoder2 15B · Code Completion</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="32.5" data-apb="32.5" data-layers="64" data-kvh="8" data-hd="128" value="qwen25_32b">Qwen 2.5 Coder 32B · Coder</option>
-                            </optgroup>
-                            <optgroup label="Reasoning">
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="14.7" data-apb="14.7" data-layers="48" data-kvh="8" data-hd="128" value="deepseek_r1_14b">DeepSeek R1 Distill Qwen 14B · Reasoning</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="32.5" data-apb="32.5" data-layers="64" data-kvh="8" data-hd="128" value="qwq_32b">Qwen QwQ 32B · Reasoning</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="70.0" data-apb="70.0" data-layers="80" data-kvh="8" data-hd="128" value="deepseek_r1_70b">DeepSeek R1 70B Distill · Reasoning</option>
-                            </optgroup>
-                            <optgroup label="Agent / Tool Use">
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="8.0" data-apb="8.0" data-layers="32" data-kvh="8" data-hd="128" value="hermes3_llama31_8b">Hermes 3 Llama 3.1 8B · Tool Use</option>
+                            <optgroup label="Gemma">
                                 <option data-type="text" data-quants="6.56,8.0,16.0" data-pb="18.0" data-apb="4.5" data-layers="36" data-kvh="8" data-hd="128" value="gemma4_e4b">Gemma 4 E4B · MoE Agent</option>
-                                <option data-type="text" data-quants="4.8,8.0,16.0" data-pb="21.0" data-apb="3.6" data-layers="36" data-kvh="8" data-hd="128" value="gpt_oss_20b">GPT-OSS 20B · MoE Automation</option>
+                                <option data-type="text" data-quants="6.56,8.0,16.0" data-pb="18.66" data-apb="18.66" data-layers="40" data-kvh="8" data-hd="256" value="gemma4_12b">Gemma 4 12B · Instruct</option>
                             </optgroup>
-                            <optgroup label="Large MoE / Architecture Comparison">
-                                <option data-type="text" data-quants="4.8,6.56,8.0,16.0" data-pb="120.0" data-apb="5.1" data-layers="64" data-kvh="16" data-hd="128" value="gpt_oss_120b">GPT-OSS 120B · MoE</option>
-                                <option data-type="text" data-quants="8.0,16.0" data-pb="48.0" data-apb="3.0" data-layers="64" data-kvh="8" data-hd="128" value="kimi_linear_48b_a3b">Kimi Linear 48B · MoE</option>
-                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="35.0" data-apb="3.0" data-layers="48" data-kvh="8" data-hd="128" value="qwen36_35b">Qwen 3.6 35B · MoE</option>
-                                <option data-type="text" data-quants="6.56,8.0,16.0" data-pb="26.0" data-apb="3.8" data-layers="46" data-kvh="8" data-hd="128" value="gemma4_26b">Gemma 4 26B · MoE</option>
+                            <optgroup label="DeepSeek">
+                                <option data-type="text" data-quants="4.8,6.56,8.0,16.0" data-pb="685.0" data-apb="37.0" data-layers="61" data-kvh="8" data-hd="128" value="deepseek_v32">DeepSeek V3.2 · MoE</option>
+                                <option data-type="text" data-quants="4.8,6.56,8.0,16.0" data-pb="671.0" data-apb="37.0" data-layers="61" data-kvh="8" data-hd="128" value="deepseek_r1">DeepSeek R1 · MoE Reasoning</option>
+                                <option data-type="text" data-quants="4.8,5.5,6.56,8.0,16.0" data-pb="1.5" data-apb="1.5" data-layers="28" data-kvh="2" data-hd="128" value="deepseek_r1_distill_15b">DeepSeek R1 Distill Qwen 1.5B · Reasoning</option>
+                            </optgroup>
+                            <optgroup label="NVIDIA Nemotron">
+                                <option data-type="text" data-quants="8.0,16.0" data-pb="4.0" data-apb="4.0" data-layers="32" data-kvh="8" data-hd="128" value="nemotron3_nano_4b">NVIDIA Nemotron 3 Nano 4B · Reasoning</option>
+                                <option data-type="text" data-quants="4.8,6.56,8.0,16.0" data-pb="30.0" data-apb="3.5" data-layers="52" data-kvh="2" data-hd="128" value="nemotron3_nano_30b_a3b">NVIDIA Nemotron 3 Nano 30B-A3B · Reasoning / Agent</option>
                             </optgroup>
                         </select>
                         </div>
@@ -1549,6 +1530,29 @@
                 <div id="product-page-buttons" class="flex items-center gap-1"></div>
             </div>
         </div>
+
+        <details id="tps-visualizer" class="group mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-colors dark:border-slate-700 dark:bg-slate-800">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-500">
+                <div class="min-w-0">
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-red-500">TPS Simulator</p>
+                    <h2 id="tps-visualizer-title" class="mt-1 text-base font-bold text-slate-900 dark:text-white">TPS 即時生成模擬</h2>
+                    <p id="tps-visualizer-hardware" class="mt-1 truncate text-xs text-slate-500 dark:text-slate-400">點選產品卡片中的 TPS 數值以載入硬體</p>
+                </div>
+                <span class="shrink-0 text-xs font-semibold text-slate-500 dark:text-slate-400"><span id="tps-simulator-expand" class="group-open:hidden">展開</span><span id="tps-simulator-collapse" class="hidden group-open:inline">收合</span></span>
+            </summary>
+            <div class="border-t border-slate-200 p-5 dark:border-slate-700 sm:p-7">
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-end">
+                    <label class="min-w-0 flex-1"><span id="tps-simulator-estimate-label" class="mb-2 block text-xs font-bold text-slate-600 dark:text-slate-300">此硬體的預估 TPS</span><input id="tps-simulator-input" type="number" readonly aria-readonly="true" placeholder="—" class="h-12 w-full cursor-default rounded-xl border border-slate-300 bg-slate-100 px-4 text-lg font-bold text-slate-900 outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-white"></label>
+                    <button id="start-tps-simulation" type="button" class="h-12 rounded-xl bg-blue-600 px-6 font-bold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-400" disabled>重新播放</button>
+                    <div id="tps-visualizer-status" class="self-start rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-500 dark:bg-slate-900 dark:text-slate-400 sm:mb-2">尚未選擇硬體</div>
+                </div>
+                <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-950">
+                    <div class="flex items-center justify-between gap-4"><span id="tps-simulator-preview-label" class="text-xs font-bold text-slate-600 dark:text-slate-300">Token 串流預覽</span><span id="tps-simulator-progress" class="text-xs font-semibold text-slate-500"></span></div>
+                    <div id="tps-simulator-output" class="mt-3 min-h-40 max-h-72 overflow-y-auto whitespace-pre-wrap rounded-xl border border-slate-200 bg-white p-4 text-base leading-7 text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100" aria-live="polite">請點選任一產品卡片中的 TPS 數值開始模擬。</div>
+                </div>
+                <p id="tps-simulator-workload" class="mt-3 text-xs text-slate-500 dark:text-slate-400"></p>
+            </div>
+        </details>
     </main>
 
     <!-- References & Calculation Notes -->
@@ -1655,27 +1659,6 @@
         </div>
     </div>
 
-    <div id="tps-visualizer" class="fixed inset-0 z-[80] hidden items-center justify-center bg-slate-950/70 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="tps-visualizer-title">
-        <div class="w-full max-w-3xl rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-2xl">
-            <div class="flex items-start justify-between gap-4 border-b border-slate-200 dark:border-slate-700 px-5 py-4">
-                <div><p class="text-[10px] font-bold uppercase tracking-wider text-red-500">TPS Visualizer</p><h2 id="tps-visualizer-title" class="mt-1 text-lg font-bold text-slate-900 dark:text-white">Inference Throughput Visualizer</h2><p id="tps-visualizer-hardware" class="mt-1 text-xs text-slate-500 dark:text-slate-400"></p></div>
-                <button id="close-tps-visualizer" type="button" class="h-9 w-9 rounded-lg border border-slate-200 dark:border-slate-700 text-xl text-slate-500 hover:text-red-600" aria-label="Close the TPS Visualizer">×</button>
-            </div>
-            <div class="p-5 sm:p-7">
-                <div class="flex flex-col gap-3 sm:flex-row sm:items-end">
-                    <label class="min-w-0 flex-1"><span class="mb-2 block text-xs font-bold text-slate-600 dark:text-slate-300">Estimated TPS for This Hardware</span><input id="tps-simulator-input" type="number" readonly aria-readonly="true" class="h-12 w-full cursor-default rounded-xl border border-slate-300 bg-slate-100 px-4 text-lg font-bold text-slate-900 outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-white"></label>
-                    <button id="start-tps-simulation" type="button" class="hidden h-12 rounded-xl bg-blue-600 px-6 font-bold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-400">Replay Simulation</button>
-                    <div id="tps-visualizer-status" class="self-start rounded-full px-3 py-1.5 text-xs font-bold sm:mb-2"></div>
-                </div>
-                <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-950">
-                    <div class="flex items-center justify-between gap-4"><span class="text-xs font-bold text-slate-600 dark:text-slate-300">Token Streaming Preview</span><span id="tps-simulator-progress" class="text-xs font-semibold text-slate-500"></span></div>
-                    <div id="tps-simulator-output" class="mt-3 min-h-[260px] max-h-[340px] overflow-y-auto whitespace-pre-wrap rounded-xl border border-slate-200 bg-white p-4 text-base leading-7 text-slate-800 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100" aria-live="polite"></div>
-                </div>
-                <p id="tps-simulator-workload" class="mt-3 text-xs text-slate-500 dark:text-slate-400"></p>
-            </div>
-        </div>
-    </div>
-
     <div id="global-tooltip" role="tooltip"></div>
 
     <script>
@@ -1688,13 +1671,13 @@
 
             const interfaceCopy = {
                 en: {
-                    skip: 'Skip to calculator', hero: 'Know What Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Local AI Needs.</span>', heroDescription: 'Select an LLM, quantization precision, and input length to compare memory capacity, per-user throughput (TPS), and time to first token (TTFT) across local AI hardware.', cta: 'Configure your AI', configTitle: 'Local AI model configuration', configDescription: 'Estimate memory allocation, inference throughput, and performance bottlenecks in real time.', model: 'Large language model (LLM)', quant: 'Quantization', context: 'Input length', speed: 'Speed filter', concurrency: 'Throughput & concurrency', batch: 'Batch size', users: 'Concurrent users', hardware: 'Hardware configuration feasibility', hardwareDescription: 'CPU and storage offloading are not used. A configuration is marked OOM when model memory demand exceeds available VRAM, unified memory, or shared memory.', hardwareCaption: 'Hardware capacity comparison', graphics: 'Graphics card', laptop: 'Laptop', workstation: 'Workstation', card: 'Card', list: 'List', seePc: 'See PC', light: 'Light mode', dark: 'Dark mode', all: 'Show all (including OOM)', threshold: '≥ 20 TPS per user', references: 'References and estimation notes', referencesDescription: 'Sources, terminology, and calculation assumptions.', resources: 'Resources & tools', contact: 'Contact us', language: 'Language', expand: 'Expand', collapse: 'Collapse', footerDescription: 'This estimator uses the Roofline performance model and vLLM dynamic memory allocation principles. Results are for architecture planning only; actual performance varies by deployment environment.'
+                    skip: 'Skip to calculator', hero: 'Know What Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Local AI Needs.</span>', heroDescription: 'Select an LLM, quantization precision, and input length to compare memory capacity, per-user throughput (TPS), and time to first token (TTFT) across local AI hardware.', cta: 'Configure your AI', configTitle: 'Local AI model configuration', configDescription: 'Estimate memory allocation, inference throughput, and performance bottlenecks in real time.', model: 'Large language model (LLM)', quant: 'Quantization', context: 'Input length', speed: 'Speed filter', concurrency: 'Throughput & concurrency', batch: 'Batch size', users: 'Concurrent users', hardware: 'Hardware configuration feasibility', hardwareDescription: 'CPU and storage offloading are not used. A configuration is marked OOM when model memory demand exceeds available VRAM, unified memory, or shared memory.', hardwareCaption: 'Hardware capacity comparison', graphics: 'Graphics card', laptop: 'Laptop', workstation: 'Workstation', card: 'Card', list: 'List', seePc: 'See PC', light: 'Light mode', dark: 'Dark mode', all: 'Show all (including OOM)', threshold: '≥ 20 TPS per user', references: 'References and estimation notes', referencesDescription: 'Sources, terminology, and calculation assumptions.', resources: 'Resources & tools', contact: 'Contact us', language: 'Language', expand: 'Expand', collapse: 'Collapse', simulatorTitle: 'Live TPS generation simulator', simulatorHint: 'Select a TPS value on a product card to load its hardware.', simulatorEstimate: 'Estimated TPS for this hardware', simulatorReplay: 'Replay', simulatorRunning: 'Simulating…', simulatorIdle: 'No hardware selected', simulatorPreview: 'Token streaming preview', simulatorSelect: 'Select a TPS value on any product card to start the simulation.', simulatorNoEstimate: 'No TPS estimate is available for this hardware.', simulatorPreparing: 'Preparing the token stream…', simulatorOom: 'The current configuration is OOM, so the token-stream simulation cannot run.', simulatorUsable: '≥ 20 TPS per user · Usable', simulatorSlow: '< 20 TPS per user · Slow', simulatorCannotLoad: 'OOM · Cannot load', simulatorWorkload: 'Current workload', footerDescription: 'This estimator uses the Roofline performance model and vLLM dynamic memory allocation principles. Results are for architecture planning only; actual performance varies by deployment environment.'
                 },
                 'zh-TW': {
-                    skip: '跳至效能估算器', hero: '掌握您的<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">本機 AI 需求。</span>', heroDescription: '選擇大型語言模型、量化精度與輸入長度，比較各種本機 AI 硬體的記憶體容量、每位使用者吞吐量（TPS）及首字延遲（TTFT）。', cta: '開始設定', configTitle: '本機 AI 模型設定', configDescription: '即時估算記憶體配置、推論吞吐量與效能瓶頸。', model: '大型語言模型（LLM）', quant: '量化精度', context: '輸入長度', speed: '速度篩選', concurrency: '吞吐量與同時使用者', batch: '批次大小', users: '同時使用者', hardware: '硬體設定可行性', hardwareDescription: '估算不使用 CPU 或儲存裝置卸載；模型記憶體需求超過可用 VRAM、統一記憶體或共享記憶體時會標示為 OOM。', hardwareCaption: '硬體容量比較', graphics: '顯示卡', laptop: '筆記型電腦', workstation: '工作站', card: '卡片', list: '清單', seePc: '查看產品', light: '淺色模式', dark: '深色模式', all: '顯示全部（含 OOM）', threshold: '每位使用者 ≥ 20 TPS', references: '參考資料與估算說明', referencesDescription: '資料來源、術語與計算假設。', resources: '資源與工具', contact: '聯絡我們', language: '語言', expand: '展開', collapse: '收合', footerDescription: '本估算器採用 Roofline 效能模型與 vLLM 動態記憶體配置原則，結果僅供架構規劃參考；實際效能會依部署環境而異。'
+                    skip: '跳至效能估算器', hero: '掌握您的<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">本機 AI 需求。</span>', heroDescription: '選擇大型語言模型、量化精度與輸入長度，比較各種本機 AI 硬體的記憶體容量、每位使用者吞吐量（TPS）及首字延遲（TTFT）。', cta: '開始設定', configTitle: '本機 AI 模型設定', configDescription: '即時估算記憶體配置、推論吞吐量與效能瓶頸。', model: '大型語言模型（LLM）', quant: '量化精度', context: '輸入長度', speed: '速度篩選', concurrency: '吞吐量與同時使用者', batch: '批次大小', users: '同時使用者', hardware: '硬體設定可行性', hardwareDescription: '估算不使用 CPU 或儲存裝置卸載；模型記憶體需求超過可用 VRAM、統一記憶體或共享記憶體時會標示為 OOM。', hardwareCaption: '硬體容量比較', graphics: '顯示卡', laptop: '筆記型電腦', workstation: '工作站', card: '卡片', list: '清單', seePc: '查看產品', light: '淺色模式', dark: '深色模式', all: '顯示全部（含 OOM）', threshold: '每位使用者 ≥ 20 TPS', references: '參考資料與估算說明', referencesDescription: '資料來源、術語與計算假設。', resources: '資源與工具', contact: '聯絡我們', language: '語言', expand: '展開', collapse: '收合', simulatorTitle: 'TPS 即時生成模擬', simulatorHint: '點選產品卡片中的 TPS 數值以載入硬體', simulatorEstimate: '此硬體的預估 TPS', simulatorReplay: '重新播放', simulatorRunning: '模擬中…', simulatorIdle: '尚未選擇硬體', simulatorPreview: 'Token 串流預覽', simulatorSelect: '請點選任一產品卡片中的 TPS 數值開始模擬。', simulatorNoEstimate: '此硬體目前沒有可用的 TPS 估算值。', simulatorPreparing: '正在準備 Token 串流…', simulatorOom: '目前設定已超出記憶體容量，無法執行 Token 串流模擬。', simulatorUsable: '每位使用者 ≥ 20 TPS · 流暢', simulatorSlow: '每位使用者 < 20 TPS · 較慢', simulatorCannotLoad: 'OOM · 無法載入', simulatorWorkload: '目前工作負載', footerDescription: '本估算器採用 Roofline 效能模型與 vLLM 動態記憶體配置原則，結果僅供架構規劃參考；實際效能會依部署環境而異。'
                 },
                 'zh-CN': {
-                    skip: '跳至性能估算器', hero: '了解您的<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">本地 AI 需求。</span>', heroDescription: '选择大型语言模型、量化精度与输入长度，比较各种本地 AI 硬件的内存容量、每位用户吞吐量（TPS）及首字延迟（TTFT）。', cta: '开始设置', configTitle: '本地 AI 模型设置', configDescription: '实时估算内存配置、推理吞吐量与性能瓶颈。', model: '大型语言模型（LLM）', quant: '量化精度', context: '输入长度', speed: '速度筛选', concurrency: '吞吐量与并发用户', batch: '批次大小', users: '并发用户', hardware: '硬件配置可行性', hardwareDescription: '估算不使用 CPU 或存储卸载；模型内存需求超过可用显存、统一内存或共享内存时会标记为 OOM。', hardwareCaption: '硬件容量比较', graphics: '显卡', laptop: '笔记本电脑', workstation: '工作站', card: '卡片', list: '列表', seePc: '查看产品', light: '浅色模式', dark: '深色模式', all: '显示全部（含 OOM）', threshold: '每位用户 ≥ 20 TPS', references: '参考资料与估算说明', referencesDescription: '资料来源、术语与计算假设。', resources: '资源与工具', contact: '联系我们', language: '语言', expand: '展开', collapse: '收起', footerDescription: '本估算器采用 Roofline 性能模型与 vLLM 动态内存配置原则，结果仅供架构规划参考；实际性能会因部署环境而异。'
+                    skip: '跳至性能估算器', hero: '了解您的<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">本地 AI 需求。</span>', heroDescription: '选择大型语言模型、量化精度与输入长度，比较各种本地 AI 硬件的内存容量、每位用户吞吐量（TPS）及首字延迟（TTFT）。', cta: '开始设置', configTitle: '本地 AI 模型设置', configDescription: '实时估算内存配置、推理吞吐量与性能瓶颈。', model: '大型语言模型（LLM）', quant: '量化精度', context: '输入长度', speed: '速度筛选', concurrency: '吞吐量与并发用户', batch: '批次大小', users: '并发用户', hardware: '硬件配置可行性', hardwareDescription: '估算不使用 CPU 或存储卸载；模型内存需求超过可用显存、统一内存或共享内存时会标记为 OOM。', hardwareCaption: '硬件容量比较', graphics: '显卡', laptop: '笔记本电脑', workstation: '工作站', card: '卡片', list: '列表', seePc: '查看产品', light: '浅色模式', dark: '深色模式', all: '显示全部（含 OOM）', threshold: '每位用户 ≥ 20 TPS', references: '参考资料与估算说明', referencesDescription: '资料来源、术语与计算假设。', resources: '资源与工具', contact: '联系我们', language: '语言', expand: '展开', collapse: '收起', simulatorTitle: 'TPS 实时生成模拟', simulatorHint: '点击产品卡片中的 TPS 数值以载入硬件', simulatorEstimate: '此硬件的预估 TPS', simulatorReplay: '重新播放', simulatorRunning: '模拟中…', simulatorIdle: '尚未选择硬件', simulatorPreview: 'Token 流式预览', simulatorSelect: '请点击任一产品卡片中的 TPS 数值开始模拟。', simulatorNoEstimate: '此硬件目前没有可用的 TPS 估算值。', simulatorPreparing: '正在准备 Token 流…', simulatorOom: '当前设置已超出显存容量，无法执行 Token 流模拟。', simulatorUsable: '每位用户 ≥ 20 TPS · 流畅', simulatorSlow: '每位用户 < 20 TPS · 较慢', simulatorCannotLoad: 'OOM · 无法载入', simulatorWorkload: '当前工作负载', footerDescription: '本估算器采用 Roofline 性能模型与 vLLM 动态内存配置原则，结果仅供架构规划参考；实际性能会因部署环境而异。'
                 }
             };
 
@@ -1732,6 +1715,17 @@
                 $('#language-label').text(copy.language);
                 $('#references-expand').text(copy.expand);
                 $('#references-collapse').text(copy.collapse);
+                $('#tps-visualizer-title').text(copy.simulatorTitle);
+                if (!$('#tps-simulator-input').val()) $('#tps-visualizer-hardware').text(copy.simulatorHint);
+                $('#tps-simulator-estimate-label').text(copy.simulatorEstimate);
+                $('#tps-simulator-expand').text(copy.expand);
+                $('#tps-simulator-collapse').text(copy.collapse);
+                $('#tps-simulator-preview-label').text(copy.simulatorPreview);
+                if (!$('#tps-simulator-input').val()) {
+                    $('#start-tps-simulation').text(copy.simulatorReplay);
+                    $('#tps-visualizer-status').text(copy.simulatorIdle);
+                    $('#tps-simulator-output').text(copy.simulatorSelect);
+                }
                 $('.see-pc-button').text(copy.seePc);
                 updateThemeUI();
                 updateConcurrencyExample();
@@ -2271,12 +2265,13 @@
 
             function runTpsSimulation() {
                 stopTpsSimulation();
-                $('#start-tps-simulation').addClass('hidden');
+                const copy = interfaceCopy[getUiLanguage()] || interfaceCopy['zh-TW'];
+                $('#start-tps-simulation').prop('disabled', true).text(copy.simulatorRunning);
                 const tps = parseFloat($('#tps-simulator-input').val());
                 if (!Number.isFinite(tps) || tps <= 0) {
-                    $('#tps-simulator-output').text('No TPS estimate is available for this hardware.');
+                    $('#tps-simulator-output').text(copy.simulatorNoEstimate);
                     $('#tps-simulator-progress').text('');
-                    $('#start-tps-simulation').removeClass('hidden');
+                    $('#start-tps-simulation').prop('disabled', true).text(copy.simulatorReplay);
                     return;
                 }
                 const totalTokens = Math.max(1, parseInt($('#output-select').val(), 10) || 1);
@@ -2299,16 +2294,9 @@
                     $('#tps-simulator-progress').text(emitted + ' / ' + totalTokens + ' tokens');
                     if (emitted >= totalTokens) {
                         stopTpsSimulation();
-                        $('#start-tps-simulation').removeClass('hidden');
+                        $('#start-tps-simulation').prop('disabled', false).text(copy.simulatorReplay);
                     }
                 }, tickMs);
-            }
-
-            function closeTpsVisualizer() {
-                stopTpsSimulation();
-                $('#tps-visualizer').addClass('hidden').removeClass('flex');
-                $('body').removeClass('overflow-hidden');
-                if (lastTpsTrigger) $(lastTpsTrigger).trigger('focus');
             }
 
             function openTpsVisualizer($card) {
@@ -2317,17 +2305,17 @@
                 const hardware = $card.find('.card-header h3').first().clone().children().remove().end().text().trim();
                 const valid = Number.isFinite(tps);
                 const isUsable = valid && tps >= 20;
+                const copy = interfaceCopy[getUiLanguage()] || interfaceCopy['zh-TW'];
                 $('#tps-visualizer-hardware').text(hardware);
-                $('#tps-visualizer-status').text(isUsable ? '≥ 20 TPS per user · Usable' : (valid ? '< 20 TPS per user · Slow' : 'OOM · Cannot Load'))
+                $('#tps-visualizer-status').text(isUsable ? copy.simulatorUsable : (valid ? copy.simulatorSlow : copy.simulatorCannotLoad))
                     .attr('class', 'self-start rounded-full px-3 py-1.5 text-xs font-bold sm:mb-2 ' + (isUsable ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300' : 'bg-red-100 text-red-700 dark:bg-red-950/50 dark:text-red-300'));
                 $('#tps-simulator-input').val(valid ? tps.toFixed(1) : '').prop('disabled', !valid);
-                $('#start-tps-simulation').prop('disabled', !valid).addClass('hidden');
-                $('#tps-simulator-workload').text('Current workload: ' + $('#context-select option:selected').text() + ' → ' + $('#output-select option:selected').text());
-                $('#tps-simulator-output').text(valid ? 'Preparing the token stream…' : 'The current configuration is OOM, so the token-stream simulation cannot run.');
+                $('#start-tps-simulation').prop('disabled', !valid).text(copy.simulatorReplay);
+                $('#tps-simulator-workload').text(copy.simulatorWorkload + ': ' + $('#context-select option:selected').text());
+                $('#tps-simulator-output').text(valid ? copy.simulatorPreparing : copy.simulatorOom);
                 $('#tps-simulator-progress').text('');
-                $('#tps-visualizer').removeClass('hidden').addClass('flex');
-                $('body').addClass('overflow-hidden');
-                $('#close-tps-visualizer').trigger('focus');
+                document.getElementById('tps-visualizer').open = true;
+                document.getElementById('tps-visualizer').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 if (valid) runTpsSimulation();
             }
 
@@ -2335,14 +2323,12 @@
             $('#product-container').on('keydown', '.tps-metric-button', function(event) {
                 if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); lastTpsTrigger = this; openTpsVisualizer($(this).closest('.product-card')); }
             });
-            $('#close-tps-visualizer').click(closeTpsVisualizer);
             $('#start-tps-simulation').click(runTpsSimulation);
-            $('#tps-visualizer').click(function(event) { if (event.target === this) closeTpsVisualizer(); });
             $(document).on('keydown.modals', function(event) {
-                const $activeModal = !$('#pc-modal').hasClass('hidden') ? $('#pc-modal') : (!$('#tps-visualizer').hasClass('hidden') ? $('#tps-visualizer') : $());
+                const $activeModal = !$('#pc-modal').hasClass('hidden') ? $('#pc-modal') : $();
                 if (!$activeModal.length) return;
                 if (event.key === 'Escape') {
-                    if ($activeModal.is('#pc-modal')) closePcModal(); else closeTpsVisualizer();
+                    closePcModal();
                     return;
                 }
                 if (event.key !== 'Tab') return;
