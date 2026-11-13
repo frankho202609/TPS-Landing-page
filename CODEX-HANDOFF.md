@@ -33,10 +33,10 @@ Open `http://127.0.0.1:8131/`. Tailwind CSS, jQuery, and Inter load from public 
 
 ## LLM scope
 
-- The selector intentionally contains 40 models: the top 10 downloaded Unsloth entries for each family, in this order: Qwen, Gemma, DeepSeek, NVIDIA Nemotron.
+- The selector starts from the top 10 downloaded Unsloth entries for each family, then deduplicates entries with the same base LLM and parameter count. Different packaging or quantization variants (GGUF, NVFP4, QAT, Fast) do not create separate options.
 - Default: Qwen 3.8 27B.
 - Other LLM families were deliberately removed.
-- The list follows Hugging Face `unsloth` download rankings. Pure image/audio/embedding Qwen entries are excluded because the TPS calculator requires text generation; the next eligible text-capable Qwen entries are used instead.
+- The list follows Hugging Face `unsloth` download rankings. Pure image/audio/embedding Qwen entries are excluded because the TPS calculator requires text generation; the next eligible text-capable Qwen entries are used instead. After deduplication the selector contains 31 models.
 - Popularity snapshot: 2026-11-13. Download rankings are dynamic; re-query Hugging Face before changing the order.
 
 ## TPS behavior
@@ -77,7 +77,7 @@ Search inside `index.html` for:
 6. Confirm OOM and the per-user TPS filter work.
 7. Confirm official MSI product links open correctly.
 8. Confirm the simulator is closed by default, opens from a TPS metric, streams, replays, and collapses.
-9. Confirm the model selector has 40 options (10 per requested family) and only the four requested family groups.
+9. Confirm the model selector has 31 deduplicated options and only the four requested family groups.
 10. Test English, Traditional Chinese, and Simplified Chinese, including simulator text.
 
 ## Package contents
